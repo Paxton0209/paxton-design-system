@@ -2,9 +2,9 @@
 
 这是跨产品共用的设计依据，供 Claude、Codex、其他 AI 和设计师制作网页、产品界面与 Figma 设计。换账号或换工具后，从 [HANDOFF.md](HANDOFF.md) 开始；规则、设计变量和组件直接保存在仓库中，使用它们不依赖旧聊天记录或特定 AI 账号。仓库版本使用 Git 标签，SPEC 和 COMPONENTS 的版本分别表示规则正文与组件文档的版本。
 
-当前规则版本：SPEC 1.4、COMPONENTS 1.1（2026-11-05）。以下 Figma 情况为 STATUS 的当日记录，执行前须读取实时画布：Figma 已精简为 Work、Components 两页和 66 个关键主组件；全部可编辑文案为英文 Inter，37 个线性/面性图标统一白色，Dock App 图标保留彩色。规则与尺寸用途分类见 SPEC 13.1–13.2，当前节点和验收边界统一查 STATUS.md。
+当前规则版本：SPEC 1.4、COMPONENTS 1.1（2026-11-05）。网页设计变量以 tokens 为源；车机（HMI）专用值与字号见 SPEC 13.1，两套规则不互用。当前任务、待定项与 Figma 定位见 [STATUS.md](STATUS.md)，执行前须读取实时画布。
 
-作品集网站、DriveScene 和以后的产品界面都按这里做。说明图和配图仍按作者本地 `design-system/` 上一级的 `figure-kit.css` 和《审美与部件-v2.md》（不在本仓库）。
+作品集网站、DriveScene 和以后的产品界面都按这里做。说明图和配图仍按作者本地的 `figure-kit.css` 和《审美与部件-v2.md》（不在本仓库；需要时向作者索取，无法访问时不声称已读取）。
 
 ## 仓库与使用方
 
@@ -18,21 +18,21 @@
 | --- | --- | --- |
 | 0 | `HANDOFF.md` | AI 执行清单：开工、改界面、改规范、升级版本、交付格式 |
 | 1 | `SPEC.md` | 规范正文，只写当前有效的规则 |
-| 2 | `tokens/tokens.css` | 代码里唯一可以用的数值 |
+| 2 | `tokens/tokens.css` | 网页代码的设计变量；车机专用值见 SPEC 13.1 |
 | 3 | `COMPONENTS.md`、`components/`、`gallery.html` | 组件规格、参考实现、全状态展示 |
 | 4 | `checks/`、`AGENTS.template.md`、`examples/` | 检查脚本、产品仓库入口模板、示例 |
-| 4 | 产品自己的 guideline | 只写该产品的布局和差异 |
+| 5 | 产品自己的 guideline | 只写该产品的布局和差异 |
 | 查 | `DECISIONS.md` | 为什么这么定、哪些还待定 |
 | 查 | `STATUS.md` | 当前 Figma 页面与节点、有效任务、已退回方案和待验证事项 |
 | 查 | `PLAN.md` | 建设计划和进度 |
-| 派活 | `codex/` | 给 Codex 的命令文件（每份写明范围、标杆、验收和报告格式） |
+| 历史 | `codex/` | 建设过程的任务单，不是当前指令 |
 
 ## 给所有 AI 和设计执行者的规则
 
 1. 日常实现只读规范；作者明确要求维护文档时可在授权范围内同步 SPEC、DECISIONS 和 STATUS，保留决定依据。未确认的新视觉规则先记录为待定，不自行写成已定规则。
 2. 网页代码中的颜色、圆角、字号、字重、间距、阴影只用 `var(--ds-…)`，不写数值；Figma 按 HANDOFF 的设计执行方式映射同源变量。
 3. 组件先从 `components/` 复制；没有的组件不要自己造，先问。
-4. 每个界面改动交付浅深两套截图，桌面和手机各一张，并运行 `checks/` 里的检查（`check-ui` 查数值、字距、写死颜色；`audit` 查渲染和对比度）。
+4. 网页界面改动交付桌面和手机、浅深两套截图，并运行 `checks/` 中适用的检查；Figma 按 HANDOFF 2.1 核对目标尺寸、主题与状态。
 5. 如实区分「已实现」「已验证」「未验证」。
 
 ## 接入
@@ -49,15 +49,6 @@ node tokens/build-tokens.mjs
 
 旧页面用到的 v1 变量名（`--ds-canvas`、`--ds-ink`、`--ds-grey` 等）在新文件里保留为别名，值已经换成 v5 中性灰。同一页面同时需要配图时，先加载配图层的 `tokens.css`，再加载本仓库的 `tokens.css`。
 
-## 进度
+## 当前状态
 
-| 轮次 | 内容 | 状态 |
-| --- | --- | --- |
-| 1 | SPEC 基础层、DECISIONS、tokens | 完成，作者 11-04 确认 |
-| 2 | 组件规格、参考实现、展示页 | 完成，Claude 11-04 验收通过 |
-| 3 | 检查脚本、AGENTS 模板、作品集与工具示例、DriveScene 迁移 | 完成，Claude 验收退回三处（D-24 至 D-26） |
-| 4 | 退回项、内容页语汇（SPEC 7.1）、DriveScene 发版 | Claude 验收通过，等 Codex 发版 |
-| 5 | 车机 v0.1（图标、组件、示例屏）、规范 1.1 整理、DriveScene 可视性修复 | Claude 完成规范与标杆；Codex 测试与修复进行中 |
-| 当前 | SPEC 1.4、Figma 极简库与图标分类 | 两页、66 个主组件、英文 Inter、白色图标；当前验证边界见 STATUS |
-
-上表早期轮次保留为历史记录，不用于推断当前发布状态。旧 Figma A–E 任务单已归为历史；后续执行以 SPEC 1.4、DECISIONS D-97 至 D-100 和 STATUS 为准。
+当前状态与验收边界统一见 [STATUS.md](STATUS.md)。历史决定见 DECISIONS，`codex/` 中的旧任务不自动恢复执行。

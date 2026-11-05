@@ -234,7 +234,7 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 | --- | --- | --- | --- |
 | D-101 | 设计系统从作者本地目录迁入独立公开仓库 `Paxton0209/paxton-design-system`，作为所有产品的上游；产品以子模块挂在 `design-system/` 并锁定版本标签，`AGENTS.md` 只写相对路径 | 作者：「单独开一个仓库」「服务于未来各种产品，DriveScene 只是一个被映射的分支」 | 已执行 |
 | D-102 | 每个 PR 自动跑静态检查与渲染审计；静态检查和审计器自测不过不能合并，展示页与示例的渲染审计暂只出报告（现有 322 条失败记录待作者判断，见 GOVERNANCE）；CODEOWNERS 指给作者，规范改动只能由作者批准合并，AI 只提 PR | 作者同意 Claude 的治理建议 | 已执行；分支规则见 GOVERNANCE |
-| D-103 | 关键页基准移到产品仓库（DriveScene 为 `studio/ui-draft/keypage.json`），本仓库删除 `keypages/drivescene.json`；SPEC 6.1 末条相应改写路径，规则本身不变。`renders/` 证据目录与 Sketch 阅读包不进仓库，留在作者本地 | 两份基准内容相同，留两份会漂移；证据目录 47 MB、阅读包含第三方截图 | 待作者在 PR 中确认 |
+| D-103 | 关键页基准移到产品仓库（DriveScene 为 `studio/ui-draft/keypage.json`），本仓库删除 `keypages/drivescene.json`；SPEC 6.1 末条相应改写路径，规则本身不变。`renders/` 证据目录与 Sketch 阅读包不进仓库，留在作者本地 | 两份基准内容相同，留两份会漂移；证据目录 47 MB、阅读包含第三方截图 | 已随作者明确授权的 PR #1 合入；基准数值与视觉规则未改，不代表视觉验收 |
 
 ## 发版记录
 
