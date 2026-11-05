@@ -1,0 +1,11 @@
+.bad {
+ color: red;
+ background: #fafafa;
+ width: 15px;
+ border-radius: 9px;
+ font: 600 11px sans-serif;
+ transition: opacity 150ms;
+ background-image: linear-gradient(white, black);
+ backdrop-filter: blur(3px);
+ color: var(--ds-does-not-exist);
+}

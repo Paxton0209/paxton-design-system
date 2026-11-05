@@ -1,0 +1,53 @@
+/* D-31 to D-34: approved key-page exceptions; preserve source structure. */
+html:has(.portfolio) { background:#FAFAFA; } /* ds-allow: key-page canvas */
+html[data-theme=dark]:has(.portfolio) { background:#0A0A0A; } /* ds-allow: key-page dark canvas */
+.portfolio .reading { max-width:var(--ds-size-col-read); }
+.portfolio .profile-header { display:block; }
+.portfolio .identity { gap:var(--ds-space-5); }
+.portfolio .name,.portfolio .role { font:var(--ds-text-title); }
+.portfolio .role { font-weight:400; }
+.portfolio .intro { margin-top:var(--ds-space-10); gap:var(--ds-space-6); }
+.portfolio .intro .secondary,.portfolio .meta-heading { color:var(--ds-color-text-3); }
+.portfolio .meta-heading { font:var(--ds-text-meta); margin-bottom:var(--ds-space-4); }
+.portfolio .companies { gap:var(--ds-space-4); }
+.portfolio .company { border-radius:9px; } /* ds-allow: D-31 key-page company radius */
+.portfolio .link-columns { margin-top:var(--ds-space-10); gap:var(--ds-space-10); }
+.portfolio .link-columns section { display:flex; flex-direction:column; gap:var(--ds-space-1); }
+.portfolio .link-columns .meta-heading { margin-bottom:var(--ds-space-3); }
+.portfolio .ds-link { font:var(--ds-text-body); text-decoration:underline dotted; text-decoration-color:var(--ds-color-text-3); text-underline-offset:.3em; }
+.portfolio .works { margin-top:var(--ds-space-12); }
+.portfolio .project-grid { margin-top:var(--ds-space-6); gap:var(--ds-space-8); }
+.portfolio .ds-card--media,.portfolio .ds-card--tile { border-radius:8px; corner-shape:superellipse(1.6); } /* ds-allow: D-31 key-page continuous radius */
+.portfolio .ds-card--media img { border-radius:0; }
+.portfolio .ds-card--media .ds-card__title { font-family:inherit; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.portfolio .tools h2 { font:600 19px/26px Inter,sans-serif; } /* ds-allow: D-31 approved Tools heading */
+.portfolio .ds-card--tile { position:relative; }
+.portfolio .ds-card--tile > img { width:100%; height:100%; object-fit:cover; }
+.portfolio .ds-card--tile .ds-card__caption { bottom:14px; } /* ds-allow: key-page source caption bottom */
+.portfolio .ds-card--tile .ds-card__title { font:500 15px/20px Inter,sans-serif; color:var(--ds-color-text-1); } /* ds-allow: D-31 approved tool title */
+
+/* Source home link grid stays two-column on phones; source breakpoint is 680. */
+.portfolio .link-columns { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.portfolio .company { border:0; cursor:pointer; }
+.portfolio .link-columns .ds-link { width:fit-content; }
+.portfolio .ds-tab[aria-pressed=true] { color:var(--ds-color-text-1); border-bottom-color:var(--ds-color-text-1); }
+.portfolio .ds-tab[aria-pressed=false] { color:var(--ds-color-text-2); border-bottom-color:transparent; }
+.portfolio #portfolio-drawer { width:min(100%,calc(var(--ds-size-panel) * 2)); max-height:90dvh; overflow:auto; }
+.portfolio #portfolio-drawer header { display:flex; align-items:center; justify-content:space-between; gap:var(--ds-space-6); margin-bottom:var(--ds-space-8); }
+.portfolio #drawer-content { display:grid; gap:var(--ds-space-8); }
+.portfolio .drawer-links { display:grid; gap:var(--ds-space-6); }
+.portfolio .contact-actions { display:flex; gap:var(--ds-space-5); }
+.portfolio .contact-address { overflow-wrap:anywhere; }
+.portfolio .copy-status:empty { display:none; }
+@media(max-width:680px) { /* ds-allow: original home responsive breakpoint */
+ .portfolio-main { padding-top:var(--ds-space-11); }
+ .portfolio .project-grid { grid-template-columns:minmax(0,1fr); gap:var(--ds-space-6); }
+ .portfolio .works { margin-top:var(--ds-space-11); }
+}
+.portfolio .ds-tabs [role=group] { display:flex; align-items:center; gap:var(--ds-space-8); }
+.portfolio .ds-tab[aria-pressed=true] { box-shadow:0 2px 0 var(--ds-color-text-1); } /* ds-allow: original active filter underline */
+.portfolio [hidden] { display:none!important; }
+@media(min-width:681px) { /* ds-allow: original two-column home breakpoint */
+ .portfolio .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+.portfolio #portfolio-drawer { position:fixed; inset:0; margin:auto; }

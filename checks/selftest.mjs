@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {inspect,tokenNames} from './check-ui.mjs';
+const base=new URL('./',import.meta.url),tokens=new Set(tokenNames(JSON.parse(await fs.readFile(new URL('../tokens/tokens.json',base),'utf8'))));
+const bad=inspect(await fs.readFile(new URL('fixtures/bad.css',base),'utf8'),'bad.css',tokens);
+const html=inspect(await fs.readFile(new URL('fixtures/bad.html',base),'utf8'),'bad.html',tokens);
+const found=new Set([...bad.errors,...html.errors].map(x=>x.rule));
+for(const rule of ['color-literal','raw-length','radius','font','duration','banned','middle-dot','tokens-only'])assert(found.has(rule),rule);
+assert.equal(inspect('a{color:var(--ds-color-text-1);border:1.5px solid currentColor;border-radius:var(--ds-radius-thumb);font:var(--ds-text-ui);transition:opacity var(--ds-motion-fast);}','ok.css',tokens).errors.length,0);
+assert.equal(inspect('/* red 20px */\na { color:red; /* ds-allow: intentional fixture */ }\na {width:20px}\na {width:21px}','allow.css',tokens).errors.length,1);
+assert.equal(inspect('a{width:19px}','config.css',tokens,{allowPx:[19]}).errors.length,0);
+assert.equal(inspect('const url="https://example.com"; const label="A · B"; // comment ·','url.js',tokens).errors.length,1);
+assert.equal(inspect('<p>A &middot; B</p>','text.html',tokens).errors.length,1);
+const coordinate=inspect('a{\n color:red;\n}','position.css',tokens).errors[0];assert.equal(coordinate.line,2);assert.equal(coordinate.column,8);
+const cli=spawnSync(process.execPath,[new URL('check-ui.mjs',base).pathname,new URL('fixtures/bad.css',base).pathname],{encoding:'utf8'});assert.equal(cli.status,1);assert.match(cli.stdout,/bad.css:\d+:\d+/);
+console.log(JSON.stringify({rules:[...found],cases:8,pass:true}));

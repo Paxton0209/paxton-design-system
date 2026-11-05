@@ -1,0 +1,70 @@
+name: Design system checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Checker self-test
+        run: node checks/selftest.mjs
+      - name: check-ui on components, gallery and examples
+        run: node checks/check-ui.mjs components gallery.html examples
+      - name: tokens.css is generated from tokens.json
+        run: |
+          node tokens/build-tokens.mjs
+          git diff --exit-code -- tokens/tokens.css || { echo "::error::tokens.css 与 tokens.json 不一致：改变量只改 tokens.json，再运行 node tokens/build-tokens.mjs"; exit 1; }
+
+  render:
+    # 目前只出报告、不拦合并：现有展示页和示例在审计里有 322 条失败记录（含与 D-31/D-32
+    # 已批准例外冲突的部分），待作者逐项判断后，删掉下面两处 continue-on-error 即升级为门禁。
+    name: Render audit (report only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm ci --prefix checks
+          npx --prefix checks playwright install --with-deps chromium
+      - name: Serve repository
+        run: |
+          python3 -m http.server 8767 --bind 127.0.0.1 >/tmp/http.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8767/gallery.html >/dev/null && break; sleep 1; done
+      - name: Audit gallery
+        continue-on-error: true
+        run: node checks/audit.mjs --url http://127.0.0.1:8767/gallery.html --out work/audit/gallery
+      - name: Audit examples
+        continue-on-error: true
+        run: node checks/audit.mjs --url http://127.0.0.1:8767/examples/portfolio.html --url http://127.0.0.1:8767/examples/workbench.html --out work/audit/examples --viewports 1440,390 --themes light,dark
+      - name: Audit fixture must fail
+        run: |
+          if node checks/audit.mjs --url http://127.0.0.1:8767/checks/fixtures/audit-bad.html --out work/audit/selftest --viewports 390 --themes light; then
+            echo "::error::audit 没有发现 fixtures/audit-bad.html 里故意放的问题，审计器本身可能失效"; exit 1
+          fi
+      - name: Summary
+        if: always()
+        run: |
+          for f in work/audit/gallery/audit.md work/audit/examples/audit.md; do
+            [ -f "$f" ] && { echo "### $f"; head -c 60000 "$f"; echo; } >> "$GITHUB_STEP_SUMMARY"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: render-audit
+          path: work/audit
+          retention-days: 30
