@@ -72,7 +72,7 @@ git add design-system studio/ui-draft/design-system/tokens.css
 | 设计系统 | 检查器自测、check-ui、tokens 由 json 生成、审计器能识别坏样本 | 展示页和示例的渲染审计 |
 | DriveScene | tokens 与锁定版本一致、check-ui（只查新增问题）、keypage ±1px | 工作台渲染审计 |
 
-CI 的截图和报告在 Actions 运行页的 Artifacts 里，保留 30 天。
+CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30 天。「只出报告」指审计发现的问题不拦合并；审计没跑完、没生成报告时 job 照样会失败。
 
 ## 6. 交付报告格式
 
