@@ -80,6 +80,7 @@ jobs:
           if node checks/audit.mjs --url http://127.0.0.1:8767/checks/fixtures/audit-bad.html --out work/audit/selftest --viewports 390 --themes light; then
             echo "::error::audit 没有发现 fixtures/audit-bad.html 里故意放的问题，审计器本身可能失效"; exit 1
           fi
+          node --input-type=module -e "import fs from 'node:fs'; const r=JSON.parse(fs.readFileSync('work/audit/selftest/audit.json')); if(r.runs.length!==1 || !r.failures.some(f=>f.rule==='contrast')) throw Error('Bad fixture did not produce the expected contrast findings');"
       - name: Summary
         if: always()
         run: |
