@@ -1,0 +1,71 @@
+/* ===== Figure system v5 (historical source, reference use): neutral greys, 3 type sizes, 3 materials, squircle radii, 2 line types ===== */
+html .vfig{
+ /* primitives — light */
+ --g0:#FFFFFF;--g50:#FAFAFA;--g100:#F3F3F3;--g150:#ECECEC;--g200:#E4E4E4;--g300:#D2D2D2;--g400:#A8A8A8;--g500:#8C8C8C;--g600:#6E6E6E;--g800:#3A3A3A;--g900:#1D1D1F;
+ --ink:var(--g900);
+ --fig-plate:var(--g100);
+ --sf:var(--g0); --sf-line:0 0 0 1px rgba(0,0,0,.055);                    /* surface: flat + hairline */
+ --rz:var(--g0); --rz-shadow:0 0 0 1px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04),0 12px 28px -14px rgba(0,0,0,.16);  /* raised */
+ --fig-ph:var(--g150); --fig-ph-2:var(--g200); --fig-mass:var(--g300);
+ --fig-text:var(--g900); --fig-text-2:var(--g600); --fig-text-3:var(--g500); --fig-text-ph:var(--g400);
+ --fig-ink:var(--g900); --fig-on-ink:#fff; --fig-connector:var(--g400); --fig-frame:var(--g500); --fig-ring:0,0,0;
+ --fig-heat-0:var(--g150);--fig-heat-1:var(--g200);--fig-heat-2:var(--g400);--fig-heat-3:var(--g600);--fig-heat-4:var(--g800);
+ --fig-tile:var(--sf); --fig-tile-flat:var(--sf); --fig-card:var(--g50);
+ --fig-raise:var(--sf-line);
+ --fig-lift:var(--rz); --fig-lift-shadow:0 0 0 1.5px var(--ink),0 1px 2px rgba(0,0,0,.04),0 12px 28px -14px rgba(0,0,0,.18);
+ /* type: three sizes only */
+ --t-label:500 13px/18px var(--ds-font); --t-body:400 11px/15px var(--ds-font); --t-mono:400 10px/12px var(--ds-mono);
+ --fig-t-title:var(--t-label); --fig-t-sub:var(--t-body); --fig-t-panel:500 11px/15px var(--ds-font); --fig-t-desc:var(--t-body); --fig-t-mono:var(--t-mono);
+ /* radius: 3 tiers, squircle, concentric (inner = outer - padding) */
+ --r-s:6px; --r-m:10px; --r-l:16px;
+ --stage:#F8F8F8;
+ --fig-radius:var(--r-m); --fig-radius-sm:var(--r-s); --fig-radius-xs:3px;
+}
+html[data-theme="dark"] .vfig{
+ --g0:#0A0A0A;--g50:#111111;--g100:#0A0A0A;--g150:#262626;--g200:#202020;--g300:#3A3A3A;--g400:#5C5C5C;--g500:#7A7A7A;--g600:#A0A0A0;--g800:#C8C8C8;--g900:#EDEDED;
+ --ink:#E6E6E6; --stage:#0F0F0F;
+ --sf:#141414; --sf-line:0 0 0 1px rgba(255,255,255,.08);
+ --rz:#1C1C1C; --rz-shadow:0 0 0 1px rgba(255,255,255,.10),0 12px 28px -14px rgba(0,0,0,.8);
+ --fig-ph:#262626; --fig-ph-2:#202020; --fig-mass:#3A3A3A; --fig-card:#111111;
+ --fig-heat-0:#1C1C1C;--fig-heat-1:#2B2B2B;--fig-heat-2:#555555;--fig-heat-3:#8F8F8F;--fig-heat-4:#C8C8C8;
+ --fig-on-ink:#0A0A0A; --fig-ring:255,255,255;
+ --fig-lift:var(--rz); --fig-lift-shadow:0 0 0 1.5px #D4D4D4,0 12px 28px -14px rgba(0,0,0,.8);
+}
+/* squircle everywhere a radius exists */
+.vfig .f-plate *{corner-shape:superellipse(1.6)}
+/* materials */
+.vfig .f-level:not(.f-emph),.vfig .f-pill:not(.f-emph),.vfig .f-sched:not(.f-emph),.vfig .f-tile-flat{background:var(--sf)!important;box-shadow:var(--sf-line)!important}
+.vfig .s-stage{background:var(--stage)!important;box-shadow:var(--sf-line)!important;border-radius:var(--r-l)!important}
+.vfig .s-lift,.vfig .s-tag{background:var(--rz)!important;box-shadow:var(--rz-shadow)!important}
+.vfig .s-tag{border-radius:var(--r-s)!important;font:500 11px/1 var(--ds-font)!important;height:22px!important;padding:0 8px!important}
+.vfig .f-level{border-radius:var(--r-l)!important}
+.vfig .f-level .f-sq i{border-radius:2px}
+/* type cleanup inside these figures */
+.vfig .s-mono{font:var(--t-mono)!important;letter-spacing:.06em}
+.vfig .f-level b{font:var(--t-label)!important}
+.vfig .f-level p,.vfig .f-lv{font:var(--t-body)!important}
+/* lines: hairline + one dash */
+.vfig .s-vline{border-left:1px dashed rgba(var(--fig-ring),.28)!important}
+.vfig .s-slot{outline:1px dashed rgba(var(--fig-ring),.28)!important}
+/* ---- type cleanup: in-mock UI text = 10px/500; secondary micro text becomes skeleton bars ---- */
+.vfig .f-pill{font:400 11px/28px var(--ds-font)!important}.vfig .f-pill.f-emph{font-weight:500!important}
+.vfig .f-panel>p{font:var(--t-body)!important}
+.vfig .f-panel--card{height:auto!important;min-height:212px;border-radius:var(--r-m)!important;background:var(--sf)!important;box-shadow:var(--sf-line)!important}
+.vfig .f-panel--card .f-panel__vis{border-radius:var(--r-m) var(--r-m) 0 0!important}
+.vfig .f-input b{font:500 10px/12px var(--ds-font)!important}
+.vfig .f-input span{font-size:0!important;width:52px;height:5px;border-radius:3px;background:var(--fig-ph);display:block;margin-top:3px}
+.vfig .f-input{background:var(--rz)!important;box-shadow:var(--rz-shadow)!important;border-radius:var(--r-m)!important}
+.vfig .f-sched{left:11px!important;width:143px!important;height:24px!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;font:500 10px/12px var(--ds-font)!important;padding:0 10px!important;border-radius:var(--r-s)!important}
+.vfig .f-sched:not(.f-emph){background:var(--sf)!important;box-shadow:var(--sf-line)!important}
+.vfig .f-sched.f-emph{background:var(--rz)!important;color:var(--fig-text)!important;box-shadow:0 0 0 1.5px var(--ink),0 8px 18px -10px rgba(0,0,0,.25)!important}
+.vfig .f-sched span{font-size:0!important;width:40px;height:5px;border-radius:3px;background:var(--fig-ph-2)!important;margin:0!important}
+.vfig .f-sched:nth-child(1){top:14px!important}.vfig .f-sched:nth-child(2){top:44px!important}.vfig .f-sched:nth-child(3){top:74px!important}.vfig .f-sched:nth-child(4){top:104px!important}
+.vfig .f-ctx{font:500 10px/22px var(--ds-font)!important;width:58px!important;height:22px!important;left:53.5px!important;top:59px!important;background:var(--rz)!important;box-shadow:var(--rz-shadow)!important;border-radius:var(--r-s)!important}
+.vfig .f-dotlabel{font:400 10px var(--ds-font)!important}
+.vfig #n-need .node b{font:500 11px/15px var(--ds-font)!important}.vfig #n-need .node span{font:400 11px/15px var(--ds-font)!important;color:var(--fig-text-3)!important}
+.vfig #n-dom2 .vchip span{font:500 10px/1 var(--ds-font)!important}
+/* v5.1: node in Two frames — room for two 11px lines (was cramped) */
+.vfig #n-need .node{left:-20px!important;top:46px!important;width:160px!important;height:52px!important;border-radius:var(--r-m)!important;background:var(--rz)!important;box-shadow:var(--rz-shadow)!important}
+.vfig #n-need .node i{left:14px!important;top:16px!important;width:20px!important;height:20px!important;border-radius:6px!important}
+.vfig #n-need .node b{left:46px!important;top:11px!important}
+.vfig #n-need .node span{left:46px!important;top:26px!important}

@@ -58,6 +58,10 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 - [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `HMI / v0.1` 变量和 `HMI/…` 文字样式；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
 - [ ] 交付文件链接、实际修改节点、采用版本，以及适用的浅深主题、尺寸和状态截图；未做的状态写明未验证。网页审计脚本不能直接验收 Figma，必须按规范核对画布中的数值、布局、文字、图标和状态。
 
+## 2.2 配图怎么执行
+
+先读 `illustrations/README.md` 和 `illustrations/CATALOG.md`，明确图要表达的关系，再选择必要的容器、步骤、能力、连接、分支或网格。现有样例可以组合和扩展，新图使用新 ID，保留已确认成品；不把现有数量、布局或产品控件的缺组件审批套用于配图。源文件与当前 PNG 的对应边界见 `catalog.json`，可编辑 HTML 有 14 份，ADAS 当前只提供 PNG。使用 `.vfig` 作用域隔离配图样式，导出后核对整体留白、必要标签、对齐和实际尺寸；浅深主题分别核对，未验证的状态如实记录。
+
 ## 3. 改设计系统本身（只在作者要求时）
 
 - [ ] 在本仓库开分支；规则改动先找作者原话或 DECISIONS 编号作依据
@@ -108,13 +112,14 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 - 既有关键页没有追溯迁移到 tokens，所以产品 CI 用 `check-changed.mjs`，只查本次改动新增的问题。
 - `renders/` 证据目录（约 47 MB）和 Sketch 英文阅读包没有进仓库，留在作者本地。
 - 目前 AI 和作者用的是同一个 GitHub 账号，GitHub 分不出是谁，「只有作者能批准」只能靠约定。要真正强制，见 `GOVERNANCE.md` 关于机器账号的说明。
-- 配图层（`figure-kit.css`、《审美与部件-v2.md》）还在作者本地，不在本仓库。
+- 当前配图参考包已在 `illustrations/`：16 张浅色 PNG、14 份历史 HTML、CSS 与生成脚本。完整历史配图层仍在作者本地；历史 HTML 与部分后续修正版 PNG 不保证逐像素一致。
 
 ## 8. 文件地图
 
 | 要找 | 看 |
 | --- | --- |
 | 规则正文 | `SPEC.md` |
+| 配图组合 / 图片目录 / 源文件 | `illustrations/README.md` / `illustrations/CATALOG.md` / `illustrations/source/` |
 | 组件规格 / 实现 / 全状态 | `COMPONENTS.md` / `components/` / `gallery.html` |
 | 设计数值来源 | 网页：`tokens/tokens.json`（源）→ `tokens/tokens.css`（生成）；车机：SPEC 13.1 与对应 Figma 变量、文字样式 |
 | 为什么这么定 | `DECISIONS.md` |
