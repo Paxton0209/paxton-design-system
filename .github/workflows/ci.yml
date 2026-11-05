@@ -13,6 +13,7 @@ jobs:
   static:
     name: Static checks
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,6 +33,7 @@ jobs:
     # 已批准例外冲突的部分），待作者逐项判断后，删掉下面两处 continue-on-error 即升级为门禁。
     name: Render audit (report only)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -47,24 +49,49 @@ jobs:
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:8767/gallery.html >/dev/null && break; sleep 1; done
       - name: Audit gallery
         continue-on-error: true
-        run: node checks/audit.mjs --url http://127.0.0.1:8767/gallery.html --out work/audit/gallery
+        timeout-minutes: 10
+        shell: bash
+        run: |
+          mkdir -p work/audit/gallery
+          node checks/audit.mjs --url http://127.0.0.1:8767/gallery.html --out work/audit/gallery 2>&1 | tee work/audit/gallery/audit.log
       - name: Audit examples
         continue-on-error: true
-        run: node checks/audit.mjs --url http://127.0.0.1:8767/examples/portfolio.html --url http://127.0.0.1:8767/examples/workbench.html --out work/audit/examples --viewports 1440,390 --themes light,dark
+        timeout-minutes: 10
+        shell: bash
+        run: |
+          mkdir -p work/audit/examples
+          node checks/audit.mjs --url http://127.0.0.1:8767/examples/portfolio.html --url http://127.0.0.1:8767/examples/workbench.html --out work/audit/examples --viewports 1440,390 --themes light,dark 2>&1 | tee work/audit/examples/audit.log
+      - name: Audit reports were generated
+        # 审计发现问题只出报告；但审计没跑完（崩溃、超时、没有报告）必须让 job 失败。
+        if: always()
+        run: |
+          missing=0
+          for d in gallery examples; do
+            if [ ! -s "work/audit/$d/audit.md" ]; then
+              echo "::error::work/audit/$d/audit.md 未生成，审计没有跑完；日志尾部如下（完整日志见 render-audit 附件）"
+              tail -n 40 "work/audit/$d/audit.log" 2>/dev/null || echo "(无日志)"
+              missing=1
+            fi
+          done
+          exit $missing
       - name: Audit fixture must fail
+        timeout-minutes: 5
         run: |
           if node checks/audit.mjs --url http://127.0.0.1:8767/checks/fixtures/audit-bad.html --out work/audit/selftest --viewports 390 --themes light; then
             echo "::error::audit 没有发现 fixtures/audit-bad.html 里故意放的问题，审计器本身可能失效"; exit 1
           fi
+          node --input-type=module -e "import fs from 'node:fs'; const r=JSON.parse(fs.readFileSync('work/audit/selftest/audit.json')); if(r.runs.length!==1 || !r.failures.some(f=>f.rule==='contrast')) throw Error('Bad fixture did not produce the expected contrast findings');"
       - name: Summary
         if: always()
         run: |
           for f in work/audit/gallery/audit.md work/audit/examples/audit.md; do
-            [ -f "$f" ] && { echo "### $f"; head -c 60000 "$f"; echo; } >> "$GITHUB_STEP_SUMMARY"
+            if [ -f "$f" ]; then { echo "### $f"; head -c 60000 "$f"; echo; } >> "$GITHUB_STEP_SUMMARY"; fi
           done
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: render-audit
-          path: work/audit
+          path: |
+            work/audit
+            /tmp/http.log
           retention-days: 30

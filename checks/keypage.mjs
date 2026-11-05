@@ -13,7 +13,8 @@ const spec=JSON.parse(await fs.readFile(specPath,'utf8'));url=url||spec.url;
 if(!url)throw Error('No url: pass --url or set "url" in the spec');
 let executablePath=process.env.DS_BROWSER_EXECUTABLE;
 if(!executablePath&&process.platform==='darwin')try{await fs.access('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');executablePath='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';}catch{}
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+const launchArgs=process.env.DS_BROWSER_ARGS!==undefined?process.env.DS_BROWSER_ARGS.split(/\s+/).filter(Boolean):process.platform==='linux'?['--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']:[];
+const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:launchArgs});
 // "A|text" = first element matching A whose text starts with text; "X >> Y" = Y inside X.
 const finder=`(sel)=>{const one=(root,s)=>{const [css,txt]=s.split('|');const all=[...root.querySelectorAll(css.trim())].filter(e=>{const b=e.getBoundingClientRect();return b.width>0&&b.height>0});return txt===undefined?all[0]:all.find(e=>(e.innerText||e.textContent||'').trim().startsWith(txt.trim()))};
  let el=document;for(const part of sel.split('>>')){el=one(el,part);if(!el)return null;}const b=el.getBoundingClientRect();return {top:b.top,bottom:b.bottom,left:b.left,right:b.right}}`;
