@@ -5,7 +5,7 @@
 | 谁 | 能做什么 | 不能做什么 |
 | --- | --- | --- |
 | 作者（@Paxton0209） | 批准并合并 PR，打版本标签，决定产品何时升级 | — |
-| AI（Claude、Codex 等） | 开分支、改文件、提 PR、在 PR 里回复审核意见 | 合并 PR、直接推 main、打标签、把未确认的视觉规则写成已定 |
+| AI（Claude、Codex 等） | 开分支、改文件、提 PR、回复审核意见；作者明确授权后可代为合并、打标签与发布，并在 PR 记录授权范围 | 未经作者明确授权合并或发版、直接推 main、把未确认的视觉规则写成已定 |
 
 `.github/CODEOWNERS` 把整个仓库指给作者，main 的分支规则要求 PR、CI 通过和代码负责人批准。
 
@@ -34,8 +34,8 @@
 
 ```sh
 git submodule add https://github.com/Paxton0209/paxton-design-system design-system
-git -C design-system checkout v1.4.0
-git add .gitmodules design-system && git commit -m "Pin design system v1.4.0"
+git -C design-system checkout vX.Y.Z   # 替换为选定的已发布标签
+git add .gitmodules design-system && git commit -m "Pin selected design system release"
 ```
 
 升级是产品仓库里的一个普通 PR，同时做三件事：

@@ -31,13 +31,14 @@
 
 ## 2. 改产品界面
 
+- [ ] 下列数值与代码检查规则用于网页；车机与 Figma 的数值来源见 2.1，不能套用网页字号
 - [ ] 关键页（作品集首页、DriveScene 工作台）的任何改动都要作者逐项确认，否则停下
 - [ ] 数值只用 `var(--ds-…)`；确需写死时加 `/* ds-allow: 原因 */`
 - [ ] 组件从 `design-system/components/` 复制；没有的组件不要自己造，先问
 - [ ] 改间距按 SPEC 6.1 的模型，一次只改一层，说清改的是哪一层
 - [ ] 在原规则上改，不在文件末尾追加覆盖块
 - [ ] 不改 `design-system/` 子模块里的文件，也不顺手升级它
-- [ ] 本地跑检查（在产品仓库根目录）：
+- [ ] 本地跑检查（以下为 DriveScene 示例，在产品根目录执行；其他产品按自己的 AGENTS.md 替换启动命令、预览路径和基准路径）：
 
 ```sh
 npm ci --prefix design-system/checks
@@ -47,13 +48,14 @@ node design-system/checks/keypage.mjs --spec studio/ui-draft/keypage.json --out 
 node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/ --out work/ui-audit
 ```
 
-- [ ] 提 PR，等 CI；**不要自己合并**
+- [ ] 提 PR，等 CI；作者明确授权前不合并，授权后可代为执行，并在 PR 中记录授权范围
 
 ## 2.1 Figma 与设计稿怎么执行
 
 - [ ] 先读 SPEC 对应任务的章节与 COMPONENTS；车机屏幕遵循 SPEC 的车机分类及产品约束，不把网页字号和布局直接套到车机。
-- [ ] 读取目标 Figma 实时画布，再参考 STATUS 中的文件与节点定位。保留作者手调布局、现有组件引用与已删除内容；历史截图和节点数量只供查找，不证明当前状态。
-- [ ] 从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式；优先复用现有主组件及实例，并按 COMPONENTS 检查状态。CSS 的 `var(--ds-…)` 用于网页代码，Figma 使用对应变量与样式；映射缺失或规则冲突时向作者报告，不自行创造新值。
+- [ ] 读取目标 Figma 实时画布：[当前参考文件](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test)，节点定位见 STATUS。访问依赖作者的 Figma 共享权限，与 Claude 账号无关。保留现有组件引用与作者已删除内容，历史截图和数量不证明当前状态。
+- [ ] 已有明确作者确认依据的手调布局按该确认保留。仅观察到画布内容不能视为作者确认；与 SPEC 冲突或确认依据不明时，保留现状并报告，不自行修改画布或规范。
+- [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `HMI / v0.1` 变量和 `HMI/…` 文字样式；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
 - [ ] 交付文件链接、实际修改节点、采用版本，以及适用的浅深主题、尺寸和状态截图；未做的状态写明未验证。网页审计脚本不能直接验收 Figma，必须按规范核对画布中的数值、布局、文字、图标和状态。
 
 ## 3. 改设计系统本身（只在作者要求时）
@@ -65,7 +67,7 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 - [ ] 本地跑：`node checks/selftest.mjs`、`node checks/check-ui.mjs components gallery.html examples`
 - [ ] 按 `.github/pull_request_template.md` 写 PR：改了什么、依据、影响哪些产品、验证
 - [ ] 版本号按 `GOVERNANCE.md`：措辞和误报修复升 PATCH，新增升 MINOR，删除或改名升 MAJOR
-- [ ] 合并和打标签由作者来做
+- [ ] 合并和打标签由作者决定；作者明确授权前不执行，授权后可代为执行，并在 PR 中记录授权范围
 
 ## 4. 产品升级设计系统版本（单独一个 PR）
 
@@ -102,11 +104,10 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 
 ## 7. 当前已知情况（2026-11-05）
 
-- 渲染审计在现有展示页和示例上不通过：作者 Mac 上实跑（Chrome 156）有 322 条失败记录（对比度 146、圆角 160、非文字对比度 8、字号 4、字重 4，跨视口和主题重复计数）。最新 Linux CI 在同一批展示页和示例中记录 324 条问题（展示页 124、示例 200），与上述 Mac 结果的渲染配置不同，不直接比较。其中特定作品集示例的 9px 圆角、15px 字号、600 字重带有 D-31 / D-32 批准注释，说明审计还不认 ds-allow 例外。所以审计暂时只出报告，等作者逐项判断。**不要为了让 CI 变绿去改已确认的规则或界面。**
+- 展示页与示例的渲染审计暂只出报告，含既有问题与已批准例外的冲突；具体计数与验证边界见 STATUS。不要为了让 CI 变绿去改已确认的规则或界面。
 - 既有关键页没有追溯迁移到 tokens，所以产品 CI 用 `check-changed.mjs`，只查本次改动新增的问题。
 - `renders/` 证据目录（约 47 MB）和 Sketch 英文阅读包没有进仓库，留在作者本地。
 - 目前 AI 和作者用的是同一个 GitHub 账号，GitHub 分不出是谁，「只有作者能批准」只能靠约定。要真正强制，见 `GOVERNANCE.md` 关于机器账号的说明。
-- 云端会话的网络可能拦 npm 下载（2026-11-05 Claude 云端环境装 Playwright 时遇到过 403）。这是云端环境的限制，不是作者电脑的问题；这种时候以 GitHub Actions 的结果为准，或请作者在本机跑。
 - 配图层（`figure-kit.css`、《审美与部件-v2.md》）还在作者本地，不在本仓库。
 
 ## 8. 文件地图
@@ -115,7 +116,7 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 | --- | --- |
 | 规则正文 | `SPEC.md` |
 | 组件规格 / 实现 / 全状态 | `COMPONENTS.md` / `components/` / `gallery.html` |
-| 唯一可用的数值 | `tokens/tokens.json`（源）→ `tokens/tokens.css`（生成） |
+| 设计数值来源 | 网页：`tokens/tokens.json`（源）→ `tokens/tokens.css`（生成）；车机：SPEC 13.1 与对应 Figma 变量、文字样式 |
 | 为什么这么定 | `DECISIONS.md` |
 | 现在做到哪 | `STATUS.md` |
 | 谁能改、怎么发版、怎么升级 | `GOVERNANCE.md` |
