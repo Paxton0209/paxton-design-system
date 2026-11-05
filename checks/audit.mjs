@@ -12,8 +12,8 @@ const tokens=JSON.parse(await fs.readFile(path.join(here,'../tokens/tokens.json'
 const fonts=[...new Set(Object.values(tokens.text).map(x=>parseFloat(x.$value.fontSize)))],weights=[...new Set(Object.values(tokens.text).map(x=>x.$value.fontWeight))];
 let executablePath=process.env.DS_BROWSER_EXECUTABLE;
 if(!executablePath&&process.platform==='darwin')try{await fs.access('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');executablePath='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';}catch{}
-// Linux hosted CI uses software WebGL; macOS uses the installed browser normally.
-const launchArgs=process.env.DS_BROWSER_ARGS!==undefined?process.env.DS_BROWSER_ARGS.split(/\s+/).filter(Boolean):process.platform==='linux'?['--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']:[];
+// Keep long 2D pages on the original Linux renderer; WebGL products opt in via DS_BROWSER_ARGS.
+const launchArgs=process.env.DS_BROWSER_ARGS!==undefined?process.env.DS_BROWSER_ARGS.split(/\s+/).filter(Boolean):process.platform==='linux'?['--disable-gpu']:[];
 const stepTimeout=Number(process.env.DS_SCREENSHOT_TIMEOUT||120000);
 if(!Number.isFinite(stepTimeout)||stepTimeout<=0)throw Error('DS_SCREENSHOT_TIMEOUT must be a positive number');
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:launchArgs});

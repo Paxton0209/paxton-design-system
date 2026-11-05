@@ -16,7 +16,7 @@ node checks/audit.mjs --url http://127.0.0.1:8767/gallery.html --out renders/com
 node checks/audit.mjs --url http://127.0.0.1:8767/examples/portfolio.html --url http://127.0.0.1:8767/examples/workbench.html --out renders/examples --viewports 1440,390 --themes light,dark
 ```
 
-macOS 优先使用已安装的 Google Chrome。Linux（含 GitHub Actions）没有 GPU，`audit` 默认用 SwiftShader 渲染 WebGL（`--use-angle=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist`），macOS 使用浏览器原生渲染；`keypage` 采用相同平台配置。可用 `DS_BROWSER_ARGS` 覆盖启动参数。页面加载和每次截图的超时默认 120000 ms，可用 `DS_SCREENSHOT_TIMEOUT` 调整。实际使用的参数写在 audit.json 的 `launchArgs`、`stepTimeout`。其他系统用 `npx --prefix checks playwright install chromium` 安装浏览器，或设置 `DS_BROWSER_EXECUTABLE` 为 Chromium/Chrome 的绝对路径。截图等待字体及图片加载，关闭动画和过渡，审计结果记录浏览器版本。
+macOS 优先使用已安装的 Google Chrome。Linux 的 `audit` 默认保留 `--disable-gpu`，避免 SwiftShader 在超长组件页上出现截图采样差异。需要 WebGL 的产品在 CI 中显式设置 `DS_BROWSER_ARGS="--use-angle=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist"`；`keypage` 在 Linux 默认使用这组参数。macOS 两个检查均使用浏览器原生渲染。可用 `DS_BROWSER_ARGS` 覆盖启动参数。页面加载和每次截图的超时默认 120000 ms，可用 `DS_SCREENSHOT_TIMEOUT` 调整。实际使用的参数写在 audit.json 的 `launchArgs`、`stepTimeout`。其他系统用 `npx --prefix checks playwright install chromium` 安装浏览器，或设置 `DS_BROWSER_EXECUTABLE` 为 Chromium/Chrome 的绝对路径。截图等待字体及图片加载，关闭动画和过渡，审计结果记录浏览器版本。
 
 ## 静态检查
 
