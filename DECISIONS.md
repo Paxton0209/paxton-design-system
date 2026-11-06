@@ -244,6 +244,12 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 
 本次整理现有视觉语言与参考资产，配图指南独立标记 1.0；产品 SPEC 1.4、COMPONENTS 1.1 及 tokens 保持不变，不新增产品控件规则。历史 HTML 与部分当前 PNG 的版本差异、尺寸及来源边界在目录中明示。
 
+## 面和浮层上的选中态（2026-11-06）
+
+| 编号 | 决定 | 依据 | 状态 |
+| --- | --- | --- | --- |
+| D-105 | 采用 Claude 推荐的方案 A。面和浮层上的选中行及菜单选中项用 `color-selected-row`，浅色 #E0E0E0，深色 #333336，不加边。浅色在面 #FAFAFA 上为 1.26:1，在浮层 #FFFFFF 上为 1.32:1，均达到 SPEC 3.1 的 1.25:1。分段滑块沿用 `color-selected` 与 `line-selected`。列表和菜单悬停仅用不透明度 .7 | 作者：「我听你的」。Claude 最终选定[方案 A](https://claude.ai/artifact/QkzN5hDaS3TZqYrZ18JjwE) | 方案已确认，v1.5.0 按 PR、CI、作者批准、合并后打标签的流程发布 |
+
 ## 发版记录
 
 - 11-04 10:45 DriveScene be0f56d（父提交 c1c05ee，保留 Junction 帧同步修复）：v5 样式、D-01 至 D-06、D-14、D-24。523 测试通过，Pages 部署成功，线上 8 个文件与发布工作树逐字节一致（Codex RELEASE.md）。
