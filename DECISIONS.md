@@ -248,7 +248,8 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 
 | 编号 | 决定 | 依据 | 状态 |
 | --- | --- | --- | --- |
-| D-105 | 采用 Claude 推荐的方案 A。面和浮层上的选中行及菜单选中项用 `color-selected-row`，浅色 #E0E0E0，深色 #333336，不加边。浅色在面 #FAFAFA 上为 1.26:1，在浮层 #FFFFFF 上为 1.32:1，均达到 SPEC 3.1 的 1.25:1。分段滑块沿用 `color-selected` 与 `line-selected`。列表和菜单悬停仅用不透明度 .7 | 作者：「我听你的」。Claude 最终选定[方案 A](https://claude.ai/artifact/QkzN5hDaS3TZqYrZ18JjwE) | 方案已确认，v1.5.0 按 PR、CI、作者批准、合并后打标签的流程发布 |
+| D-105 | 采用 Claude 推荐的方案 A。面和浮层上的选中行及菜单选中项用 `color-selected-row`，浅色 #E0E0E0，深色 #333336，不加边。浅色在面 #FAFAFA 上为 1.26:1，在浮层 #FFFFFF 上为 1.32:1，均达到 SPEC 3.1 的 1.25:1。分段滑块沿用 `color-selected` 与 `line-selected`。列表和菜单悬停仅用不透明度 .7 | 作者：「我听你的」。Claude 最终选定[方案 A](https://claude.ai/artifact/QkzN5hDaS3TZqYrZ18JjwE) | 由 D-106 取代，未发布 |
+| D-106 | 采用方案 A2。浅色面和浮层上的选中块用 #E6E6E6，深色用 #333336。浅色面上填充对比 1.196:1，补 1px `color-line-selected`。白色浮层上为 1.248:1，按 A2 省略细边。轨道滑块和悬停规则沿用 D-105 | 作者：「我改主意了，我们还是选择A2方案吧。我觉得现在这个灰色有点脏了，而且太重了。」[方案 A2 画布](https://claude.ai/artifact/QkzN5hDaS3TZqYrZ18JjwE) | v1.5.0 按 PR、CI、作者批准、合并后打标签的流程发布 |
 
 ## 发版记录
 

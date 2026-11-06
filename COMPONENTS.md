@@ -89,7 +89,7 @@
 | --- | --- | --- |
 | 触发器 | 高 28，左内边距 8、右 28，轨道材质，`text-ui` 文字 1 | 高 40 |
 | 菜单 | 浮层材质，`radius-panel`，内边距 4，宽度与触发器相同（最小 160） | 同左 |
-| 条目 | 高 28（手机 44），`radius-control`，左右 8；当前选中项用 `color-selected-row`、`text-ui-strong` 文字 1，无边、无勾号；未选项用 `text-ui` 文字 2 | |
+| 条目 | 高 28（手机 44），`radius-control`，左右 8；当前选中项用 `color-selected-row`、`text-ui-strong` 文字 1，浮层内无边、无勾号；未选项用 `text-ui` 文字 2 | |
 
 - 打开：`motion-menu`，`scale .98 → 1` 加淡入，原点在触发器一侧；关闭不做动画。
 - 条目悬停按通用规则（0.7），保持原底色。
@@ -159,7 +159,7 @@
 | 高 | 32 | 44 |
 | 内边距 | 左右 8 | 左右 12 |
 | 文字 | `text-ui` 文字 2；选中 `text-ui-strong` 文字 1 | 同左 |
-| 选中 | `color-selected-row`，不加边，`radius-control` | 同左 |
+| 选中 | `color-selected-row`、`radius-control`。浅色面上加 1px `color-line-selected`，深色边透明 | 同左 |
 
 - 悬停按通用规则（0.7），保持原底色。
 - 列表组：组标题（`.ds-group-title`）在上，标题到首行 4（手机 2），行距 0，组间 24（手机 28）。

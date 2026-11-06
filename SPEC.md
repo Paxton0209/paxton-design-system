@@ -1,6 +1,6 @@
 # 规范正文：产品与网站层
 
-版本 1.5 · 2026-11-06（本轮：面和浮层上的选中态；决定见 D-105）
+版本 1.5 · 2026-11-06（本轮：面和浮层上的选中态；决定见 D-106）
 
 只写当前有效的规则，不写历史。为什么这么定、谁定的、改过什么，见 `DECISIONS.md`。
 
@@ -33,12 +33,12 @@
 | 浮起 | `color-raised` | #FFFFFF | #1C1C1E | 独立按钮、卡片、菜单 |
 | 轨道 | `color-track` | #ECECEC | #1C1C1E | 分段轨道（不加边）、下拉和输入框底（加 1px `line-control` 边）；轨道上的文字用文字 1 |
 | 轨道选中块 | `color-selected` | #FFFFFF | #333336 | 轨道上的选中块（分段滑块） |
-| 选中行 | `color-selected-row` | #E0E0E0 | #333336 | 面和浮层上的选中行、菜单选中项 |
+| 选中行 | `color-selected-row` | #E6E6E6 | #333336 | 面和浮层上的选中行、菜单选中项 |
 | 占位 | `color-placeholder` | #E4E4E4 | #202022 | 图片、媒体占位 |
 | 填充灰 | `color-mass` | #D2D2D2 | #3A3A3C | 大面积中性填充 |
 | 细线 | `color-line` | rgba(0,0,0,.055) | rgba(255,255,255,.08) | 面、画布外框 |
 | 控件边 | `color-line-control` | rgba(0,0,0,.07) | rgba(255,255,255,.09) | 浮起元素、下拉、输入框（按 3.1 的 1.25 规则使用） |
-| 选中块边 | `color-line-selected` | rgba(0,0,0,.07) | 透明 | 选中块的边：浅色白块放在灰轨道上需要（1.18:1），深色选中块填充差已够（1.35:1） |
+| 选中块边 | `color-line-selected` | rgba(0,0,0,.07) | 透明 | 浅色轨道滑块和面上选中行的 1px 分隔边，深色为透明 |
 | 强边 | `color-line-strong` | rgba(0,0,0,.12) | rgba(255,255,255,.14) | 虚线空位、边界 |
 | 文字 1 | `color-text-1` | #1D1D1F | #EDEDEF | 主文字、数值、选中项、焦点环 |
 | 文字 2 | `color-text-2` | #6E6E6E | #A0A0A4 | 次级文字、标签、组标题 |
@@ -64,7 +64,7 @@
 | 面 | `color-face` + 1px `color-line` | 同左 | 面板、侧栏 |
 | 轨道 | `color-track`；下拉和输入框另加 1px `color-line-control` | 同左 | 分段轨道、下拉、输入框 |
 | 浮起 | `color-raised` + 1px `color-line-control` + `shadow-lift` | `color-raised` + 1px `color-line-control`，无投影 | 独立按钮、卡片 |
-| 选中块 | 轨道上用 `color-selected` + 1px `color-line-selected`；面和浮层上用 `color-selected-row`，不加边 | 同左，轨道上的边为透明 | 分段滑块、选中行、菜单选中项 |
+| 选中块 | 轨道上用 `color-selected` + 1px `color-line-selected`；面上用 `color-selected-row` + 1px `color-line-selected`；浮层用 `color-selected-row` | 轨道用 `color-selected`；面和浮层用 `color-selected-row`，边透明 | 分段滑块、选中行、菜单选中项 |
 | 浮层 | `color-raised` + 1px `color-line-control` + `shadow-menu` | 同左，无投影 | 菜单、弹出层 |
 | 主操作 | `color-accent-fill` + 白字（`color-on-accent`），无边无投影 | 同左 | 每屏唯一的主操作（含对话框） |
 
@@ -73,7 +73,7 @@
 - 通栏的浮起元素（比如手机上与画布等宽的按钮）不加投影，只用细边。
 - 主操作用 `accent-fill`；禁用时退为轨道底 + 文字 3。内容页的唯一主行动可以用墨色胶囊（见第 7.1 节）。
 - 相邻的两层不各带一条边：分段轨道不加边，只有滑块带细边，避免双线。
-- 1px 边一律写成 `box-shadow: 0 0 0 1px var(--ds-color-line-control)`（或 inset），不占布局尺寸。
+- 1px 边用 `box-shadow`（可用 inset），不占布局尺寸。控件边用 `color-line-control`，选中块的分隔边用 `color-line-selected`。
 
 ### 3.1 高亮用填充，描边是例外
 
@@ -90,7 +90,7 @@
 **描边只在这 5 种情况出现**，而且都不表示高亮：
 
 1. 焦点环：键盘、旋钮、语音焦点，2px 文字 1（第 10 节）。
-2. 同色系分隔：相邻两层的填充对比低于 1.25:1 时加 1px 边，达到就不加。实测：浅色浮起 / 面 1.04、浅色选中 / 轨道 1.18、深色浮起 / 面 1.08 → 加；深色选中 / 轨道 1.35、浅色 `selected-row` 对面 1.26、对浮起 1.32 → 不加边。
+2. 同色系分隔：相邻两层的填充对比低于 1.25:1 时加 1px 边，达到就不加。浅色浮起 / 面 1.04、浅色滑块 / 轨道 1.18、深色浮起 / 面 1.08，均加边。深色滑块 / 轨道 1.35，边为透明。方案 A2 的浅色 `selected-row` 对面为 1.20:1，加 `color-line-selected`；在白色浮层上实测为 1.248:1，显示到小数点后两位为 1.25:1，按 D-106 的特例省略细边。
 3. 压在复杂背景上的分隔边：滑块的底色环、地图或图片上的浮层边。
 4. 错误：出错的输入框用 `danger` 边。
 5. 空位：拖放区、待添加的位置用虚线。
