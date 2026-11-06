@@ -8,7 +8,7 @@
 // Usage (from the product repo root):
 //   node design-system/checks/check-changed.mjs --base origin/main [--config FILE] [path ...]
 // Paths limit which changed files are checked (default: whole repo).
-// Generated files (*.bundle.js, *.min.js) and the design-system/ submodule are skipped.
+// Skip bundles, the design-system/ submodule, and exact copies of its generated tokens.css.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -24,6 +24,7 @@ const git=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:256*1024*1024,
 const config=JSON.parse(await fs.readFile(configPath,'utf8'));
 const tokens=new Set(tokenNames(JSON.parse(await fs.readFile(path.resolve(path.dirname(configPath),config.tokens||'../tokens/tokens.json'),'utf8'))));
 const ignore=config.ignore||[];
+const generatedTokens=await fs.readFile(path.join(here,'../tokens/tokens.css'),'utf8');
 const mergeBase=git('merge-base',base,'HEAD').trim();
 const changed=git('diff','--name-only','--diff-filter=ACMR',`${mergeBase}...HEAD`,'--',...(scopes.length?scopes:['.'])).split('\n').filter(Boolean)
  .filter(f=>/\.(css|html?|m?js|jsx|tsx?)$/i.test(f))
@@ -36,6 +37,8 @@ const key=(e,src)=>`${e.rule}\u0000${e.message}\u0000${(src.split('\n')[e.line-1
 const added=[],exceptions=[];
 for(const file of changed){
  const head=await fs.readFile(file,'utf8');
+ // Token definitions are the source of the literals that consumer styles must avoid.
+ if(path.basename(file)==='tokens.css'&&head===generatedTokens)continue;
  let old='';try{old=git('show',`${mergeBase}:${file}`);}catch{/* new file */}
  const now=inspect(head,file,tokens,config),before=inspect(old,file,tokens,config);
  const budget=new Map();for(const e of before.errors){const k=key(e,old);budget.set(k,(budget.get(k)||0)+1);}
