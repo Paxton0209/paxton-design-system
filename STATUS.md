@@ -1,15 +1,14 @@
 # 当前状态（2026-11-07 更新）
 
-当前规则为规范 2.0（SPEC 2.0、COMPONENTS 1.2），决定记录到 D-113。本轮把设计系统从"描述关键页"改为"衡量关键页"：新增 STYLE.md（审美与排版协议）和 MIGRATION.md（关键页迁移清单），车机数值并入 tokens.json 的 `hmi` 组，新增 `color-page`，`radius-panel` 改为 8。发布为 v2.0.0 需作者合并 PR 并打标签；产品升级另提 PR。
+当前规则为规范 2.0（SPEC 2.0、COMPONENTS 1.2），决定记录到 D-113。本轮把设计系统从"描述关键页"改为"衡量关键页"：新增 STYLE.md（审美与排版协议）和 MIGRATION.md（关键页迁移清单），车机数值并入 tokens.json 的 `hmi` 组，新增 `color-page` 和 `radius-card`（8），`radius-panel` 保持 10。两个关键页画面都不变。发布为 v2.0.0 需作者合并 PR 并打标签。
 
 ## 待办（按顺序）
 
 1. 作者审阅并合并规范 2.0 PR，打 `v2.0.0`。
-2. DriveScene 单独 PR 升级到 v2.0.0：圆角 10 → 8，更新 `keypage.json`（MIGRATION D-1、D-6）。
-3. DriveScene 样式合并与例外清理（MIGRATION D-2、D-3、D-5），分多个 PR。
-4. 作品集源码迁入 GitHub 并接入设计系统；迁移 P-3 至 P-8（P-7、P-8 先给作者看截图）。
-5. Figma 变量按 STYLE 第 8 节同名整理：网页与车机同一个集合；`HMI / v0.1` 迁移到 `hmi/…`。
-6. 车机待验收：SR 与右侧应用区最终宽度、正式设置侧栏的场景比例、地图控件 v0.3 替换、SR 紧凑 TBT 尺寸和版位。
+2. 作品集微调 P-3 至 P-8，作者看截图后逐项决定（MIGRATION）。
+3. 可选：DriveScene 退役旧 guideline、重拍 README 截图（MIGRATION D-3、D-5），画面不变。
+4. Figma 变量按 STYLE 第 8 节同名整理：网页与车机同一个集合；`HMI / v0.1` 迁移到 `hmi/…`。
+5. 车机待验收：SR 与右侧应用区最终宽度、正式设置侧栏的场景比例、地图控件 v0.3 替换、SR 紧凑 TBT 尺寸和版位。
 
 以下 Figma 情况为 11-06 记录，未发布 Figma 组件库。
 
