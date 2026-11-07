@@ -1,6 +1,6 @@
 # 组件规格
 
-版本 1.1 · 2026-11-04 · 规则依据 `SPEC.md`，数值只用 `tokens/tokens.css`。
+版本 1.2 · 2026-11-07（新增 `radius-card` 8 给内容页作品卡；内容模式标签页用文字 1 下划线）· 规则依据 `SPEC.md`，数值只用 `tokens/tokens.css`。
 
 ## 0. 通用约定
 
@@ -146,7 +146,7 @@
 
 结构：`div[role=tablist]` > `button[role=tab][aria-selected]`；面板 `div[role=tabpanel]`。
 
-- 字号：工具里用 `text-ui`，内容页用 `text-body`（作品集筛选）。未选文字 2；选中文字 1 + 500，下方 2px `color-accent` 下划线，距文字基线 6，与文字等宽。
+- 字号：工具里用 `text-ui`，内容页用 `text-body`（作品集筛选）。未选文字 2；选中文字 1 + 500，下方 2px 下划线，距文字基线 6，与文字等宽：工具里用 `color-accent`，内容页用 `color-text-1`（内容模式不用强调色，SPEC 3.2）。
 - 标签之间 24；不加底色和外框。
 - 键盘：左右方向键切换，Home / End。
 
@@ -171,7 +171,7 @@
 | 普通卡 | `.ds-card` | 浮起材质，内边距 16，面板里 `radius-control`，放在底上 `radius-panel` |
 | 媒体卡 | `.ds-card--media` | 作品集关键页的作品卡（以关键页现状为准）：图片比例 468:262，标题叠在封面上：底部 45% 加 0 → .4 的黑色遮罩，标题 400 16/22 白色，年份 13/18 不透明 .75、`tabular-nums`，左右 16、底 14；无图时底 `color-placeholder`、文字用文字 1 |
 | 图下标题卡 | `.ds-card--caption` | 只用于新页面：图片上不压文字，标题和年份在图片下方 12 |
-| 工具卡 | `.ds-card--tile` | 高 124，`radius-panel`，底 `color-placeholder`，标题 `text-title`（作品集原为 15/500，统一为 16/22），左 16、底 12 |
+| 工具卡 | `.ds-card--tile` | 高 124，`radius-card`，底 `color-placeholder`，标题 `text-title`（作品集原为 15/500，统一为 16/22），左 16、底 12 |
 
 - 整卡可点时，用一个 `a` 包住整卡，焦点环跟随卡片圆角。
 
@@ -219,7 +219,7 @@
 
 ## 18. 链接 `.ds-link`
 
-- 文字 1，下划线 1px，偏移 4；内容页正文里的链接用这个。
+- 文字 1，下划线 1px `color-line-strong`，偏移 4；内容页正文里的链接用这个。
 - 悬停 0.7；外链不加额外图标。
 - 导航类链接（不在正文里）可以不加下划线，用文字 2 → 当前项文字 1 区分。
 

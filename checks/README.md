@@ -24,6 +24,10 @@ macOS 优先使用已安装的 Google Chrome。Linux 的 `audit` 默认保留 `-
 
 `selftest.mjs` 使用故意违规的 CSS/HTML、允许注释、合法 tokens、额外长度配置、含网址的 JS 字符串、文字实体、定位和 CLI 退出码进行自测。fixtures/bad.css 与 bad.html 是失败样本，不能作为业务目录的通过标准。工具使用轻量词法和正则扫描，并非完整 CSS/JS AST；JS 只查文字中的间隔点，不解析动态生成的样式，复杂模板需人工复核。
 
+## 例外计数
+
+`node checks/exceptions.mjs <文件或目录…> [--json] [--max-allow N]` 统计 CSS 里的 ds-allow 注释、写死的颜色和 px、阶梯外字重（600 及以上），按文件列出，用来追踪 `MIGRATION.md` 的清理进度。只用内置模块。默认只出报告；`--max-allow N` 在 ds-allow 总数超过 N 时退出 1，迁移完成后可在 CI 里收紧。
+
 ## 只查本次改动
 
 `node checks/check-changed.mjs --base origin/main [--config FILE] [路径…]` 在产品仓库根目录运行。它把每个改动文件在基准版本和当前版本各检查一遍，只报当前版本新增的问题（按规则、说明和该行文字计数），所以没迁移的关键页里原有的数值不会让 PR 失败，新写的写死数值、颜色和间隔点会。`*.bundle.js`、`*.min.js` 和 `design-system/` 子模块不查。新增的 ds-allow 会单独列出，供作者核对理由。产品 CI 用的就是这个命令。

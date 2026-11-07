@@ -25,6 +25,8 @@ jobs:
         run: node illustrations/check-assets.mjs
       - name: check-ui on components, gallery and examples
         run: node checks/check-ui.mjs components gallery.html examples
+      - name: Exception count (report; MIGRATION.md tracks burn-down)
+        run: node checks/exceptions.mjs components examples
       - name: tokens.css is generated from tokens.json
         run: |
           node tokens/build-tokens.mjs

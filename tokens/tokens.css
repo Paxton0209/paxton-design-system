@@ -2,6 +2,7 @@
 /* :root is the default; any element with data-theme switches its subtree. */
 :root,[data-theme=light]{
   --ds-color-canvas:#F3F3F3;
+  --ds-color-page:#FFFFFF;
   --ds-color-stage:#F8F8F8;
   --ds-color-face:#FAFAFA;
   --ds-color-raised:#FFFFFF;
@@ -30,6 +31,7 @@
   --ds-radius-thumb:4px;
   --ds-radius-control:6px;
   --ds-radius-panel:10px;
+  --ds-radius-card:8px;
   --ds-radius-stage:16px;
   --ds-radius-pill:999px;
   --ds-space-1:2px;
@@ -91,6 +93,23 @@
   --ds-breakpoint-phone:640px;
   --ds-breakpoint-tablet:960px;
   --ds-breakpoint-desktop:1180px;
+  --ds-hmi-color-pressed:#F3F3F3;
+  --ds-hmi-color-danger-fill:#C62828;
+  --ds-hmi-radius-thumb:12px;
+  --ds-hmi-radius-control:16px;
+  --ds-hmi-radius-panel:24px;
+  --ds-hmi-size-control:64px;
+  --ds-hmi-size-row:80px;
+  --ds-hmi-size-icon:40px;
+  --ds-hmi-size-icon-large:44px;
+  --ds-hmi-size-sidebar:264px;
+  --ds-hmi-text-display:500 64px/72px var(--ds-font-family);
+  --ds-hmi-text-distance:500 48px/56px var(--ds-font-family);
+  --ds-hmi-text-value:500 40px/48px var(--ds-font-family);
+  --ds-hmi-text-title:500 28px/36px var(--ds-font-family);
+  --ds-hmi-text-body:400 24px/32px var(--ds-font-family);
+  --ds-hmi-text-body-strong:500 24px/32px var(--ds-font-family);
+  --ds-hmi-text-caption:400 20px/28px var(--ds-font-family);
   color-scheme:light;
 }
 /* Aliases resolve per element, so every themed subtree re-declares them. */
@@ -103,6 +122,7 @@
 }
 [data-theme=dark]{
   --ds-color-canvas:#0A0A0B;
+  --ds-color-page:#0A0A0B;
   --ds-color-stage:#0F0F10;
   --ds-color-face:#141416;
   --ds-color-raised:#1C1C1E;
@@ -128,11 +148,14 @@
   --ds-shadow-lift:none;
   --ds-shadow-menu:none;
   --ds-shadow-dialog:0 24px 56px -20px rgba(0,0,0,.6);
+  --ds-hmi-color-pressed:#262628;
+  --ds-hmi-color-danger-fill:#D9362B;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme]){
     --ds-color-canvas:#0A0A0B;
+    --ds-color-page:#0A0A0B;
     --ds-color-stage:#0F0F10;
     --ds-color-face:#141416;
     --ds-color-raised:#1C1C1E;
@@ -158,6 +181,8 @@
     --ds-shadow-lift:none;
     --ds-shadow-menu:none;
     --ds-shadow-dialog:0 24px 56px -20px rgba(0,0,0,.6);
+    --ds-hmi-color-pressed:#262628;
+    --ds-hmi-color-danger-fill:#D9362B;
     color-scheme:dark;
   }
 }

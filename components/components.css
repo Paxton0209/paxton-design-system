@@ -112,6 +112,7 @@
 .ds-tab::after { content:""; position:absolute; inset-inline:0; height:var(--ds-size-touch); top:50%; transform:translateY(-50%); }
 .ds-tab[aria-selected=true] { color:var(--ds-color-text-1); font-weight:500; box-shadow:0 2px 0 var(--ds-color-accent); /* ds-allow: selected tab underline */ }
 .ds-tabs--content .ds-tab { font:var(--ds-text-body); }
+.ds-tabs--content .ds-tab[aria-selected=true] { box-shadow:0 2px 0 var(--ds-color-text-1); /* ds-allow: selected tab underline */ }
 .ds-tabs [role=tabpanel] { margin-top:var(--ds-space-6); color:var(--ds-color-text-2); font:var(--ds-text-meta); }
 /* 10 Row */
 .ds-row { display:flex; align-items:center; gap:var(--ds-space-4); position:relative; width:100%; height:var(--ds-size-button); padding:0 var(--ds-space-4); border-radius:var(--ds-radius-control); background:none; color:var(--ds-color-text-2); font:var(--ds-text-ui); text-decoration:none; text-align:left; }
@@ -126,13 +127,13 @@
 .ds-card__title { margin:0; font:var(--ds-text-title); }
 .ds-card__meta { margin:var(--ds-space-2) 0 0; font:var(--ds-text-meta); color:var(--ds-color-text-2); }
 /* Image and caption remain a single link; only the image clips to the panel radius. */
-.ds-card--caption { padding:0; background:none; box-shadow:none; border-radius:var(--ds-radius-panel); }
+.ds-card--caption { padding:0; background:none; box-shadow:none; border-radius:var(--ds-radius-card); }
 .ds-card--caption::before { content:none; }
-.ds-card--caption > img,.ds-card__image { display:block; width:100%; aspect-ratio:468 / 262; object-fit:cover; border-radius:var(--ds-radius-panel); background:var(--ds-color-placeholder); /* ds-allow: specified media image aspect ratio */ }
+.ds-card--caption > img,.ds-card__image { display:block; width:100%; aspect-ratio:468 / 262; object-fit:cover; border-radius:var(--ds-radius-card); background:var(--ds-color-placeholder); /* ds-allow: specified media image aspect ratio */ }
 .ds-card--caption .ds-card__caption { display:block; margin-top:var(--ds-space-5); color:var(--ds-color-text-1); }
 .ds-card__title { display:block; }
 .ds-card__year { display:block; margin-top:var(--ds-space-1); font:var(--ds-text-meta); color:var(--ds-color-text-2); font-variant-numeric:tabular-nums; }
-.ds-card--tile { padding:0; height:124px; border-radius:var(--ds-radius-panel); background:var(--ds-color-placeholder); box-shadow:none; overflow:hidden; /* ds-allow: specified tool card height */ }
+.ds-card--tile { padding:0; height:124px; border-radius:var(--ds-radius-card); background:var(--ds-color-placeholder); box-shadow:none; overflow:hidden; /* ds-allow: specified tool card height */ }
 .ds-card--tile::before { box-shadow:none; }
 .ds-card--tile .ds-card__caption { position:absolute; bottom:var(--ds-space-5); inset-inline:var(--ds-space-6); }
 /* 12 Panel */
@@ -230,7 +231,7 @@
 .ds-section p + p { margin-top:var(--ds-space-5); }
 
 /* D-32: key-page media overlays retained; caption variant is for new pages. */
-.ds-card--media { position:relative; padding:0; overflow:hidden; background:var(--ds-color-placeholder); box-shadow:none; border-radius:var(--ds-radius-panel); }
+.ds-card--media { position:relative; padding:0; overflow:hidden; background:var(--ds-color-placeholder); box-shadow:none; border-radius:var(--ds-radius-card); }
 .ds-card--media > img { display:block; width:100%; aspect-ratio:468 / 262; object-fit:cover; } /* ds-allow: COMPONENTS 11 approved key-page media ratio */
 .ds-card--media:has(>img)::before { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.4)); pointer-events:none; } /* ds-allow: D-32 approved bottom 45 percent cover scrim */
 .ds-card--media .ds-card__caption { position:absolute; inset:auto var(--ds-space-6) 14px; display:flex; align-items:baseline; justify-content:space-between; gap:var(--ds-space-6); } /* ds-allow: D-32 key-page caption bottom 14 */
