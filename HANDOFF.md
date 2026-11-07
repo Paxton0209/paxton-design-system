@@ -62,6 +62,10 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 
 先读 `illustrations/README.md` 和 `illustrations/CATALOG.md`，明确图要表达的关系，再选择必要的容器、步骤、能力、连接、分支或网格。现有样例可以组合和扩展，新图使用新 ID，保留已确认成品；不把现有数量、布局或产品控件的缺组件审批套用于配图。源文件与当前 PNG 的对应边界见 `catalog.json`，可编辑 HTML 有 14 份，ADAS 当前只提供 PNG。使用 `.vfig` 作用域隔离配图样式，导出后核对整体留白、必要标签、对齐和实际尺寸；浅深主题分别核对，未验证的状态如实记录。
 
+## 2.3 规范文档怎么执行
+
+先读 `guidelines/README.md` 和 `guidelines/layout.json`。在 Figma Components 页的 `Doc blocks 1.0`（579:11775）实例化 `Doc/*` 组件，文字套 `Doc/*` 样式，颜色绑定 `HMI / v0.1` Light；按 00 标题、01 资产、02 几何、03 规则、04 规则归属、05 停止做的事、06 待办的顺序排。文字不用「·」，不加阴影和深色副本，中英文共用一块画布，文字绑定 `Doc / Language` 变量切换。交付前用 `use_figma` 运行 `guidelines/lint-figma.js`，问题清零后截图核对；脚本通过不代表内容准确。
+
 ## 3. 改设计系统本身（只在作者要求时）
 
 - [ ] 在本仓库开分支；规则改动先找作者原话或 DECISIONS 编号作依据
@@ -120,6 +124,7 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 | --- | --- |
 | 规则正文 | `SPEC.md` |
 | 配图组合 / 图片目录 / 源文件 | `illustrations/README.md` / `illustrations/CATALOG.md` / `illustrations/source/` |
+| 规范文档版式 / 参数 / 检查 | `guidelines/README.md` / `guidelines/layout.json` / `guidelines/lint-figma.js` |
 | 组件规格 / 实现 / 全状态 | `COMPONENTS.md` / `components/` / `gallery.html` |
 | 设计数值来源 | 网页：`tokens/tokens.json`（源）→ `tokens/tokens.css`（生成）；车机：SPEC 13.1 与对应 Figma 变量、文字样式 |
 | 为什么这么定 | `DECISIONS.md` |

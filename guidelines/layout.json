@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "date": "2026-11-07",
+  "scope": "Figma guideline, review and comparison pages. Not product UI.",
+  "figma": {
+    "file": "T6kCgDUKJIt2e2TfDSZzp8",
+    "blocks": "579:11775",
+    "components": {
+      "Doc/Section": "579:11778",
+      "Doc/Card": "579:11780",
+      "Doc/Specimen": "579:11786",
+      "Doc/Measure plate": "579:11789",
+      "Doc/Table row": "579:11791",
+      "Doc/List item": "579:11795",
+      "Doc/Stat": "579:11799"
+    },
+    "examples": { "iconGuideline": "567:3423" },
+    "language": { "collection": "Doc / Language", "modes": ["EN", "中文"], "font": "doc/font", "tracking": "doc/index-tracking" },
+    "variables": "HMI / v0.1",
+    "mode": "Light"
+  },
+  "grid": {
+    "board": { "width": 1440, "padding": 64, "content": 1312 },
+    "sectionGap": 64,
+    "labelToContent": 20,
+    "cardColumns": { "two": 644, "four": 310 },
+    "cardGap": 24,
+    "card": { "padding": 24, "gap": 12, "radius": 16, "smoothing": 0.6 },
+    "specimen": { "plate": 80, "radius": 16, "captionGap": 8 },
+    "measurePlate": { "size": 232, "padding": 20, "zoom": 4, "slotDash": [3, 3] },
+    "tableRow": { "columns": [220, 560, 480], "gap": 24, "paddingY": 12 },
+    "listItem": { "columns": [24, 440, 600], "gap": 24 }
+  },
+  "allowed": {
+    "fontSize": [10, 11, 13, 24, 28],
+    "lineHeight": [14, 17, 18, 32],
+    "radius": [0, 12, 16],
+    "itemSpacing": [0, 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 56, 64]
+  },
+  "type": {
+    "Doc/index": { "weight": "Medium", "size": 10, "lineHeight": 14, "case": "upper", "tracking": { "latin": 6, "cjk": 2 } },
+    "Doc/label": { "weight": "Medium", "size": 13, "lineHeight": 18 },
+    "Doc/body": { "weight": "Regular", "size": 11, "lineHeight": 17 },
+    "Doc/title": { "weight": "Medium", "size": 24, "lineHeight": 32 },
+    "Doc/stat": { "weight": "Medium", "size": 28, "lineHeight": 32 }
+  },
+  "fonts": { "latin": "Inter", "cjk": ["Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC"] },
+  "color": {
+    "canvas": "bg/canvas",
+    "card": "bg/raised",
+    "cardLine": "line/face",
+    "specimen": "bg/face",
+    "slot": "line/control",
+    "text": ["text/1", "text/2", "text/3"],
+    "icon": "icon/1",
+    "measure": "accent",
+    "pass": "status/success",
+    "fail": "danger"
+  },
+  "sections": ["00 title", "01 assets", "02 geometry", "03 rules", "04 ownership", "05 stop doing", "06 open items"],
+  "labels": "integer minimums on the page, measured decimals in the review record, ratios as fractions",
+  "banned": ["·", "shadow", "dark copy", "separate language copy", "decorative shape", "extra title row"]
+}

@@ -17,6 +17,10 @@
 
 Icons 内按用途与容器尺寸分组：Settings / 64px、Climate & seats / 48px、Navigation & actions / 60px、Media / 48px、Vehicle & general / 48px、Status / 42px、Dock apps / 54px、Profile photo / 48px。图形在原容器中居中，保留原始轮廓与大小，不通过放大图形填满容器。
 
+## 规范文档版式（2026-11-07）
+
+D-107 新增 `guidelines/`。Figma Components 页的分区 `HMI Icons · 优化试验 Trial · 2026-11-07`（554:3423）包含：图标规范画布 567:3423（`Doc / Language` 切换中英文，含参考 icon.fig 补充的规则 G 至 L）、线宽对比 578:11770（2 px 与 2.5 px，待作者决定）、版块组件 `Doc blocks 1.0` 579:11775。图标试验组件均为 `Trial /` 前缀，未替换现有母版、已发布组件、当前图解规范与过程稿。
+
 ## 核对结果与边界
 
 当前实时文件共 590 个后代节点、83 个可编辑文字节点，全部英文 Inter；56 个实例的主组件引用均有效。66 个保留主组件的默认可见状态已逐项检查字体、对齐、图形中心、边界、阴影与裁切；图标填充、描边无残留非白色和半透明。原始彩色 App 图标、头像与道路图片不作单色化。检查记录与截图保存在本地，不增加 Figma 校对页。
