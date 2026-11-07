@@ -2,7 +2,7 @@
 
 本仓库是 Paxton 跨产品共用的设计系统，用于网页、产品界面和 Figma 设计。任何 AI 或账号接手时，先读 [HANDOFF.md](HANDOFF.md)，再读 [README.md](README.md)、[SPEC.md](SPEC.md)、[COMPONENTS.md](COMPONENTS.md) 与 [STATUS.md](STATUS.md)；这些文件是当前执行依据，`codex/` 是历史记录。
 
-制作配图时另读 [配图指南](illustrations/README.md) 和 [参考目录](illustrations/CATALOG.md)。现有配图提供可组合、可扩展的视觉基础，按内容关系重组；已确认成品只按作者明确反馈修正。
+制作配图时另读 [配图指南](illustrations/README.md) 和 [参考目录](illustrations/CATALOG.md)。现有配图提供可组合、可扩展的视觉基础，按内容关系重组；已确认成品只按作者明确反馈修正。制作规范页、图解规范或验收板时读 [规范文档版式](guidelines/README.md)，只用 `Doc/*` 组件组装，交付前运行 `guidelines/lint-figma.js`。
 
 日常产品开发在产品仓库中进行，本仓库只在作者授权维护设计系统时修改。网页变量以 `tokens/tokens.json` 为源，`tokens/tokens.css` 为生成文件；车机专用值和字号见 SPEC 13.1，Figma 变量与样式按 HANDOFF 对应执行。维护、发布与升级遵循 [GOVERNANCE.md](GOVERNANCE.md)，不得自行改已确认的视觉规则、产品关键页或版本。
 

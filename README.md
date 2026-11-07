@@ -2,7 +2,7 @@
 
 这是跨产品共用的设计依据，供 Claude、Codex、其他 AI 和设计师制作网页、产品界面与 Figma 设计。换账号或换工具后，从 [HANDOFF.md](HANDOFF.md) 开始；规则、设计变量和组件直接保存在仓库中，使用它们不依赖旧聊天记录或特定 AI 账号。仓库版本使用 Git 标签，SPEC 和 COMPONENTS 的版本分别表示规则正文与组件文档的版本。
 
-当前规则版本：SPEC 1.5、COMPONENTS 1.1（2026-11-06）。网页设计变量以 tokens 为源；车机（HMI）专用值与字号见 SPEC 13.1，两套规则不互用。当前任务、待定项与 Figma 定位见 [STATUS.md](STATUS.md)，执行前须读取实时画布。
+当前规则版本：SPEC 1.6、COMPONENTS 1.1（2026-11-07）。网页设计变量以 tokens 为源；车机（HMI）专用值与字号见 SPEC 13.1，两套规则不互用。当前任务、待定项与 Figma 定位见 [STATUS.md](STATUS.md)，执行前须读取实时画布。
 
 作品集网站、DriveScene 和以后的产品界面按 SPEC 与 COMPONENTS 执行。说明图与配图从 [配图积木与组合参考](illustrations/README.md) 和 [图片目录](illustrations/CATALOG.md) 进入：参考材质、留白、层级和关系，根据内容选择、组合并扩展。这批样例提供基础参考，不限制未来配图的数量或布局；已经确认的成品按原样使用，局部修正遵循作者明确反馈。完整历史配图文档仍在作者本地，本仓库已提供可独立调用的当前参考包。
 
@@ -23,6 +23,7 @@
 | 4 | `checks/`、`AGENTS.template.md`、`examples/` | 检查脚本、产品仓库入口模板、示例 |
 | 5 | 产品自己的 guideline | 只写该产品的布局和差异 |
 | 配图 | `illustrations/README.md`、`CATALOG.md`、`catalog.json` | 组合规则、16 张参考图、来源与可编辑性边界 |
+| 规范文档 | `guidelines/README.md`、`layout.json`、`lint-figma.js` | Figma 规范页的网格、字号、颜色、版块组件和检查脚本 |
 | 查 | `DECISIONS.md` | 为什么这么定、哪些还待定 |
 | 查 | `STATUS.md` | 当前 Figma 页面与节点、有效任务、已退回方案和待验证事项 |
 | 查 | `PLAN.md` | 建设计划和进度 |
