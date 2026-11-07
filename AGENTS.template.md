@@ -6,6 +6,7 @@
 
 改动任何界面前，先过一遍 `design-system/HANDOFF.md`（执行清单），再按顺序读：
 
+0. `design-system/STYLE.md`：审美与排版协议（风格、排版顺序、自查）
 1. `design-system/README.md`：入口和优先级
 2. `design-system/SPEC.md`：规则正文（颜色、材质、圆角、字体、间距、布局、动效、图标、状态、文案、可访问性）
 3. `design-system/COMPONENTS.md`：组件规格；参考实现在 `design-system/components/`，全状态展示在 `design-system/gallery.html`
@@ -15,9 +16,9 @@
 
 ## 硬规则
 
-0. **关键页不改。** 作品集首页和 DriveScene 工作台是作者确认过的关键页。设计系统更新不是改它们的理由；关键页的任何改动必须有作者逐项确认，否则停下。
+0. **关键页是参考实现。** 作品集首页和 DriveScene 工作台是作者确认过的样板，同样受规范约束；与规范的差异列在 `design-system/MIGRATION.md`。关键页的任何改动（含迁移项）必须有作者逐项确认，否则停下。
 
-1. **网页只用变量。** 颜色、圆角、字号、字重、间距、阴影、时长只写 `var(--ds-…)`。tokens 复制到本仓库的 `{{TOKENS_PATH}}`，不手改；升级设计系统版本时从 `design-system/tokens/tokens.css` 重新复制，CI 会核对两者一致。确需写数值时加 `/* ds-allow: 原因 */`。车机产品专用数值和字号以 SPEC 13.1 为依据，对应 Figma 的 HMI 变量和文字样式，暂不在网页 tokens 中；具体执行见 HANDOFF 2.1。
+1. **网页只用变量。** 颜色、圆角、字号、字重、间距、阴影、时长只写 `var(--ds-…)`。tokens 复制到本仓库的 `{{TOKENS_PATH}}`，不手改；升级设计系统版本时从 `design-system/tokens/tokens.css` 重新复制，CI 会核对两者一致。确需写数值时加 `/* ds-allow: 原因 */`。车机产品用 `--ds-hmi-*` 变量（SPEC 13.1），颜色仍用 `--ds-color-*`；Figma 对应见 HANDOFF 2.1。
 2. **组件先复制。** 需要的组件先从 `design-system/components/` 复制，保持类名和状态写法。设计系统里没有的组件不要自己造，向作者或当前指定的监察者报告缺口，确认后再执行。
 3. **不改 `design-system/` 子模块**里的任何文件，也不随手升级子模块版本。规范需要修改时，写进交付报告的「问题」一节，或到 `paxton-design-system` 仓库单独提 PR，由作者批准。
 4. **不加**规范和作者都没要求的元素、说明文字、装饰、第二个强调色。

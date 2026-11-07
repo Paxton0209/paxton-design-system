@@ -15,14 +15,14 @@
 
 `.github/workflows/ci.yml`：
 
-1. **静态检查**：`checks/selftest.mjs`，`check-ui` 扫 `components/`、`gallery.html`、`examples/`，并确认 `tokens.css` 由 `tokens.json` 生成、没有手改。
+1. **静态检查**：`checks/selftest.mjs`，`check-ui` 扫 `components/`、`gallery.html`、`examples/`，`exceptions.mjs` 报告例外计数（只出报告，用来追踪 MIGRATION.md），并确认 `tokens.css` 由 `tokens.json` 生成、没有手改。
 2. **渲染审计**：Playwright 打开展示页和两个示例，1440 / 390、浅 / 深，查对比度、圆角、字号、字重、横向溢出；再用 `fixtures/audit-bad.html` 确认审计器自身能报错。截图、报告和运行日志作为 Actions 附件保留 30 天。审计**发现问题**只出报告；审计**没跑完**（崩溃、超时、没生成 audit.md）会让 job 失败并打印日志尾部。
 
-静态检查和审计器自测不过，PR 不能合并。展示页和示例的审计**暂时只出报告**：2026-11-05 在作者 Mac 上实跑（Chrome 156）有 322 条失败记录（跨视口、主题重复计数：对比度 146、圆角 160、非文字对比度 8、字号 4、字重 4），其中作品集示例的 9px 圆角、15px 字号、600 字重有 D-31 / D-32 批准注释，说明审计规则还不认产品例外。作者逐项判断（改审计规则让它识别 ds-allow，或修界面）之后，删掉 `ci.yml` 里两处 `continue-on-error`，审计就变成门禁。不为了让 CI 变绿改已确认的规则或界面。
+静态检查和审计器自测不过，PR 不能合并。展示页和示例的审计**暂时只出报告**：2026-11-05 在作者 Mac 上实跑（Chrome 156）有 322 条失败记录（跨视口、主题重复计数：对比度 146、圆角 160、非文字对比度 8、字号 4、字重 4），其中作品集示例的 9px 圆角、15px 字号、600 字重已在规范 2.0 按 D-109、D-112 迁移到变量。MIGRATION.md 清空后，删掉 `ci.yml` 里两处 `continue-on-error`，审计就变成门禁。不为了让 CI 变绿改已确认的规则或界面。
 
 ## 版本
 
-- 标签用 `vMAJOR.MINOR.PATCH`，MAJOR.MINOR 跟 SPEC 版本走（SPEC 1.4 → `v1.4.x`）。
+- 标签用 `vMAJOR.MINOR.PATCH`，MAJOR.MINOR 跟 SPEC 版本走（SPEC 2.0 → `v2.0.x`）。
 - 只改文档措辞、修检查脚本的误报：PATCH。
 - 新增组件、新增 token、新增规则：MINOR，并在 DECISIONS 记一条。
 - 删除或改名 token、改变已有组件结构：MAJOR，PR 里列出受影响产品和迁移办法。

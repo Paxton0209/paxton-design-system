@@ -1,6 +1,6 @@
 # 组件规格
 
-版本 1.1 · 2026-11-04 · 规则依据 `SPEC.md`，数值只用 `tokens/tokens.css`。
+版本 1.2 · 2026-11-07（`radius-panel` 改为 8；内容模式标签页用文字 1 下划线）· 规则依据 `SPEC.md`，数值只用 `tokens/tokens.css`。
 
 ## 0. 通用约定
 
@@ -17,7 +17,7 @@
 
 选中状态用真实属性（`aria-checked`、`aria-selected`、`aria-current`、`aria-pressed`），不另设类。
 
-**层与圆角**：组件默认按「面板里的控件」取 `radius-control`（6）。直接放在底上时加 `.ds-on-ground`，圆角改为 `radius-panel`（10）。
+**层与圆角**：组件默认按「面板里的控件」取 `radius-control`（6）。直接放在底上时加 `.ds-on-ground`，圆角改为 `radius-panel`（8）。
 
 **间距**：组件表没写手机值的间距，手机上以 SPEC 第 6 节为准；SPEC 也没写的，沿用桌面值。
 
@@ -146,7 +146,7 @@
 
 结构：`div[role=tablist]` > `button[role=tab][aria-selected]`；面板 `div[role=tabpanel]`。
 
-- 字号：工具里用 `text-ui`，内容页用 `text-body`（作品集筛选）。未选文字 2；选中文字 1 + 500，下方 2px `color-accent` 下划线，距文字基线 6，与文字等宽。
+- 字号：工具里用 `text-ui`，内容页用 `text-body`（作品集筛选）。未选文字 2；选中文字 1 + 500，下方 2px 下划线，距文字基线 6，与文字等宽：工具里用 `color-accent`，内容页用 `color-text-1`（内容模式不用强调色，SPEC 3.2）。
 - 标签之间 24；不加底色和外框。
 - 键盘：左右方向键切换，Home / End。
 
@@ -219,7 +219,7 @@
 
 ## 18. 链接 `.ds-link`
 
-- 文字 1，下划线 1px，偏移 4；内容页正文里的链接用这个。
+- 文字 1，下划线 1px `color-line-strong`，偏移 4；内容页正文里的链接用这个。
 - 悬停 0.7；外链不加额外图标。
 - 导航类链接（不在正文里）可以不加下划线，用文字 2 → 当前项文字 1 区分。
 

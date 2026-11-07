@@ -112,6 +112,7 @@
 .ds-tab::after { content:""; position:absolute; inset-inline:0; height:var(--ds-size-touch); top:50%; transform:translateY(-50%); }
 .ds-tab[aria-selected=true] { color:var(--ds-color-text-1); font-weight:500; box-shadow:0 2px 0 var(--ds-color-accent); /* ds-allow: selected tab underline */ }
 .ds-tabs--content .ds-tab { font:var(--ds-text-body); }
+.ds-tabs--content .ds-tab[aria-selected=true] { box-shadow:0 2px 0 var(--ds-color-text-1); /* ds-allow: selected tab underline */ }
 .ds-tabs [role=tabpanel] { margin-top:var(--ds-space-6); color:var(--ds-color-text-2); font:var(--ds-text-meta); }
 /* 10 Row */
 .ds-row { display:flex; align-items:center; gap:var(--ds-space-4); position:relative; width:100%; height:var(--ds-size-button); padding:0 var(--ds-space-4); border-radius:var(--ds-radius-control); background:none; color:var(--ds-color-text-2); font:var(--ds-text-ui); text-decoration:none; text-align:left; }

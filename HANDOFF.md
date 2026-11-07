@@ -23,7 +23,7 @@
 - [ ] `git submodule update --init`，确认 `design-system/` 不是空目录
 - [ ] `git -C design-system describe --tags` 记下当前锁定的版本
 - [ ] 读产品根目录的 `AGENTS.md`（硬规则与本产品信息）
-- [ ] 按顺序读：`design-system/README.md` → `SPEC.md` → `COMPONENTS.md` → 产品 guideline
+- [ ] 按顺序读：`design-system/STYLE.md` → `README.md` → `SPEC.md` → `COMPONENTS.md` → 产品 guideline；先确定画面属于内容、工具还是车机模式（STYLE 第 3 节）
 - [ ] 查 `design-system/STATUS.md`：哪些是当前有效任务，哪些方案已退回
 - [ ] 新开分支；不直接改 main
 
@@ -32,7 +32,7 @@
 ## 2. 改产品界面
 
 - [ ] 下列数值与代码检查规则用于网页；车机与 Figma 的数值来源见 2.1，不能套用网页字号
-- [ ] 关键页（作品集首页、DriveScene 工作台）的任何改动都要作者逐项确认，否则停下
+- [ ] 关键页（作品集首页、DriveScene 工作台）是参考实现：按 MIGRATION.md 迁移的项和其他任何改动都要作者逐项确认，否则停下
 - [ ] 数值只用 `var(--ds-…)`；确需写死时加 `/* ds-allow: 原因 */`
 - [ ] 组件从 `design-system/components/` 复制；没有的组件不要自己造，先问
 - [ ] 改间距按 SPEC 6.1 的模型，一次只改一层，说清改的是哪一层
@@ -55,7 +55,7 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 - [ ] 先读 SPEC 对应任务的章节与 COMPONENTS；车机屏幕遵循 SPEC 的车机分类及产品约束，不把网页字号和布局直接套到车机。
 - [ ] 读取目标 Figma 实时画布：[当前参考文件](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test)，节点定位见 STATUS。访问依赖作者的 Figma 共享权限，与 Claude 账号无关。保留现有组件引用与作者已删除内容，历史截图和数量不证明当前状态。
 - [ ] 已有明确作者确认依据的手调布局按该确认保留。仅观察到画布内容不能视为作者确认；与 SPEC 冲突或确认依据不明时，保留现状并报告，不自行修改画布或规范。
-- [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `HMI / v0.1` 变量和 `HMI/…` 文字样式；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
+- [ ] 从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量（一个集合，Light / Dark 两个模式，名字与 tokens 一致，如 `color/page`、`radius/panel`、`space/8`）和文字样式（`text/body`、`hmi/body`）。车机用 `hmi` 组（`hmi/radius/…`、`hmi/size/…`、`hmi/text/…`），颜色直接用 `color/…`。现有 Figma 的 `HMI / v0.1` 变量和 `HMI/…` 文字样式按同名迁移，迁移前两者并存时以 tokens.json 的值为准。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。落地细则见 STYLE 第 8 节。
 - [ ] 交付文件链接、实际修改节点、采用版本，以及适用的浅深主题、尺寸和状态截图；未做的状态写明未验证。网页审计脚本不能直接验收 Figma，必须按规范核对画布中的数值、布局、文字、图标和状态。
 
 ## 2.2 配图怎么执行
@@ -106,10 +106,10 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 
 构建或测试通过不等于视觉验收；CI 通过也不等于作者验收。
 
-## 7. 当前已知情况（2026-11-05）
+## 7. 当前已知情况（2026-11-07）
 
 - 展示页与示例的渲染审计暂只出报告，含既有问题与已批准例外的冲突；具体计数与验证边界见 STATUS。不要为了让 CI 变绿去改已确认的规则或界面。
-- 既有关键页没有追溯迁移到 tokens，所以产品 CI 用 `check-changed.mjs`，只查本次改动新增的问题。
+- 既有关键页还没有全部迁移到 tokens（清单见 MIGRATION.md），所以产品 CI 用 `check-changed.mjs`，只查本次改动新增的问题；`exceptions.mjs` 报告剩余例外数。
 - `renders/` 证据目录（约 47 MB）和 Sketch 英文阅读包没有进仓库，留在作者本地。
 - 目前 AI 和作者用的是同一个 GitHub 账号，GitHub 分不出是谁，「只有作者能批准」只能靠约定。要真正强制，见 `GOVERNANCE.md` 关于机器账号的说明。
 - 当前配图参考包已在 `illustrations/`：16 张浅色 PNG、14 份历史 HTML、CSS 与生成脚本。完整历史配图层仍在作者本地；历史 HTML 与部分后续修正版 PNG 不保证逐像素一致。
@@ -121,7 +121,9 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 | 规则正文 | `SPEC.md` |
 | 配图组合 / 图片目录 / 源文件 | `illustrations/README.md` / `illustrations/CATALOG.md` / `illustrations/source/` |
 | 组件规格 / 实现 / 全状态 | `COMPONENTS.md` / `components/` / `gallery.html` |
-| 设计数值来源 | 网页：`tokens/tokens.json`（源）→ `tokens/tokens.css`（生成）；车机：SPEC 13.1 与对应 Figma 变量、文字样式 |
+| 风格与排版判断 | `STYLE.md` |
+| 设计数值来源 | `tokens/tokens.json`（源，网页与车机）→ `tokens/tokens.css`（生成）；Figma 同名变量 |
+| 关键页还差什么 | `MIGRATION.md` |
 | 为什么这么定 | `DECISIONS.md` |
 | 现在做到哪 | `STATUS.md` |
 | 谁能改、怎么发版、怎么升级 | `GOVERNANCE.md` |
