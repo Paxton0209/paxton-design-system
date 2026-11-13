@@ -205,4 +205,6 @@ Dark:
 - Dark icon/2 and icon/3 now match text/2 and text/3 (#A0A0A0 to #A0A0A4, #7A7A7A to #7A7A7E).
 - Removed the duplicate ink (its 2 bindings moved to text/1) and the 3 unbound source/sidebar/* calibration colors.
 - Removed the unbound old collections: DS / Primitives, DS / Theme, DS / Metrics, Cockpit / Primitives, Cockpit / Semantic, Cockpit / Metrics.
-- Not handled yet: about 10,000 bindings on the Components and Work pages that point to variables from external libraries, and about 14,000 hard-coded colors. These wait for the component rebinding stage.
+- Rebinding: on the Components and Work pages, every color that matches a token in its current mode (within 4 per channel) now binds to Color, more than 5,100 paints in all, with no visual change. White text and icons on colored fills use on-accent; the rest use text/1 and icon/1. Frames named Light or Dark now carry that mode.
+- Remaining: on the Components page, 1,183 hard-coded and 232 external colors on main nodes; on the Work page, 3,317 hard-coded and 475 external. Most are Sketch source colors (such as #979797, #F2F2F5, #99999E), translucent whites, brand colors, and the map, 3D scene and Dock app icons, which the rules leave alone. About 2,900 non-color external bindings (radius, spacing, type) wait for their own tokens.
+- The Color Guide frame follows the Color collection mode for day and night; the primitive names under each card come from hidden guide/* string variables in the Color collection.

@@ -205,4 +205,6 @@
 - 夜间 icon/2、icon/3 与 text/2、text/3 统一（#A0A0A0 改 #A0A0A4，#7A7A7A 改 #7A7A7E）。
 - 删除重复的 ink（2 处绑定已改到 text/1）和 3 个参考稿取色 source/sidebar/*（无绑定）。
 - 删除无绑定的旧集合：DS / Primitives、DS / Theme、DS / Metrics、Cockpit / Primitives、Cockpit / Semantic、Cockpit / Metrics。
-- 未处理：Components 和 Work 两页约 1 万处绑定指向外部库的变量，约 1.4 万处写死的颜色，留到组件改绑阶段。
+- 改绑：Components 和 Work 两页里，颜色和某个 token 在当前模式下一致（每个通道差 4 以内）的，改绑到 Color，共 5100 多处；外观不变。白字白图标在彩色底上用 on-accent，其余用 text/1、icon/1。名字带 Light、Dark 的画框加上对应模式。
+- 剩余：Components 主节点 1183 处写死、232 处外部颜色；Work 3317 处写死、475 处外部颜色。主要是 Sketch 来源色（如 #979797、#F2F2F5、#99999E）、半透明白、品牌彩色，以及地图、3D 场景、Dock 应用图标，按规则不改。圆角、间距、字号等非颜色的外部绑定约 2900 处，等对应 token 建好后处理。
+- Color Guide 画框跟着 Color 集合的模式切换日夜，卡片下方的原色名用 Color 集合里隐藏发布的 guide/* 文字变量显示。
