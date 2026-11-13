@@ -1,4 +1,4 @@
-# Car Display Color Tokens v1.0
+# Car Display Color Tokens v1.1
 
 Scope: the center display of the car HMI, in two modes, Light (day) and Dark (night). Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), variable collections Primitives (raw colors) and Color (semantic). Web colors still follow SPEC section 2, and the web accent stays #1471D6.
 Chinese version: [color-tokens.md](color-tokens.md).
@@ -7,7 +7,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 
 ## 0 How to read this file
 
-- Every rule has an ID, for example COLOR-05. The Color Guide frame in Figma (922:11226, on the selected icon page) and the audit script use the same ID.
+- Use the rule ID to find the corresponding entry. The visual guide is on the selected icon page. Use `Guide i18n` to change the language and `Color` to change the mode. [Figma Color Guide](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=932-1829)
 - Must: a violation fails. Should: the default; any deviation states the rule ID and the reason.
 - Figma names the modes Light and Dark; the docs write Light (day) and Dark (night).
 - This version has only the day and night modes, with no high-contrast mode.
@@ -26,7 +26,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 
 ### COLOR-03 One blue (must)
 - `accent`, `accent/fill`, `map/route` and `map/puck-arrow` all reference the same blues: `blue/500` #007AFF in Light and `blue/400` #0A84FF in Dark.
-- No other token may introduce a second blue.
+- Use this pair as the only UI accent blue. The dedicated AI voice effect palette follows COLOR-12.
 
 ### COLOR-04 Using the accent (must)
 - For what is current, on, or in progress: switches that are on, the selected underline, progress, selected values, icons that are on.
@@ -40,15 +40,15 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | Text of 24 or larger | ≥ 3:1 |
 | Icons, control boundaries, status graphics | ≥ 3:1 |
 | Two adjacent fills | ≥ 1.25:1; add a 1px border when it falls short (as in SPEC 3.1) |
-- Measure on the surface the element actually sits on: canvas, face and raised must all pass.
-- text/3 is only for type of 24 or larger and for icons; 20 px captions always use text/2 (text/3 reaches only 3.0 to 3.4 in Light and 4.0 to 4.3 on face and raised in Dark, short of 4.5).
+- Measure contrast on the actual background. Check general panel text on canvas, face and raised surfaces. For content over a scene, composite the translucent foreground over its background before measuring. Check both modes and the brightest representative background.
+- Use `text/2` for 20 px panel captions and follow COLOR-11 for dedicated scene and navigation labels. Use `text/3` only for type of 24 or larger and for icons.
 
 ### COLOR-06 Status colors (must)
 - `danger`, `status/success` and `status/warning` always come with an icon or text; color alone never carries the meaning.
 - Filled danger actions use `danger/fill` with white text.
 
 ### COLOR-07 Lines and borders (must)
-- Lines use semi-transparent primitives (white or black with opacity), so they keep the same contrast on any surface.
+- Bind lines to semantic tokens that use translucent black or white. Check the separation on the actual surface.
 - `line/face` borders a surface, `line/control` borders a control, and `line/selected` borders a selected block and is transparent in Dark.
 
 ### COLOR-08 Map palette (should)
@@ -62,6 +62,16 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - To change a value, change the primitive or the primitive a semantic token points to, never the layer.
 - To rename or delete a semantic token, list the affected components and binding counts, and get the author's approval first.
 - Recompute the COLOR-05 contrast tables after every change.
+
+### COLOR-11 On-scene UI (must)
+
+Use pure white for primary text and key icons directly over SR, maps or imagery. Use `foreground/on-media-secondary` (85% white) for secondary text and icons, and `overlay/scene` (15% white) for translucent control surfaces. On light roads, bright skies or image highlights, put a local dark scrim behind the information and measure contrast under COLOR-05. Use the panel gray scale inside fixed light panels.
+
+The secondary branch on a green maneuver card uses 20% white and the main turn arrow uses pure white. Secondary labels on the dark ETA card use 60% white. The light card uses the standard secondary text color. In the Figma examples, the low-emphasis music progress track uses 8% white. EP map accessory icons and the volume fill use 85% and 15% white respectively. Reserve low opacity on tracks and branches for supporting graphics. Apply COLOR-05 to graphics that convey a state or identify an action.
+
+### COLOR-12 SR materials and AI voice (must)
+
+Use `scene/*` for SR materials and group them by sky and landscape, road and markings, buildings and glass, and parking. Use `ai/<state>/<index>` for listening, thinking, speaking and proactive suggestions. Preview the real gradient and bind each stop to its token. Both ends are at 0% opacity for listening, speaking and proactive suggestions. The thinking text gradient has colored endpoints. Clip the preview with one rounded shape so the transparent ends reveal the actual background. [Figma AI voice gradients](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=934-1737)
 
 ---
 
@@ -113,6 +123,9 @@ Chinese version: [color-tokens.md](color-tokens.md).
 |---|---|
 | white/a8 | #FFFFFF 8% |
 | white/a9 | #FFFFFF 9% |
+| white/a15 | #FFFFFF 15% |
+| white/a60 | #FFFFFF 60% |
+| white/a85 | #FFFFFF 85% |
 | black/a5 | #000000 5% |
 | black/a7 | #000000 7% |
 | transparent | #000000 0% |
@@ -131,6 +144,8 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | map/route-traveled | #868C96 | #8E9299 |
 
 In Primitives the map values live in two groups, `map-day/…` and `map-night/…`.
+
+The SR primitives live under `scene-day/…` and `scene-night/…`. The current `scene/road` is `#505967` in Light and `#303031` in Dark. The full palette is grouped by use. [Figma SR palette](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=934-1641)
 
 ---
 
@@ -151,6 +166,9 @@ In Primitives the map values live in two groups, `map-day/…` and `map-night/�
 | text/1 | gray/950 | cool/50 | Body text and titles |
 | text/2 | gray/600 | cool/300 | Secondary text, 20 px captions |
 | text/3 | gray/500 | cool/400 | Weak text of 24 or larger |
+| text/on-media | gray/0 | gray/0 | Primary text on scenes |
+| foreground/on-media-secondary | white/a85 | white/a85 | Secondary text and icons on scenes |
+| overlay/scene | white/a15 | white/a15 | Translucent control surface on scenes |
 | icon/1 | gray/950 | gray/0 | Primary icons, pure white in Dark |
 | icon/2 | gray/600 | cool/300 | Secondary icons |
 | icon/3 | gray/500 | cool/400 | Weak or unselected icons |
@@ -164,6 +182,8 @@ In Primitives the map values live in two groups, `map-day/…` and `map-night/�
 | status/warning | amber/600 | amber/400 | Warning graphics |
 | nav/background | green/nav | green/nav | Navigation card |
 | nav/next | green/nav-next | green/nav-next | Navigation card, next step |
+| nav/secondary | gray/0 | gray/0 | Secondary maneuver branch, with 20% opacity on its vector layer |
+| nav/eta-label | gray/600 | white/a60 | Secondary labels on the ETA card |
 | map/land and 8 more | map-day/* | map-night/* | Map base, five road classes, traveled route |
 | map/route | blue/500 | blue/400 | Planned route, the same blue as the accent |
 | map/puck | gray/0 | gray/0 | Location puck |
@@ -199,10 +219,24 @@ Dark:
 
 ---
 
-## 5 Migration record (2026-11-13)
+On-scene contrast examples after compositing:
+
+| Foreground | Background | Contrast |
+|---|---|---|
+| 85% white secondary text | Light road `#505967` | 5.67:1 |
+| 85% white secondary text | Light horizon `#DCE5EE` | 1.23:1, requires a local dark scrim |
+| 60% white dark-mode ETA label | ETA card `#2C2C2E` | 6.04:1 |
+
+## 5 Figma Color Guide layout
+
+Show semantic samples by use, followed by primitives and rules. Lead each entry with an actual swatch, text, icon or gradient. Put its purpose, token name and value next to it in that order. Keep the guidance that affects color selection and use spacing to distinguish groups. Give SR scenes and AI voice their own sections. Put the text, icons and controls that sit over scenes in the semantic On-scene UI group.
+
+Clip both ends of a strip with one outer frame. The inner swatches fill the frame and touch edge to edge. Where an outline is needed, use a 0.5 px inside stroke and turn off **Strokes included in layout** in Figma. Check all strips of the same kind in the guide. Zoom in to check that each arc meets the straight edge smoothly, and check transparent ends against light and dark backgrounds. The 0.5 px value applies to guide samples. Product controls follow the surface rules in SPEC.
+
+## 6 Migration record (2026-11-13)
 
 - HMI / v0.1 was renamed Color, and all 38 semantic tokens now alias Primitives. The accent moved from #1471D6 to Apple system blue.
 - Dark icon/2 and icon/3 now match text/2 and text/3 (#A0A0A0 to #A0A0A4, #7A7A7A to #7A7A7E).
 - Removed the duplicate ink (its 2 bindings moved to text/1) and the 3 unbound source/sidebar/* calibration colors.
 - Removed the unbound old collections: DS / Primitives, DS / Theme, DS / Metrics, Cockpit / Primitives, Cockpit / Semantic, Cockpit / Metrics.
-- Not handled yet: about 10,000 bindings on the Components and Work pages that point to variables from external libraries, and about 14,000 hard-coded colors. These wait for the component rebinding stage.
+- v1.1 records the current Color Guide layout, the SR road reference colors, AI voice previews, on-scene UI tokens and corner checks. The navigation, music and EP examples have been checked in Figma. Library-wide rebinding and product code migration still need their own verification.

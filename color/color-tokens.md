@@ -1,4 +1,4 @@
-# 车机颜色 token v1.0
+# 车机颜色 token v1.1
 
 适用范围：车机中控屏，日（Light）、夜（Dark）两个模式。Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），变量集合 Primitives（原色）和 Color（语义）。网页颜色仍按 SPEC 第 2 节，网页强调色保持 #1471D6。
 英文版：[color-tokens.en.md](color-tokens.en.md)。
@@ -7,7 +7,7 @@
 
 ## 0 怎么读这份文件
 
-- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（922:11226，在 selected icon 页）和检查脚本用同一 ID。
+- 按规则 ID 查找对应条目。图示在 selected icon 页，可用 `Guide i18n` 切换中英文，用 `Color` 切换日夜。[Figma Color Guide](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=932-1829)
 - 必须：违反即不合格。应：默认做法，偏离时写明 ID 和理由。
 - 模式名在 Figma 里是 Light 和 Dark，文档写作日（Light）、夜（Dark）。
 - 这一版只有日、夜两个模式，不做高对比模式。
@@ -26,7 +26,7 @@
 
 ### COLOR-03 只有一个蓝（必须）
 - `accent`、`accent/fill`、`map/route`、`map/puck-arrow` 都引用同一组蓝：日 `blue/500` #007AFF，夜 `blue/400` #0A84FF。
-- 其他颜色不准出现第二种蓝。
+- 车机界面的强调色只用这一组蓝。独立的 AI 语音光效色板按 COLOR-12 使用。
 
 ### COLOR-04 强调色的用法（必须）
 - 用于当前、开启、进行到哪：开关开启、选中下划线、进度、已选值、开启的图标。
@@ -40,15 +40,15 @@
 | 24 及以上的文字 | ≥ 3:1 |
 | 图标、控件边界、状态图形 | ≥ 3:1 |
 | 相邻两层填充 | ≥ 1.25:1；不够时加 1px 边（沿用 SPEC 3.1） |
-- 对比度按实际所在的面计算：canvas、face、raised 三个面都要过。
-- text/3 只用于 24 及以上的字和图标；20 号说明文字一律用 text/2（text/3 在日间只有 3.0 到 3.4，夜间在 face、raised 上 4.0 到 4.3，不够 4.5）。
+- 对比度按实际背景计算。通用面板文字要核对 canvas、face 和 raised。叠在场景上的内容先把透明前景与背景合成，再测实际对比度，覆盖日夜模式及最亮的典型背景。
+- 面板内的 20 号说明文字用 `text/2`，专用场景与导航标签按 COLOR-11 核对。`text/3` 只用于 24 及以上的字和图标。
 
 ### COLOR-06 状态色（必须）
 - `danger`、`status/success`、`status/warning` 必须配图标或文字，不能只靠颜色传达。
 - 填充用 `danger/fill`，上面放白字。
 
 ### COLOR-07 线和边（必须）
-- 线用半透明原色（白或黑加透明度），这样落在任何面上都保持同样的层次。
+- 线用半透明黑或白，通过语义 token 绑定。在实际背景上检查线的分隔效果。
 - `line/face`：面的边；`line/control`：控件的边；`line/selected`：选中块的边，夜间透明。
 
 ### COLOR-08 地图色板（应）
@@ -62,6 +62,16 @@
 - 改值：只改原色或改语义 token 引用的原色，不在图层上改。
 - 改名或删除语义 token：列出受影响的组件和绑定数，作者确认后再改。
 - 每次改动都重算 COLOR-05 的对比度表。
+
+### COLOR-11 场景叠层（必须）
+
+直接叠在 SR、地图或影像上的主要文字和关键图标用纯白。次要文字和图标默认用 `foreground/on-media-secondary`（85% 白），透明控件底用 `overlay/scene`（15% 白）。在亮路面、浅天空或影像高光上，先给信息背后加局部暗底，再按 COLOR-05 测量。固定浅色面板内部按面板灰阶组织层级。
+
+绿色导航卡的辅助分支用 20% 白，主转向箭头保持纯白。深色 ETA 卡的次要标签用 60% 白，浅色 ETA 卡用标准次要文字色。Figma 参考稿中，音乐卡的低强调进度底轨为 8% 白，EP 的地图辅助图标和音量填充分别为 85% 白、15% 白。底轨和辅助分支的低透明度只用于辅助图形，实际承载状态或操作识别的图形按 COLOR-05 核对。
+
+### COLOR-12 SR 材质与 AI 语音（必须）
+
+SR 材质使用 `scene/*`，按天空与地景、道路与标线、建筑与玻璃、停车设施查找。AI 语音使用 `ai/<state>/<index>`，按聆听、思考、说话和主动建议查看状态。预览用真实渐变，每个色标绑定对应变量。聆听、说话和主动建议的两端为 0% 不透明度，思考文字渐变保留有色端点。渐变样本使用同一层圆角裁切，透明端直接露出实际背景。[Figma AI 语音色带](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=934-1737)
 
 ---
 
@@ -113,6 +123,9 @@
 |---|---|
 | white/a8 | #FFFFFF 8% |
 | white/a9 | #FFFFFF 9% |
+| white/a15 | #FFFFFF 15% |
+| white/a60 | #FFFFFF 60% |
+| white/a85 | #FFFFFF 85% |
 | black/a5 | #000000 5% |
 | black/a7 | #000000 7% |
 | transparent | #000000 0% |
@@ -131,6 +144,8 @@
 | map/route-traveled | #868C96 | #8E9299 |
 
 原色里地图值按 `map-day/…`、`map-night/…` 两组存放。
+
+SR 日夜原色按 `scene-day/…`、`scene-night/…` 存放。当前道路面 `scene/road` 日间为 `#505967`，夜间为 `#303031`。完整色板按用途查阅。[Figma SR 场景色板](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=934-1641)
 
 ---
 
@@ -151,6 +166,9 @@
 | text/1 | gray/950 | cool/50 | 正文、标题 |
 | text/2 | gray/600 | cool/300 | 次要文字、20 号说明文字 |
 | text/3 | gray/500 | cool/400 | 24 及以上的弱文字 |
+| text/on-media | gray/0 | gray/0 | 场景上的主要文字 |
+| foreground/on-media-secondary | white/a85 | white/a85 | 场景上的次要文字与图标 |
+| overlay/scene | white/a15 | white/a15 | 场景上的半透明控件底 |
 | icon/1 | gray/950 | gray/0 | 主图标，夜间纯白 |
 | icon/2 | gray/600 | cool/300 | 次要图标 |
 | icon/3 | gray/500 | cool/400 | 弱图标、未选 |
@@ -164,6 +182,8 @@
 | status/warning | amber/600 | amber/400 | 警告状态图形 |
 | nav/background | green/nav | green/nav | 导航卡底 |
 | nav/next | green/nav-next | green/nav-next | 导航卡下一步 |
+| nav/secondary | gray/0 | gray/0 | 转向箭头的辅助分支，矢量层使用 20% 不透明度 |
+| nav/eta-label | gray/600 | white/a60 | ETA 卡片上的次要标签 |
 | map/land 等 9 个 | map-day/* | map-night/* | 地图底色和五级道路、已走路线 |
 | map/route | blue/500 | blue/400 | 规划路线，与强调色同一个蓝 |
 | map/puck | gray/0 | gray/0 | 定位点 |
@@ -199,10 +219,24 @@
 
 ---
 
-## 5 迁移记录（2026-11-13）
+场景叠层实测示例（按实际背景合成）：
+
+| 前景 | 背景 | 对比度 |
+|---|---|---|
+| 85% 白次要文字 | 日间道路面 `#505967` | 5.67:1 |
+| 85% 白次要文字 | 日间地平线 `#DCE5EE` | 1.23:1，须先加局部暗底 |
+| 夜间 ETA 标签 60% 白 | ETA 卡底 `#2C2C2E` | 6.04:1 |
+
+## 5 Figma 色彩规范排版
+
+先按用途展示语义样本，再查原色和规则。每项以实际色样、文字、图标或渐变作为识别入口，旁边依次放用途、token 名和色值。说明只保留影响选色的条件，组间用留白拉开层级。SR 场景和 AI 语音各自成段，场景上的文字、图标和控件底放在语义色的「场景叠层」组。
+
+色带用一个外框统一裁切两端，里面的色块贴满容器、相邻无缝。需要勾边时用 0.5 px 内描边，并关闭 Figma 自动布局的「描边参与布局」。同一轮检查整份规范的同类色带，放大核对两端圆弧和直边是否连续，并在浅深背景上检查透明端。此处的 0.5 px 用于规范色样，产品控件边按 SPEC 的材质规则执行。
+
+## 6 迁移记录（2026-11-13）
 
 - HMI / v0.1 改名为 Color，全部 38 个语义 token 改成引用 Primitives；强调色 #1471D6 改为苹果系统蓝。
 - 夜间 icon/2、icon/3 与 text/2、text/3 统一（#A0A0A0 改 #A0A0A4，#7A7A7A 改 #7A7A7E）。
 - 删除重复的 ink（2 处绑定已改到 text/1）和 3 个参考稿取色 source/sidebar/*（无绑定）。
 - 删除无绑定的旧集合：DS / Primitives、DS / Theme、DS / Metrics、Cockpit / Primitives、Cockpit / Semantic、Cockpit / Metrics。
-- 未处理：Components 和 Work 两页约 1 万处绑定指向外部库的变量，约 1.4 万处写死的颜色，留到组件改绑阶段。
+- v1.1 记录当前 Color Guide 的用途分组、SR 道路参考色、AI 语音色带、场景叠层变量和圆角验收方法。导航、音乐和 EP 的例子已在 Figma 局部验证，组件的全库改绑与产品代码迁移仍待各自验收。
