@@ -1,4 +1,4 @@
-# 车机颜色 token v1.1
+# 车机颜色 token v1.2
 
 适用范围：车机中控屏，日（Light）、夜（Dark）两个模式。Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），变量集合 Primitives（原色）和 Color（语义）。网页颜色仍按 SPEC 第 2 节，网页强调色保持 #1471D6。
 英文版：[color-tokens.en.md](color-tokens.en.md)。
@@ -192,6 +192,42 @@
 
 集合 `Settings reference` 是参考稿校准色，按 SPEC 只用于比对，不属于 token。
 
+## 3a 场景与语音光效
+
+### COLOR-12 场景和语音单独成组（必须）
+- `scene/…` 是 3D 场景环境色，`ai/…` 是语音光效渐变的色标，只给 3D 场景和语音组件用，界面控件不引用。
+- 原色在 Primitives 里按 `scene-day/…`、`scene-night/…`、`ai-glow/…` 存放；语义 token 按日、夜引用。
+- 渐变的每个色标绑定对应的 `ai/状态/序号`，位置按下表；Figma 的渐变色标可以直接绑定变量。
+
+### 场景 scene/
+| token | 日（Light） | 夜（Dark） | 用途 |
+|---|---|---|---|
+| scene/sky-top | #96BDE0 | #202225 | 天空顶部 |
+| scene/horizon | #DCE5EE | #373A3E | 地平线 |
+| scene/ground | #B4C3D6 | #373A3E | 地面 |
+| scene/grass | #809C68 | #3E4D3D | 草地 |
+| scene/foliage | #6F914F | #4A593E | 树冠 |
+| scene/water | #7695AE | #304146 | 水面 |
+| scene/road | #545E6D | #303031 | 路面 |
+| scene/pavement | #D1DBEE | #3C4045 | 人行道 |
+| scene/curb | #D6E1EF | #5A6068 | 路缘 |
+| scene/lane-white | #D6E0E9 | #A7ADB2 | 白色车道线 |
+| scene/lane-yellow | #BBAA6F | #99864E | 黄色中线 |
+| scene/cone | #FF5109 | #FF590C | 锥桶等危险物 |
+| scene/building | #D3D7DD | #817D7D | 建筑 |
+| scene/glass | #A6BED0 | #606A72 | 玻璃 |
+| scene/parking-floor | #7C8B9E | #17181B | 停车场地面 |
+| scene/parking-bay | #AEBDCE | #393C41 | 车位 |
+| scene/parking-edge | #98A9BC | #34383E | 车位线 |
+
+### 语音光效 ai/
+| token | 用途 | 色标（1 至 5） | 位置 % | 模式 |
+|---|---|---|---|---|
+| ai/listening/1 至 5 | 聆听 | #A1B5BD 0%、#AAB2B5 90%、#8B8E90、#6F6F71 90%、#D3D3D6 0% | 0、25、60、85、100 | 日夜相同 |
+| ai/thinking/1 至 5 | 思考，用于文字渐变 | 日 #2E9BEA、#1F8FE8 90%、#007AFF、#5856D6 90%、#AF52DE；夜 #C2EDFF、#64D2FF 90%、#50A7FF、#6B69FF 90%、#C35CE6 | 0、25、60、78、100 | 日夜不同 |
+| ai/speaking/1 至 5 | 播报 | #64D2FF 0%、#64D2FF 90%、#0A84FF、#5E5CE6 90%、#5E5CE6 0% | 0、25、60、85、100 | 日夜相同 |
+| ai/proactive/1 至 5 | 主动建议 | #7B64FF 0%、#649DFF 90%、#8147EE、#5E5CE6 90%、#5E5CE6 0% | 0、25、60、85、100 | 日夜相同 |
+
 ---
 
 ## 4 对比度（实测）
@@ -226,7 +262,7 @@
 - 第一轮：夜间 60 处颜色里 47 处和 token 一致，日间 35 处里 30 处一致。不一致的是屏幕底、夜间次要文字、日间面板边、控件底、应用图标底、场景上的半透明底和阴影。
 - 按 COLOR-11 处理：夜 text/1 改为 #FFFFFF，text/2 改为日 #6E6E73、夜 #98989F，日 line/face 改为 #0F1729 10%；新增 bg/screen、control/fill、bg/app-tile、overlay/scene、text/on-media、shadow/elevated、nav/secondary。成功色和警告色保持现在的值，不换成苹果的 #30D158、#FF9F0A（后者在白底上只有 2.1:1）。
 - 第二轮：把夜间 Key A 复制一份切到 Light，状态栏、Dock、地图、ETA 条、地图按钮、定位点、导航卡都和日间设计稿一致；只有左侧 3D 场景是图片，要靠场景组件的日夜变体切换。
-- 00 Foundations 里已并入 token 的 Color 与 Color · Map 日夜四块已删除；AI、SR 场景色板和字体、尺寸板保留。
+- 00 Foundations 里的颜色板全部并入 token 后删除：Color、Color · Map、Color · AI、Color · SR 各日夜一块；AI 和 SR 色板并为 ai/ 与 scene/ 两组（COLOR-12）。字体和尺寸板保留。
 
 ## 6 迁移记录（2026-11-13）
 

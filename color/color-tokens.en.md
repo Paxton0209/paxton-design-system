@@ -1,4 +1,4 @@
-# Car Display Color Tokens v1.1
+# Car Display Color Tokens v1.2
 
 Scope: the center display of the car HMI, in two modes, Light (day) and Dark (night). Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), variable collections Primitives (raw colors) and Color (semantic). Web colors still follow SPEC section 2, and the web accent stays #1471D6.
 Chinese version: [color-tokens.md](color-tokens.md).
@@ -192,6 +192,42 @@ In Primitives the map values live in two groups, `map-day/…` and `map-night/�
 
 The `Settings reference` collection holds calibration colors from the reference files. Per SPEC it is only for comparison and is not part of the tokens.
 
+## 3a Scene and voice glow
+
+### COLOR-12 Scene and voice colors stay in their own groups (must)
+- `scene/…` holds 3D scene environment colors and `ai/…` holds the stops of the voice glow gradients. Only 3D scenes and voice components use them; UI controls never do.
+- Their primitives live in Primitives as `scene-day/…`, `scene-night/…` and `ai-glow/…`; the semantic tokens point to them per mode.
+- Bind each gradient stop to its `ai/state/index` at the positions below; Figma lets gradient stops bind to variables.
+
+### Scene scene/
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| scene/sky-top | #96BDE0 | #202225 | Sky top |
+| scene/horizon | #DCE5EE | #373A3E | Horizon |
+| scene/ground | #B4C3D6 | #373A3E | Ground |
+| scene/grass | #809C68 | #3E4D3D | Grass |
+| scene/foliage | #6F914F | #4A593E | Foliage |
+| scene/water | #7695AE | #304146 | Water |
+| scene/road | #545E6D | #303031 | Road surface |
+| scene/pavement | #D1DBEE | #3C4045 | Pavement |
+| scene/curb | #D6E1EF | #5A6068 | Curb |
+| scene/lane-white | #D6E0E9 | #A7ADB2 | White lane line |
+| scene/lane-yellow | #BBAA6F | #99864E | Yellow center line |
+| scene/cone | #FF5109 | #FF590C | Cones and hazards |
+| scene/building | #D3D7DD | #817D7D | Buildings |
+| scene/glass | #A6BED0 | #606A72 | Glass |
+| scene/parking-floor | #7C8B9E | #17181B | Parking floor |
+| scene/parking-bay | #AEBDCE | #393C41 | Parking bay |
+| scene/parking-edge | #98A9BC | #34383E | Bay line |
+
+### Voice glow ai/
+| Token | Use | Stops (1 to 5) | Positions % | Modes |
+|---|---|---|---|---|
+| ai/listening/1 to 5 | Listening | #A1B5BD 0%, #AAB2B5 90%, #8B8E90, #6F6F71 90%, #D3D3D6 0% | 0, 25, 60, 85, 100 | same in both modes |
+| ai/thinking/1 to 5 | Thinking, for text gradients | Light #2E9BEA, #1F8FE8 90%, #007AFF, #5856D6 90%, #AF52DE; Dark #C2EDFF, #64D2FF 90%, #50A7FF, #6B69FF 90%, #C35CE6 | 0, 25, 60, 78, 100 | differs by mode |
+| ai/speaking/1 to 5 | Speaking | #64D2FF 0%, #64D2FF 90%, #0A84FF, #5E5CE6 90%, #5E5CE6 0% | 0, 25, 60, 85, 100 | same in both modes |
+| ai/proactive/1 to 5 | Proactive | #7B64FF 0%, #649DFF 90%, #8147EE, #5E5CE6 90%, #5E5CE6 0% | 0, 25, 60, 85, 100 | same in both modes |
+
 ---
 
 ## 4 Measured contrast
@@ -226,7 +262,7 @@ Dark:
 - First pass: 47 of 60 colors matched a token in Dark and 30 of 35 in Light. The gaps were the screen background, Dark secondary text, the Light panel border, control and app-tile fills, the translucent layer on scenes, and the shadow.
 - Fixed under COLOR-11: Dark text/1 is now #FFFFFF; text/2 is #6E6E73 in Light and #98989F in Dark; Light line/face is #0F1729 at 10%; added bg/screen, control/fill, bg/app-tile, overlay/scene, text/on-media, shadow/elevated and nav/secondary. Success and warning keep their values instead of Apple #30D158 and #FF9F0A (the latter is only 2.1:1 on white).
 - Second pass: a copy of Dark Key A switched to Light matches the Light design in the status bar, Dock, map, ETA bar, map buttons, puck and nav card; only the 3D scene on the left is an image and switches through its scene variants.
-- The four 00 Foundations boards now covered by tokens (Color and Color · Map, day and night) were deleted; the AI and SR scene palettes and the type and size boards remain.
+- Every color board in 00 Foundations was merged into tokens and then deleted: Color, Color · Map, Color · AI and Color · SR, day and night each. The AI and SR palettes became the ai/ and scene/ groups (COLOR-12). The type and size boards remain.
 
 ## 6 Migration record (2026-11-13)
 

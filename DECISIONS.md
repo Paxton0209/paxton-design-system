@@ -266,6 +266,7 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 | D-110 | 车机强调色改为苹果系统蓝：日 #007AFF，夜 #0A84FF；地图路线和定位点箭头用同一组蓝。网页强调色保持 #1471D6 | 作者选“苹果系统蓝”，并同意网页不换 | 已定，取代车机部分的 D-78 |
 | D-111 | 车机颜色 token 分两层：Primitives（原色，一个模式）和 Color（语义，Light / Dark），语义值全部引用原色，组件只绑语义。集合名不加 HMI 前缀；HMI / v0.1 改名为 Color，变量 ID 不变。删除无绑定的 DS / * 和 Cockpit / * 旧集合、重复的 ink 和参考稿取色 source/sidebar/* | 作者选“两层：原色 + 语义”“先迁移再删”，并说“旧的可以都删了，我们用新的”“不需要加 HMI” | 已定 |
 | D-113 | 颜色以已确认的重点界面 Key A、Key B 为准：夜 text/1 改为 #FFFFFF，text/2 改为日 #6E6E73、夜 #98989F，日 line/face 改为 #0F1729 10%；新增 bg/screen、control/fill、bg/app-tile、overlay/scene、text/on-media、shadow/elevated、nav/secondary；成功和警告色不换苹果系统色；00 Foundations 中已并入的颜色板删除 | 作者选“设计稿为准”，四类新角色全选，状态色“保留现在的 token”，旧说明板“合并后删除” | 已定 |
+| D-114 | DriveScene 的 SR 场景环境色和 AI 语音光效并入 token，单独成组：scene/（17 个，日夜不同）和 ai/（4 种状态各 5 个色标，思考状态日夜不同），只给场景和语音组件用；00 Foundations 的 AI、SR 颜色板合并后删除 | 作者回复“可以” | 已定 |
 | D-112 | text/3 只用于 24 及以上的字和图标，20 号说明文字一律用 text/2；模式在 Figma 叫 Light / Dark，文档写作日（Light）、夜（Dark） | 作者同意 | 已定 |
 
 ## 发版记录

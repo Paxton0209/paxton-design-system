@@ -2,7 +2,7 @@
 
 这是跨产品共用的设计依据，供 Claude、Codex、其他 AI 和设计师制作网页、产品界面与 Figma 设计。换账号或换工具后，从 [HANDOFF.md](HANDOFF.md) 开始；规则、设计变量和组件直接保存在仓库中，使用它们不依赖旧聊天记录或特定 AI 账号。仓库版本使用 Git 标签，SPEC 和 COMPONENTS 的版本分别表示规则正文与组件文档的版本。
 
-当前规则版本：SPEC 1.6、COMPONENTS 1.1、车机图标规范 1.2、车机颜色 token 1.1（2026-11-13）。网页设计变量以 tokens 为源；车机（HMI）专用值与字号见 SPEC 13.1，两套规则不互用。当前任务、待定项与 Figma 定位见 [STATUS.md](STATUS.md)，执行前须读取实时画布。
+当前规则版本：SPEC 1.6、COMPONENTS 1.1、车机图标规范 1.2、车机颜色 token 1.2（2026-11-13）。网页设计变量以 tokens 为源；车机（HMI）专用值与字号见 SPEC 13.1，两套规则不互用。当前任务、待定项与 Figma 定位见 [STATUS.md](STATUS.md)，执行前须读取实时画布。
 
 作品集网站、DriveScene 和以后的产品界面按 SPEC 与 COMPONENTS 执行。说明图与配图从 [配图积木与组合参考](illustrations/README.md) 和 [图片目录](illustrations/CATALOG.md) 进入：参考材质、留白、层级和关系，根据内容选择、组合并扩展。这批样例提供基础参考，不限制未来配图的数量或布局；已经确认的成品按原样使用，局部修正遵循作者明确反馈。完整历史配图文档仍在作者本地，本仓库已提供可独立调用的当前参考包。
 
