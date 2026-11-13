@@ -48,4 +48,4 @@ git add .gitmodules design-system && git commit -m "Pin selected design system r
 
 ## 产品专属内容放哪
 
-产品的布局差异、关键页基准（如 DriveScene 的 `studio/ui-draft/keypage.json`）、迁移记录都放在产品仓库。本仓库只放所有产品共用的规范、组件、tokens 和检查工具。`codex/` 里的任务单是建设过程的历史记录，保留备查，不作为当前规则。
+产品的布局差异、关键页基准（如 DriveScene 的 `studio/ui-draft/keypage.json`）、迁移记录都放在产品仓库。本仓库只放所有产品共用的规范、组件、tokens 和检查工具。
