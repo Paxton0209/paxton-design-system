@@ -1,6 +1,6 @@
 # 设计系统执行入口
 
-本仓库是 Paxton 跨产品共用的设计系统，用于网页、产品界面和 Figma 设计。任何 AI 或账号接手时，先读 [HANDOFF.md](HANDOFF.md)，再读 [README.md](README.md)、[SPEC.md](SPEC.md)、[COMPONENTS.md](COMPONENTS.md) 与 [STATUS.md](STATUS.md)；这些文件是当前执行依据，`codex/` 是历史记录。
+本仓库是 Paxton 跨产品共用的设计系统，用于网页、产品界面和 Figma 设计。任何 AI 或账号接手时，先读 [HANDOFF.md](HANDOFF.md)，再读 [README.md](README.md)、[SPEC.md](SPEC.md)、[COMPONENTS.md](COMPONENTS.md) 与 [STATUS.md](STATUS.md)；这些文件是当前执行依据。
 
 制作配图时另读 [配图指南](illustrations/README.md) 和 [参考目录](illustrations/CATALOG.md)。现有配图提供可组合、可扩展的视觉基础，按内容关系重组；已确认成品只按作者明确反馈修正。
 
