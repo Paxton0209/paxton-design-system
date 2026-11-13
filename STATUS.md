@@ -1,10 +1,10 @@
 # 当前状态（2026-11-13 更新）
 
-当前规则为 SPEC 1.6，决定记录覆盖 DECISIONS D-01 至 D-112，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前文档版本为 SPEC 1.7、车机图标规范 1.2、车机颜色 token 1.1、COMPONENTS 1.1。决定记录覆盖 D-01 至 D-115。执行入口以本文件和 SPEC 为准，版本发布以 GitHub Release 和使用方子模块为准。
 
 ## 当前 Figma
 
-文件：lib test，T6kCgDUKJIt2e2TfDSZzp8。只保留两页，作者手调布局和已经删除的内容按实时画布保留。
+文件为 lib test（T6kCgDUKJIt2e2TfDSZzp8）。下表记录原始关键组件的定位，当前图标与色彩规范另见 selected icon 页。
 
 | 页面 / 分区 | 节点 | 内容 |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ lib test 的 selected icon 页（622:11993）：300 个独立图标组件，分�
 
 ## 车机颜色变量（2026-11-13）
 
-变量集合：Primitives（52 个原色，一个模式）和 Color（38 个语义 token，Light / Dark，全部引用原色；由 HMI / v0.1 改名，变量 ID 不变）。另有 Settings reference（参考稿校准色）、Guide i18n 和 Doc / Language（文档文字）。DS / * 与 Cockpit / * 旧集合已删除。规则见 `color/color-tokens.md`，图示版为 selected icon 页的 Color Guide（922:11226），色块绑真实变量，日夜两列同时显示。
+Figma 当前有 Primitives（121 个颜色变量，一个模式）和 Color（84 个颜色变量，Light / Dark）。Color 的日夜颜色均为变量别名。规范在 selected icon 页，支持中英文与日夜模式。语义色按用途展示，SR 场景和 AI 语音独立成段，原色区可并排查看日夜色带。[Color Guide](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test?node-id=932-1829)
 
-未处理：Components 和 Work 两页约 1 万处绑定指向外部库的变量，约 1.4 万处写死的颜色，留到组件改绑阶段。
+已核对 17 个 SR 材质 token、4 条 AI 渐变及其色标绑定，复查 Color Guide 的 80 个圆角图层并修复 9 条同结构的色带。导航、音乐和 EP 的半透明白已在 Figma 局部验证。组件的全库改绑和产品代码迁移仍待各自验收。
 
 ## 核对结果与边界
 
