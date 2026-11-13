@@ -1,4 +1,4 @@
-# 车机颜色 token v1.0
+# 车机颜色 token v1.1
 
 适用范围：车机中控屏，日（Light）、夜（Dark）两个模式。Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），变量集合 Primitives（原色）和 Color（语义）。网页颜色仍按 SPEC 第 2 节，网页强调色保持 #1471D6。
 英文版：[color-tokens.en.md](color-tokens.en.md)。
@@ -7,7 +7,7 @@
 
 ## 0 怎么读这份文件
 
-- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（922:11226，在 selected icon 页）和检查脚本用同一 ID。
+- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（932:1829，在 selected icon 页）和检查脚本用同一 ID。
 - 必须：违反即不合格。应：默认做法，偏离时写明 ID 和理由。
 - 模式名在 Figma 里是 Light 和 Dark，文档写作日（Light）、夜（Dark）。
 - 这一版只有日、夜两个模式，不做高对比模式。
@@ -42,6 +42,7 @@
 | 相邻两层填充 | ≥ 1.25:1；不够时加 1px 边（沿用 SPEC 3.1） |
 - 对比度按实际所在的面计算：canvas、face、raised 三个面都要过。
 - text/3 只用于 24 及以上的字和图标；20 号说明文字一律用 text/2（text/3 在日间只有 3.0 到 3.4，夜间在 face、raised 上 4.0 到 4.3，不够 4.5）。
+- 放在 bg/screen 上（状态栏、Dock）的 20 号字用 text/1：日间 text/2 在 #E4E7EC 上只有 4.09。
 
 ### COLOR-06 状态色（必须）
 - `danger`、`status/success`、`status/warning` 必须配图标或文字，不能只靠颜色传达。
@@ -63,6 +64,11 @@
 - 改名或删除语义 token：列出受影响的组件和绑定数，作者确认后再改。
 - 每次改动都重算 COLOR-05 的对比度表。
 
+### COLOR-11 以重点界面为准（必须）
+- 已确认的重点界面（Components 页的 Key A、Key B，日夜各一张）是颜色基准。token 和它们不一致时改 token 的值，不改界面。
+- 3D 场景和图片上的字用 `text/on-media`，日夜都是白色；场景本身的日夜由场景组件的变体切换，不由颜色 token 负责。
+- 验证方法：复制夜间重点界面，切到 Light 模式，和日间设计稿并排比对，除场景图片外应一致。
+
 ---
 
 ## 2 原色（Primitives）
@@ -76,18 +82,23 @@
 | gray/75 | #ECECEC | 日 bg/track |
 | gray/200 | #D2D2D2 | 日 bg/mass |
 | gray/500 | #8C8C8C | 日 text/3、icon/3、switch/off |
-| gray/600 | #6E6E6E | 日 text/2、icon/2 |
+| gray/600 | #6E6E73 | 日 text/2、icon/2 |
 | gray/950 | #1D1D1F | 日 text/1、icon/1 |
+| gray/1000 | #000000 | 夜 bg/screen |
+| slate/100 | #E4E7EC | 日 bg/screen |
 
 ### 中性灰：夜间（带一点冷调）
 | token | 值 | 现在用在 |
 |---|---|---|
-| cool/50 | #EDEDEF | 夜 text/1 |
-| cool/300 | #A0A0A4 | 夜 text/2、icon/2 |
+| cool/50 | #EDEDEF | 备用（夜 text/1 已改为 gray/0） |
+| cool/250 | #BCBEC2 | nav/secondary |
+| cool/300 | #98989F | 夜 text/2、icon/2 |
 | cool/400 | #7A7A7E | 夜 text/3、icon/3 |
 | cool/450 | #6E6E72 | 夜 switch/off |
+| cool/700 | #494951 | bg/app-tile |
 | cool/750 | #3A3A3C | 夜 bg/mass |
 | cool/800 | #333336 | 夜 bg/selected |
+| cool/820 | #2C2C2E | 夜 control/fill |
 | cool/850 | #262628 | 夜 bg/pressed |
 | cool/900 | #1C1C1E | 夜 bg/raised、bg/track |
 | cool/925 | #141416 | 夜 bg/face |
@@ -115,6 +126,9 @@
 | white/a9 | #FFFFFF 9% |
 | black/a5 | #000000 5% |
 | black/a7 | #000000 7% |
+| white/a15 | #FFFFFF 15% |
+| black/a20 | #000000 20% |
+| slate/a10 | #0F1729 10% |
 | transparent | #000000 0% |
 
 ### 地图（日、夜各一套）
@@ -138,17 +152,20 @@
 
 | token | 日（Light） | 夜（Dark） | 用途 |
 |---|---|---|---|
+| bg/screen | slate/100 | gray/1000 | 整屏底，状态栏和 Dock 的底 |
 | bg/canvas | gray/50 | cool/950 | 最底层画布 |
 | bg/face | gray/25 | cool/925 | 卡片和面板的面 |
-| bg/raised | gray/0 | cool/900 | 浮起的块、浮层 |
+| bg/raised | gray/0 | cool/900 | 浮起的块、面板 |
+| control/fill | gray/0 | cool/820 | 浮在地图上的控件（ETA 条、地图按钮） |
 | bg/track | gray/75 | cool/900 | 滑杆和分段控件的轨道 |
 | bg/selected | gray/0 | cool/800 | 选中块 |
 | bg/pressed | gray/50 | cool/850 | 按下态 |
 | bg/mass | gray/200 | cool/750 | 大面积中性填充 |
-| line/face | black/a5 | white/a8 | 面的边 |
+| bg/app-tile | cool/700 | cool/700 | Dock 应用图标底，日夜不变 |
+| line/face | slate/a10 | white/a8 | 面的边 |
 | line/control | black/a7 | white/a9 | 控件的边 |
 | line/selected | black/a7 | transparent | 选中块的边，夜间不显示 |
-| text/1 | gray/950 | cool/50 | 正文、标题 |
+| text/1 | gray/950 | gray/0 | 正文、标题 |
 | text/2 | gray/600 | cool/300 | 次要文字、20 号说明文字 |
 | text/3 | gray/500 | cool/400 | 24 及以上的弱文字 |
 | icon/1 | gray/950 | gray/0 | 主图标，夜间纯白 |
@@ -156,7 +173,10 @@
 | icon/3 | gray/500 | cool/400 | 弱图标、未选 |
 | accent | blue/500 | blue/400 | 开启、选中、进度 |
 | accent/fill | blue/500 | blue/400 | 主按钮填充，每屏最多一个 |
-| on-accent | gray/0 | gray/0 | 强调色上的字和图标 |
+| on-accent | gray/0 | gray/0 | 强调色和导航卡上的字和图标 |
+| text/on-media | gray/0 | gray/0 | 3D 场景和图片上的字，日夜不变 |
+| overlay/scene | white/a15 | white/a15 | 3D 场景上的半透明底 |
+| shadow/elevated | black/a20 | black/a20 | 浮层和定位点的阴影 |
 | switch/off | gray/500 | cool/450 | 开关关闭的轨道 |
 | danger | red/600 | red/400 | 错误文字和图形 |
 | danger/fill | red/600 | red/500 | 危险操作按钮填充 |
@@ -164,6 +184,7 @@
 | status/warning | amber/600 | amber/400 | 警告状态图形 |
 | nav/background | green/nav | green/nav | 导航卡底 |
 | nav/next | green/nav-next | green/nav-next | 导航卡下一步 |
+| nav/secondary | cool/250 | cool/250 | 导航卡上的次要转向箭头 |
 | map/land 等 9 个 | map-day/* | map-night/* | 地图底色和五级道路、已走路线 |
 | map/route | blue/500 | blue/400 | 规划路线，与强调色同一个蓝 |
 | map/puck | gray/0 | gray/0 | 定位点 |
@@ -179,7 +200,7 @@
 | 前景 | canvas #F3F3F3 | face #FAFAFA | raised #FFFFFF | 结论 |
 |---|---|---|---|---|
 | text/1 | 15.17 | 16.12 | 16.83 | 通过 |
-| text/2 | 4.60 | 4.89 | 5.10 | 通过 |
+| text/2 | 4.57 | 4.86 | 5.07 | 通过；在 bg/screen #E4E7EC 上 4.09，见 COLOR-05 |
 | text/3 | 3.03 | 3.22 | 3.36 | 只用于 24 及以上的字和图标（COLOR-05） |
 | accent #007AFF | 3.62 | 3.85 | 4.02 | 图形和大字通过 |
 | danger | 5.07 | 5.39 | 5.62 | 通过 |
@@ -190,8 +211,8 @@
 夜间：
 | 前景 | canvas #0A0A0B | face #141416 | raised #1C1C1E | 结论 |
 |---|---|---|---|---|
-| text/1 | 16.93 | 15.74 | 14.55 | 通过 |
-| text/2 | 7.59 | 7.06 | 6.53 | 通过 |
+| text/1 | 19.79 | 18.40 | 17.01 | 通过 |
+| text/2 | 6.90 | 6.42 | 5.94 | 通过；在 control/fill #2C2C2E 上 4.86 |
 | text/3 | 4.63 | 4.30 | 3.98 | 只用于 24 及以上的字和图标（COLOR-05） |
 | accent #0A84FF | 5.43 | 5.04 | 4.66 | 通过 |
 | danger | 7.09 | 6.59 | 6.10 | 通过 |
@@ -199,9 +220,17 @@
 
 ---
 
-## 5 迁移记录（2026-11-13）
+## 5 用重点界面验证（2026-11-13）
 
-- HMI / v0.1 改名为 Color，全部 38 个语义 token 改成引用 Primitives；强调色 #1471D6 改为苹果系统蓝。
+- 材料：Components 页导入的 Key A、Key B 日夜四张界面，和 DriveScene Studio 的 00 Foundations 色板。
+- 第一轮：夜间 60 处颜色里 47 处和 token 一致，日间 35 处里 30 处一致。不一致的是屏幕底、夜间次要文字、日间面板边、控件底、应用图标底、场景上的半透明底和阴影。
+- 按 COLOR-11 处理：夜 text/1 改为 #FFFFFF，text/2 改为日 #6E6E73、夜 #98989F，日 line/face 改为 #0F1729 10%；新增 bg/screen、control/fill、bg/app-tile、overlay/scene、text/on-media、shadow/elevated、nav/secondary。成功色和警告色保持现在的值，不换成苹果的 #30D158、#FF9F0A（后者在白底上只有 2.1:1）。
+- 第二轮：把夜间 Key A 复制一份切到 Light，状态栏、Dock、地图、ETA 条、地图按钮、定位点、导航卡都和日间设计稿一致；只有左侧 3D 场景是图片，要靠场景组件的日夜变体切换。
+- 00 Foundations 里已并入 token 的 Color 与 Color · Map 日夜四块已删除；AI、SR 场景色板和字体、尺寸板保留。
+
+## 6 迁移记录（2026-11-13）
+
+- HMI / v0.1 改名为 Color，当时的 38 个语义 token 改成引用 Primitives；强调色 #1471D6 改为苹果系统蓝。
 - 夜间 icon/2、icon/3 与 text/2、text/3 统一（#A0A0A0 改 #A0A0A4，#7A7A7A 改 #7A7A7E）。
 - 删除重复的 ink（2 处绑定已改到 text/1）和 3 个参考稿取色 source/sidebar/*（无绑定）。
 - 删除无绑定的旧集合：DS / Primitives、DS / Theme、DS / Metrics、Cockpit / Primitives、Cockpit / Semantic、Cockpit / Metrics。

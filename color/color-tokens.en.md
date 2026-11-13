@@ -1,4 +1,4 @@
-# Car Display Color Tokens v1.0
+# Car Display Color Tokens v1.1
 
 Scope: the center display of the car HMI, in two modes, Light (day) and Dark (night). Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), variable collections Primitives (raw colors) and Color (semantic). Web colors still follow SPEC section 2, and the web accent stays #1471D6.
 Chinese version: [color-tokens.md](color-tokens.md).
@@ -7,7 +7,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 
 ## 0 How to read this file
 
-- Every rule has an ID, for example COLOR-05. The Color Guide frame in Figma (922:11226, on the selected icon page) and the audit script use the same ID.
+- Every rule has an ID, for example COLOR-05. The Color Guide frame in Figma (932:1829, on the selected icon page) and the audit script use the same ID.
 - Must: a violation fails. Should: the default; any deviation states the rule ID and the reason.
 - Figma names the modes Light and Dark; the docs write Light (day) and Dark (night).
 - This version has only the day and night modes, with no high-contrast mode.
@@ -42,6 +42,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | Two adjacent fills | â‰¥ 1.25:1; add a 1px border when it falls short (as in SPEC 3.1) |
 - Measure on the surface the element actually sits on: canvas, face and raised must all pass.
 - text/3 is only for type of 24 or larger and for icons; 20 px captions always use text/2 (text/3 reaches only 3.0 to 3.4 in Light and 4.0 to 4.3 on face and raised in Dark, short of 4.5).
+- 20 px type on bg/screen (status bar, Dock) uses text/1: Light text/2 reaches only 4.09 on #E4E7EC.
 
 ### COLOR-06 Status colors (must)
 - `danger`, `status/success` and `status/warning` always come with an icon or text; color alone never carries the meaning.
@@ -63,6 +64,11 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - To rename or delete a semantic token, list the affected components and binding counts, and get the author's approval first.
 - Recompute the COLOR-05 contrast tables after every change.
 
+### COLOR-11 Key screens win (must)
+- The approved key screens (Key A and Key B on the Components page, one per mode) are the color baseline. When tokens and those screens differ, change the token values, not the screens.
+- Text on 3D scenes and images uses `text/on-media`, white in both modes; the scene itself switches between day and night through its component variants, not through color tokens.
+- To verify, copy a Dark key screen, switch it to Light and compare it with the Light design; apart from scene images they should match.
+
 ---
 
 ## 2 Primitives
@@ -76,18 +82,23 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | gray/75 | #ECECEC | Light bg/track |
 | gray/200 | #D2D2D2 | Light bg/mass |
 | gray/500 | #8C8C8C | Light text/3, icon/3, switch/off |
-| gray/600 | #6E6E6E | Light text/2, icon/2 |
+| gray/600 | #6E6E73 | Light text/2, icon/2 |
 | gray/950 | #1D1D1F | Light text/1, icon/1 |
+| gray/1000 | #000000 | Dark bg/screen |
+| slate/100 | #E4E7EC | Light bg/screen |
 
 ### Neutral gray, night (slightly cool)
 | Token | Value | Used by |
 |---|---|---|
-| cool/50 | #EDEDEF | Dark text/1 |
-| cool/300 | #A0A0A4 | Dark text/2, icon/2 |
+| cool/50 | #EDEDEF | Spare (Dark text/1 now uses gray/0) |
+| cool/250 | #BCBEC2 | nav/secondary |
+| cool/300 | #98989F | Dark text/2, icon/2 |
 | cool/400 | #7A7A7E | Dark text/3, icon/3 |
 | cool/450 | #6E6E72 | Dark switch/off |
+| cool/700 | #494951 | bg/app-tile |
 | cool/750 | #3A3A3C | Dark bg/mass |
 | cool/800 | #333336 | Dark bg/selected |
+| cool/820 | #2C2C2E | Dark control/fill |
 | cool/850 | #262628 | Dark bg/pressed |
 | cool/900 | #1C1C1E | Dark bg/raised, bg/track |
 | cool/925 | #141416 | Dark bg/face |
@@ -115,6 +126,9 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | white/a9 | #FFFFFF 9% |
 | black/a5 | #000000 5% |
 | black/a7 | #000000 7% |
+| white/a15 | #FFFFFF 15% |
+| black/a20 | #000000 20% |
+| slate/a10 | #0F1729 10% |
 | transparent | #000000 0% |
 
 ### Map (one set per mode)
@@ -138,17 +152,20 @@ In Primitives the map values live in two groups, `map-day/â€¦` and `map-night/â€
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
+| bg/screen | slate/100 | gray/1000 | Full screen, under the status bar and Dock |
 | bg/canvas | gray/50 | cool/950 | Bottom canvas |
 | bg/face | gray/25 | cool/925 | Cards and panels |
-| bg/raised | gray/0 | cool/900 | Raised blocks, overlays |
+| bg/raised | gray/0 | cool/900 | Raised blocks and panels |
+| control/fill | gray/0 | cool/820 | Controls over the map (ETA bar, map buttons) |
 | bg/track | gray/75 | cool/900 | Slider and segmented-control tracks |
 | bg/selected | gray/0 | cool/800 | Selected block |
 | bg/pressed | gray/50 | cool/850 | Pressed state |
 | bg/mass | gray/200 | cool/750 | Large neutral fills |
-| line/face | black/a5 | white/a8 | Surface border |
+| bg/app-tile | cool/700 | cool/700 | Dock app tile, same in both modes |
+| line/face | slate/a10 | white/a8 | Surface border |
 | line/control | black/a7 | white/a9 | Control border |
 | line/selected | black/a7 | transparent | Selected-block border, hidden in Dark |
-| text/1 | gray/950 | cool/50 | Body text and titles |
+| text/1 | gray/950 | gray/0 | Body text and titles |
 | text/2 | gray/600 | cool/300 | Secondary text, 20 px captions |
 | text/3 | gray/500 | cool/400 | Weak text of 24 or larger |
 | icon/1 | gray/950 | gray/0 | Primary icons, pure white in Dark |
@@ -156,7 +173,10 @@ In Primitives the map values live in two groups, `map-day/â€¦` and `map-night/â€
 | icon/3 | gray/500 | cool/400 | Weak or unselected icons |
 | accent | blue/500 | blue/400 | On, selected, progress |
 | accent/fill | blue/500 | blue/400 | Primary button fill, at most one per screen |
-| on-accent | gray/0 | gray/0 | Text and icons on the accent |
+| on-accent | gray/0 | gray/0 | Text and icons on the accent and the nav card |
+| text/on-media | gray/0 | gray/0 | Text on 3D scenes and images, fixed |
+| overlay/scene | white/a15 | white/a15 | Translucent layer on 3D scenes |
+| shadow/elevated | black/a20 | black/a20 | Shadow for overlays and the puck |
 | switch/off | gray/500 | cool/450 | Track of a switch that is off |
 | danger | red/600 | red/400 | Error text and graphics |
 | danger/fill | red/600 | red/500 | Destructive button fill |
@@ -164,6 +184,7 @@ In Primitives the map values live in two groups, `map-day/â€¦` and `map-night/â€
 | status/warning | amber/600 | amber/400 | Warning graphics |
 | nav/background | green/nav | green/nav | Navigation card |
 | nav/next | green/nav-next | green/nav-next | Navigation card, next step |
+| nav/secondary | cool/250 | cool/250 | Secondary arrow on the nav card |
 | map/land and 8 more | map-day/* | map-night/* | Map base, five road classes, traveled route |
 | map/route | blue/500 | blue/400 | Planned route, the same blue as the accent |
 | map/puck | gray/0 | gray/0 | Location puck |
@@ -179,7 +200,7 @@ Light:
 | Foreground | canvas #F3F3F3 | face #FAFAFA | raised #FFFFFF | Result |
 |---|---|---|---|---|
 | text/1 | 15.17 | 16.12 | 16.83 | Pass |
-| text/2 | 4.60 | 4.89 | 5.10 | Pass |
+| text/2 | 4.57 | 4.86 | 5.07 | Pass; 4.09 on bg/screen #E4E7EC, see COLOR-05 |
 | text/3 | 3.03 | 3.22 | 3.36 | Only for type of 24 or larger and icons (COLOR-05) |
 | accent #007AFF | 3.62 | 3.85 | 4.02 | Pass for graphics and large text |
 | danger | 5.07 | 5.39 | 5.62 | Pass |
@@ -190,8 +211,8 @@ Light:
 Dark:
 | Foreground | canvas #0A0A0B | face #141416 | raised #1C1C1E | Result |
 |---|---|---|---|---|
-| text/1 | 16.93 | 15.74 | 14.55 | Pass |
-| text/2 | 7.59 | 7.06 | 6.53 | Pass |
+| text/1 | 19.79 | 18.40 | 17.01 | Pass |
+| text/2 | 6.90 | 6.42 | 5.94 | Pass; 4.86 on control/fill #2C2C2E |
 | text/3 | 4.63 | 4.30 | 3.98 | Only for type of 24 or larger and icons (COLOR-05) |
 | accent #0A84FF | 5.43 | 5.04 | 4.66 | Pass |
 | danger | 7.09 | 6.59 | 6.10 | Pass |
@@ -199,9 +220,17 @@ Dark:
 
 ---
 
-## 5 Migration record (2026-11-13)
+## 5 Verification against the key screens (2026-11-13)
 
-- HMI / v0.1 was renamed Color, and all 38 semantic tokens now alias Primitives. The accent moved from #1471D6 to Apple system blue.
+- Material: the four imported Key A and Key B screens on the Components page (day and night), and the 00 Foundations boards from DriveScene Studio.
+- First pass: 47 of 60 colors matched a token in Dark and 30 of 35 in Light. The gaps were the screen background, Dark secondary text, the Light panel border, control and app-tile fills, the translucent layer on scenes, and the shadow.
+- Fixed under COLOR-11: Dark text/1 is now #FFFFFF; text/2 is #6E6E73 in Light and #98989F in Dark; Light line/face is #0F1729 at 10%; added bg/screen, control/fill, bg/app-tile, overlay/scene, text/on-media, shadow/elevated and nav/secondary. Success and warning keep their values instead of Apple #30D158 and #FF9F0A (the latter is only 2.1:1 on white).
+- Second pass: a copy of Dark Key A switched to Light matches the Light design in the status bar, Dock, map, ETA bar, map buttons, puck and nav card; only the 3D scene on the left is an image and switches through its scene variants.
+- The four 00 Foundations boards now covered by tokens (Color and Color Â· Map, day and night) were deleted; the AI and SR scene palettes and the type and size boards remain.
+
+## 6 Migration record (2026-11-13)
+
+- HMI / v0.1 was renamed Color, and the 38 semantic tokens of that time now alias Primitives. The accent moved from #1471D6 to Apple system blue.
 - Dark icon/2 and icon/3 now match text/2 and text/3 (#A0A0A0 to #A0A0A4, #7A7A7A to #7A7A7E).
 - Removed the duplicate ink (its 2 bindings moved to text/1) and the 3 unbound source/sidebar/* calibration colors.
 - Removed the unbound old collections: DS / Primitives, DS / Theme, DS / Metrics, Cockpit / Primitives, Cockpit / Semantic, Cockpit / Metrics.
