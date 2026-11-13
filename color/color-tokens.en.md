@@ -7,7 +7,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 
 ## 0 How to read this file
 
-- Every rule has an ID, for example COLOR-05. The Color Guide frame in Figma and the audit script use the same ID.
+- Every rule has an ID, for example COLOR-05. The Color Guide frame in Figma (922:11226, on the selected icon page) and the audit script use the same ID.
 - Must: a violation fails. Should: the default; any deviation states the rule ID and the reason.
 - Figma names the modes Light and Dark; the docs write Light (day) and Dark (night).
 - This version has only the day and night modes, with no high-contrast mode.
@@ -17,7 +17,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 ### COLOR-01 Two layers (must)
 - The `Primitives` collection has one mode and holds only color ramps, with no usage. Primitives are never bound directly to a layer.
 - The `Color` collection has two modes, Light (day) and Dark (night). Every value is an alias of a primitive, never a hard-coded color.
-- Components, icons and docs bind only to semantic tokens.
+- Components, icons and docs bind only to semantic tokens. The one exception is the primitive swatches in the Figma Color Guide frame, which bind to primitives to show the ramps.
 - Check: audit `color-alias` (every semantic value is an alias) and `color-bind` (no layer is bound to a primitive or carries a hard-coded color)
 
 ### COLOR-02 Keep variable IDs (must)

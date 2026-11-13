@@ -7,7 +7,7 @@
 
 ## 0 怎么读这份文件
 
-- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框和检查脚本用同一 ID。
+- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（922:11226，在 selected icon 页）和检查脚本用同一 ID。
 - 必须：违反即不合格。应：默认做法，偏离时写明 ID 和理由。
 - 模式名在 Figma 里是 Light 和 Dark，文档写作日（Light）、夜（Dark）。
 - 这一版只有日、夜两个模式，不做高对比模式。
@@ -17,7 +17,7 @@
 ### COLOR-01 两层结构（必须）
 - 原色集合 `Primitives`：一个模式，只放色阶，不写用途。原色不直接绑到任何图层上。
 - 语义集合 `Color`：两个模式 Light（日）和 Dark（夜），每个值都引用原色（alias），不写死色值。
-- 组件、图标、文档只绑语义 token。
+- 组件、图标、文档只绑语义 token。唯一例外是 Figma Color Guide 画框里的原色色板，它们直接绑原色，用来展示色阶。
 - 检查：audit `color-alias`（语义 token 的值全部是 alias）、`color-bind`（图层上没有直接绑原色、没有写死的颜色）
 
 ### COLOR-02 保留变量 ID（必须）
