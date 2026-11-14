@@ -145,6 +145,7 @@ All angles refer to the **interior angle** at the corner.
 ### SEAM-06 Merging filled shapes (must)
 - Filled shapes never overlap; merge them into one shape with booleans.
 - Split even-odd shapes into subpaths first (outer contour minus holes), then run the boolean.
+- For a confirmed overlap that needs a single ink contour, expand the 2 px round strokes and union the contours. Keep the source icon ID and ink token, and check the resulting ink bounds and centered 32/40 instances.
 
 ### SEAM-07 Moving parts (must)
 - For an open door or lid, cut that segment from the main body and rotate it open around the hinge, a corner both pieces share.
