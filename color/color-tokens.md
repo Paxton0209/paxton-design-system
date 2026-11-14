@@ -171,6 +171,20 @@
 
 集合 `Settings reference` 是参考稿校准色，按 SPEC 只用于比对，不属于 token。
 
+### Library-test 迁入变量
+
+下表记录 Figma 的 `Color` 集合中新增的六个变量及其实际模式值。颜色写成十六进制并单列透明度。可见性使用布尔值。
+
+| token | 日（Light） | 夜（Dark） | 用途 |
+|---|---|---|---|
+| `bg/base` | `slate/100`（#E4E7EC） | `gray/950`（#1D1D1F） | 地图底部的基础背景 |
+| `sr/scrim` | #F5F6F8，90% | #1C1C1E，75% | SR 信息遮罩的起始色标 |
+| `sr/scrim-mid` | #F5F6F8，85% | #1C1C1E，70% | SR 信息遮罩的中间色标 |
+| `sr/scrim-fade` | #F5F6F8，0% | #1C1C1E，0% | SR 信息遮罩的透明色标，保留同一色相 |
+| `theme/is-dark` | `false` | `true` | 控制 SR 深色图层的可见性 |
+| `theme/is-light` | `true` | `false` | 控制 SR 浅色图层的可见性 |
+
+
 ---
 
 ## 4 对比度（实测）

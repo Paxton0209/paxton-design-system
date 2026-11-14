@@ -171,6 +171,20 @@ In Primitives the map values live in two groups, `map-day/â€¦` and `map-night/â€
 
 The `Settings reference` collection holds calibration colors from the reference files. Per SPEC it is only for comparison and is not part of the tokens.
 
+### Variables migrated to Library-test
+
+These are the six variables added to Figma's `Color` collection and their current mode values. Colors are shown in hex with separate opacity values. The visibility variables are booleans.
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `bg/base` | `slate/100` (#E4E7EC) | `gray/950` (#1D1D1F) | Base background beneath the map |
+| `sr/scrim` | #F5F6F8 at 90% | #1C1C1E at 75% | First stop of the SR information scrim |
+| `sr/scrim-mid` | #F5F6F8 at 85% | #1C1C1E at 70% | Middle stop of the SR information scrim |
+| `sr/scrim-fade` | #F5F6F8 at 0% | #1C1C1E at 0% | Transparent stop of the SR information scrim, preserving its hue |
+| `theme/is-dark` | `false` | `true` | Controls visibility of the dark SR layer |
+| `theme/is-light` | `true` | `false` | Controls visibility of the light SR layer |
+
+
 ---
 
 ## 4 Measured contrast
