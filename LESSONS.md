@@ -29,7 +29,7 @@
 - 设置／弹窗底屏共 4 个，逐行复核 12 行网格。每行 210／212／210 加两个 16，合 664。左右菜单内缩各 8，卡片内距 16，切换大灯状态时阅读状态字。
 - 地图深浅 2 屏，独立搜索、筛选与编号行；两屏共 10 个编号行，行底和行边界宽高一致。
 - 通话／Toast 共 4 屏，Recents 400、Call 600，隐藏原 1 px 分隔线；两枚 Toast 贴应用底部 24。两种遮罩各自只盖应用右区。
-- 十屏核对文本字重、Dock 五枚源图、可见实例主组件引用与 SR 边界。330 个可见可编辑文字层均为 Medium，既有字体家族及字阶保持适用。
+- 十屏核对文本字重、Dock 五枚源图、可见实例主组件引用与 SR 边界。346 个可见可编辑文字层均为 Medium，既有字体家族及字阶保持适用。
 - 参考资料：[Tesla Model 3 使用手册](https://www.tesla.com/ownersmanual/model3/en_us/Owners_Manual.pdf?download=1)、[Tesla 地图与导航](https://www.tesla.com/ownersmanual/model3/en_us/GUID-01F1A582-99D1-4933-B5FB-B2F0203FFE6F.html)、[小鹏 GX XOS 6.3.0](https://bbs.xiaopeng.com/article/3890247)、[蔚来 ET9 手册](https://cdn-public.nio.com/www-nio-cn/user-instructions/ET9/index.html#TUM270556)、[小米 SU7 配置](https://www.xiaomiev.com/xiaomi/car-config)、[小米 HyperVision 投资者资料](https://ir.mi.com/static-files/c2ed4ff9-504e-4aeb-b621-081be12e5a4c)。另对照极越 Sketch 的搜索、地图控件与行程牌。
 
 ## 记录
