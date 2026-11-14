@@ -25,7 +25,8 @@
 | 开启、选中、进度 | `accent/` | default 给图形，fill 给主按钮，subtle 给选中行的浅底 |
 | 成功、警告、错误、信息 | `state/` | 颜色给图标和字，-bg 给后面的底，成对用 |
 | 温度功能 | `vehicle/` | cool 蓝，heat 橙 |
-| 压在内容上的半透明层 | `overlay/`、`shadow/` | scene 给 3D 场景，scrim 给弹窗后面 |
+| 压在内容上的半透明层 | `overlay/` | scene 给 3D 场景，scrim 给弹窗后面 |
+| 阴影 | 效果样式 `shadow/…` | floating 给浮在地图上的控件，voice 给语音卡片，puck 给定位点 |
 | 导航卡 | `nav/` | maneuver、maneuver-next、maneuver-dim |
 | 地图 | `map/` | 只给地图 |
 | 3D 场景、语音光效 | `scene/`、`ai/` | 只给场景和语音组件 |
@@ -139,9 +140,21 @@
 - 例外：动画过程中的淡入淡出，和主操作按钮按下时的整体 0.85（COLOR-16）。
 - 检查：audit `layer-opacity`（绑了颜色 token 的图层 opacity = 1）
 
+### COLOR-19 阴影用效果样式（必须）
+- 阴影不是单独的颜色。位置和模糊写在效果样式里，颜色绑 `shadow/` token，日夜跟着切换。图层上不手写阴影。
+- 只有浮在地图和 3D 场景上的东西有阴影，面板和卡片没有。
+
+| 效果样式 | 内容 | 颜色 token | 用在 |
+|---|---|---|---|
+| shadow/floating | y 4，模糊 16，背景模糊 24 | shadow/floating（夜 黑 32%，日 #1C1C2E 12%） | ETA 条、地图按钮，21 处 |
+| shadow/voice | y 4，模糊 16，背景模糊 40 | shadow/floating | 语音卡片 6 个变体 |
+| shadow/puck | y 6，模糊 24 | shadow/puck（日夜 黑 50%） | 定位点，17 处 |
+- 数值取自关键界面里实际用到的阴影；v1.2 的 shadow/elevated（黑 20%）没有对应任何界面，改名为 shadow/floating 并改值。
+- 检查：audit `effect-style`（有投影的图层都套了 shadow/ 样式）
+
 ---
 
-## 2 原色（Primitives，149 个）
+## 2 原色（Primitives，151 个）
 
 ### 白色阶梯（夜间次级色）
 | token | 值 | 用在 |
@@ -175,9 +188,11 @@
 |---|---|---|
 | black/a5 | #000000 5% | 备用 |
 | black/a7 | #000000 7% | 日 border/control、border/selected |
-| black/a20 | #000000 20% | shadow/elevated |
+| black/a20 | #000000 20% | 备用 |
+| black/a32 | #000000 32% | 夜 shadow/floating |
+| navy/a12 | #1C1C2E 12% | 日 shadow/floating |
 | black/a30 | #000000 30% | 日 overlay/scrim |
-| black/a50 | #000000 50% | 夜 overlay/scrim |
+| black/a50 | #000000 50% | 夜 overlay/scrim、shadow/puck |
 | slate/a10 | #0F1729 10% | 日 border/panel |
 | transparent | #000000 0% | 夜 border/selected |
 
@@ -241,7 +256,7 @@ v1.2 留下、现在没有语义 token 引用的实色灰：gray/75、gray/200�
 
 ---
 
-## 3 语义 token（Color，100 个，日 / 夜）
+## 3 语义 token（Color，101 个，日 / 夜）
 
 ### 文字 text/（scopes：TEXT_FILL）
 | token | 日 | 夜 | 用途 |
@@ -320,12 +335,13 @@ v1.2 留下、现在没有语义 token 引用的实色灰：gray/75、gray/200�
 | vehicle/heat | orange/600 | orange/400 | 加热开启：空调、座椅、方向盘 |
 | vehicle/heat-bg | orange/600-a10 | orange/400-a16 | 加热开启的功能块底 |
 
-### 叠加和阴影
+### 叠加和阴影（阴影的位置和模糊见 COLOR-19）
 | token | 日 | 夜 | 用途 |
 |---|---|---|---|
 | overlay/scene | white/a15 | white/a15 | 3D 场景上的半透明底 |
 | overlay/scrim | black/a30 | black/a50 | 弹窗后面压暗整屏 |
-| shadow/elevated | black/a20 | black/a20 | 浮层和定位点的阴影 |
+| shadow/floating | navy/a12 | black/a32 | 浮在地图和场景上的控件、语音卡片的阴影颜色 |
+| shadow/puck | black/a50 | black/a50 | 定位点的阴影颜色 |
 
 ### 导航 nav/
 | token | 日 | 夜 | 用途 |
@@ -465,7 +481,8 @@ v1.2 留下、现在没有语义 token 引用的实色灰：gray/75、gray/200�
 - 新增 17 个：text/disabled、icon/disabled、icon/on-accent、icon/on-media、fill/2、fill/disabled、border/focus、accent/subtle、state/info、state/info-bg、state/success-bg、state/warning-bg、state/danger-bg、vehicle/cool、vehicle/heat、vehicle/heat-bg、overlay/scrim。
 - 新增原色 30 个：白色和墨色阶梯、black/a30、black/a50、orange/400、orange/600 和 10 个浅底。
 - 每个语义 token 的 scopes 按 COLOR-09 锁到对应属性。
-- Color Guide 第 01 节按分组重排，每张卡的色块画的是真实用法（字、图标、控件、标签），卡片下方写日夜分别引用的原色；规则表更新到 COLOR-18。
+- 阴影：shadow/elevated 改名为 shadow/floating 并按关键界面改值，新增 shadow/puck 和三个效果样式（COLOR-19），新增原色 black/a32、navy/a12。
+- Color Guide 第 01 节改成六章：内容、层级、控件、状态、车控、导航和地图，每章左边是真实界面小样，右边是 token 和用途，不再写原色值，每张卡的色块画的是真实用法（字、图标、控件、标签），卡片下方写日夜分别引用的原色；规则表更新到 COLOR-18。
 
 ### v1.2（2026-11-13）
 - HMI / v0.1 改名为 Color，当时的 38 个语义 token 改成引用 Primitives；强调色 #1471D6 改为苹果系统蓝。

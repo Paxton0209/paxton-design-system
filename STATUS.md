@@ -25,7 +25,7 @@ lib test 的 selected icon 页（622:11993）：300 个独立图标组件，分�
 
 ## 车机颜色变量（2026-11-13）
 
-变量集合：Primitives（149 个原色，一个模式）和 Color（100 个语义 token，Light / Dark，全部引用原色，按你在画什么分组；由 HMI / v0.1 改名，变量 ID 不变）。另有 Settings reference（参考稿校准色）、Guide i18n 和 Doc / Language（文档文字）。DS / * 与 Cockpit / * 旧集合已删除。规则见 `color/color-tokens.md`，图示版为 selected icon 页的 Color Guide（932:1829），色块绑真实变量，日夜和中英文跟着变量模式切换；Icon Guide（895:11141）已按同样的节奏重排。
+变量集合：Primitives（151 个原色，一个模式）和 Color（101 个语义 token，另有 3 个阴影效果样式，Light / Dark，全部引用原色，按你在画什么分组；由 HMI / v0.1 改名，变量 ID 不变）。另有 Settings reference（参考稿校准色）、Guide i18n 和 Doc / Language（文档文字）。DS / * 与 Cockpit / * 旧集合已删除。规则见 `color/color-tokens.md`，图示版为 selected icon 页的 Color Guide（932:1829），色块绑真实变量，日夜和中英文跟着变量模式切换；Icon Guide（895:11141）已按同样的节奏重排。
 
 未处理：Components 和 Work 两页约 1 万处绑定指向外部库的变量，约 1.4 万处写死的颜色，留到组件改绑阶段。
 

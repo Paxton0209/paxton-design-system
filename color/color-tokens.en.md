@@ -25,7 +25,8 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | On, selected, progress | `accent/` | default for graphics, fill for the primary button, subtle for the back of a selected row |
 | Success, warning, error, info | `state/` | The color goes on icons and text, -bg goes behind; use as a pair |
 | Temperature features | `vehicle/` | cool is blue, heat is orange |
-| Translucent layers over content | `overlay/`, `shadow/` | scene for the 3D scene, scrim behind dialogs |
+| Translucent layers over content | `overlay/` | scene for the 3D scene, scrim behind dialogs |
+| Shadows | effect styles `shadow/…` | floating for controls over the map, voice for the voice card, puck for the puck |
 | Navigation card | `nav/` | maneuver, maneuver-next, maneuver-dim |
 | Map | `map/` | Maps only |
 | 3D scene, voice glow | `scene/`, `ai/` | Scene and voice components only |
@@ -139,9 +140,21 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - Exceptions: fades during animation, and the primary button at 0.85 while pressed (COLOR-16).
 - Check: audit `layer-opacity` (layers bound to a color token have opacity 1).
 
+### COLOR-19 Shadows are effect styles (must)
+- A shadow is not a color alone. Offset and blur live in an effect style; its color binds a `shadow/` token and switches with the mode. Never hand-set a shadow on a layer.
+- Only things floating over the map and 3D scene cast a shadow; panels and cards do not.
+
+| Effect style | Content | Color token | Used by |
+|---|---|---|---|
+| shadow/floating | y 4, blur 16, background blur 24 | shadow/floating (night black 32%, day #1C1C2E 12%) | ETA bar, map buttons, 21 layers |
+| shadow/voice | y 4, blur 16, background blur 40 | shadow/floating | Voice card, 6 variants |
+| shadow/puck | y 6, blur 24 | shadow/puck (black 50% in both) | Puck, 17 layers |
+- Values come from the shadows actually used on the key screens. The v1.2 shadow/elevated (black 20%) matched no screen; it was renamed shadow/floating and revalued.
+- Check: audit `effect-style` (every layer with a drop shadow uses a shadow/ style).
+
 ---
 
-## 2 Primitives (149)
+## 2 Primitives (151)
 
 ### White ladder (night secondary colors)
 | token | value | used by |
@@ -175,9 +188,11 @@ Chinese version: [color-tokens.md](color-tokens.md).
 |---|---|---|
 | black/a5 | #000000 5% | spare |
 | black/a7 | #000000 7% | day border/control, border/selected |
-| black/a20 | #000000 20% | shadow/elevated |
+| black/a20 | #000000 20% | spare |
+| black/a32 | #000000 32% | night shadow/floating |
+| navy/a12 | #1C1C2E 12% | day shadow/floating |
 | black/a30 | #000000 30% | day overlay/scrim |
-| black/a50 | #000000 50% | night overlay/scrim |
+| black/a50 | #000000 50% | night overlay/scrim, shadow/puck |
 | slate/a10 | #0F1729 10% | day border/panel |
 | transparent | #000000 0% | night border/selected |
 
@@ -241,7 +256,7 @@ Map primitives live under `map-day/…` and `map-night/…`; scene and voice pri
 
 ---
 
-## 3 Semantic tokens (Color, 100, day / night)
+## 3 Semantic tokens (Color, 101, day / night)
 
 ### Text text/ (scopes: TEXT_FILL)
 | token | day | night | use |
@@ -320,12 +335,13 @@ Map primitives live under `map-day/…` and `map-night/…`; scene and voice pri
 | vehicle/heat | orange/600 | orange/400 | Heating on: climate, seats, wheel |
 | vehicle/heat-bg | orange/600-a10 | orange/400-a16 | Active heating tile back |
 
-### Overlays and shadow
+### Overlays and shadow (offset and blur in COLOR-19)
 | token | day | night | use |
 |---|---|---|---|
 | overlay/scene | white/a15 | white/a15 | Translucent back on the 3D scene |
 | overlay/scrim | black/a30 | black/a50 | Dims the screen behind dialogs |
-| shadow/elevated | black/a20 | black/a20 | Shadow for overlays and the puck |
+| shadow/floating | navy/a12 | black/a32 | Shadow color for controls over map and scene, and the voice card |
+| shadow/puck | black/a50 | black/a50 | Shadow color for the puck |
 
 ### Navigation nav/
 | token | day | night | use |
@@ -465,7 +481,9 @@ Renames (variable IDs unchanged, every binding kept):
 - 17 new tokens: text/disabled, icon/disabled, icon/on-accent, icon/on-media, fill/2, fill/disabled, border/focus, accent/subtle, state/info, state/info-bg, state/success-bg, state/warning-bg, state/danger-bg, vehicle/cool, vehicle/heat, vehicle/heat-bg, overlay/scrim.
 - 30 new primitives: the white and ink ladders, black/a30, black/a50, orange/400, orange/600 and 10 tints.
 - Every semantic token's scopes are locked to its property per COLOR-09.
-- Color Guide section 01 regrouped. Each card's swatch draws the real use (text, icon, control, tag) and lists the primitive each mode points to; the rules table now runs to COLOR-18.
+- Shadows: shadow/elevated renamed shadow/floating and revalued from the key screens; shadow/puck and three effect styles added (COLOR-19); new primitives black/a32 and navy/a12.
+- Color Guide section 01 is now six chapters (content, layers, controls, status, vehicle, navigation and map), each a real UI specimen with its tokens and uses beside it; primitive values are no longer shown there.
+- Earlier in v1.3: section 01 regrouped. Each card's swatch draws the real use (text, icon, control, tag) and lists the primitive each mode points to; the rules table now runs to COLOR-18.
 
 ### v1.2 (2026-11-13)
 - HMI / v0.1 was renamed Color and its 38 semantic tokens were changed to alias Primitives; the accent changed from #1471D6 to Apple system blue.
