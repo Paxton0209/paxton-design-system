@@ -55,7 +55,7 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 - [ ] 先读 SPEC 对应任务的章节与 COMPONENTS；车机屏幕遵循 SPEC 的车机分类及产品约束，不把网页字号和布局直接套到车机。
 - [ ] 读取目标 Figma 实时画布：[当前参考文件](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test)，节点定位见 STATUS。访问依赖作者的 Figma 共享权限，与 Claude 账号无关。保留现有组件引用与作者已删除内容，历史截图和数量不证明当前状态。
 - [ ] 已有明确作者确认依据的手调布局按该确认保留。仅观察到画布内容不能视为作者确认；与 SPEC 冲突或确认依据不明时，保留现状并报告，不自行修改画布或规范。
-- [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `Color` 变量（规则见 `color/color-tokens.md`）和 `HMI/…` 文字样式；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
+- [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `Color` 变量（规则见 `color/color-tokens.md`）和 `Type` 变量与 `en/…`、`zh/…` 文字样式（规则见 `type/type-tokens.md`）；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
 - [ ] 交付文件链接、实际修改节点、采用版本，以及适用的浅深主题、尺寸和状态截图；未做的状态写明未验证。网页审计脚本不能直接验收 Figma，必须按规范核对画布中的数值、布局、文字、图标和状态。
 
 ## 2.2 配图怎么执行

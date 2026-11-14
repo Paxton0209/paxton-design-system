@@ -1,6 +1,6 @@
 # 当前状态（2026-11-13 更新）
 
-当前规则为 SPEC 1.7，决定记录覆盖 DECISIONS D-01 至 D-115，车机图标规范为 1.2，车机颜色 token 为 1.3，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前规则为 SPEC 1.8，决定记录覆盖 DECISIONS D-01 至 D-116，车机图标规范为 1.2，车机颜色 token 为 1.3，车机字体 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
 ## 当前 Figma
 
@@ -25,7 +25,7 @@ lib test 的 selected icon 页（622:11993）：300 个独立图标组件，分�
 
 ## 车机颜色变量（2026-11-13）
 
-变量集合：Primitives（151 个原色，一个模式）和 Color（101 个语义 token，另有 3 个阴影效果样式，Light / Dark，全部引用原色，按你在画什么分组；由 HMI / v0.1 改名，变量 ID 不变）。另有 Settings reference（参考稿校准色）、Guide i18n 和 Doc / Language（文档文字）。DS / * 与 Cockpit / * 旧集合已删除。规则见 `color/color-tokens.md`，图示版为 selected icon 页的 Color Guide（932:1829），色块绑真实变量，日夜和中英文跟着变量模式切换；Icon Guide（895:11141）已按同样的节奏重排。
+变量集合：Primitives（151 个原色，一个模式）和 Color（101 个语义 token，另有 3 个阴影效果样式，Light / Dark，全部引用原色，按你在画什么分组；由 HMI / v0.1 改名，变量 ID 不变）。另有 Settings reference（参考稿校准色）、Guide i18n 和 Doc / Language（文档文字）。DS / * 与 Cockpit / * 旧集合已删除。规则见 `color/color-tokens.md`，图示版为 selected icon 页的 Color Guide（932:1829），色块绑真实变量，日夜和中英文跟着变量模式切换；Icon Guide（895:11141）已按同样的节奏重排。字体：变量集合 Type（26 个变量）和 17 个文字样式 en/…、zh/…，规则见 `type/type-tokens.md`，图示版为 Type Guide（1003:1665），关键界面的文字图层还没有套新样式。
 
 未处理：Components 和 Work 两页约 1 万处绑定指向外部库的变量，约 1.4 万处写死的颜色，留到组件改绑阶段。
 
