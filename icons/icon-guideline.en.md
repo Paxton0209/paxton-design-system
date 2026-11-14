@@ -69,7 +69,8 @@ Current size: 300 standalone components and 24 part masters.
 - Check: audit `zero_seg`
 
 ### BASE-08 Color (must)
-- Every stroke and fill is bound to the variable `icon/1` (VariableID:117:2823). No hard-coded colors.
+- Every stroke and fill is bound to the variable `ink` (Icon collection). No hard-coded colors. ink has 10 modes (primary, secondary, tertiary, disabled, on-accent, accent, danger, warning, success, heat) aliasing icon/1, icon/2, icon/3, icon/disabled, icon/on-accent, accent/default, state/danger, state/warning, state/success and vehicle/heat in Color.
+- Change color only by switching the Icon mode on the icon instance, never by recoloring layers, so the color survives an icon swap (see components CMP-13).
 - Exceptions: EXC-02.
 - Check: audit `color`
 
