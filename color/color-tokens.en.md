@@ -482,8 +482,7 @@ Renames (variable IDs unchanged, every binding kept):
 - 30 new primitives: the white and ink ladders, black/a30, black/a50, orange/400, orange/600 and 10 tints.
 - Every semantic token's scopes are locked to its property per COLOR-09.
 - Shadows: shadow/elevated renamed shadow/floating and revalued from the key screens; shadow/puck and three effect styles added (COLOR-19); new primitives black/a32 and navy/a12.
-- Color Guide section 01 is now six chapters (content, layers, controls, status, vehicle, navigation and map), each a real UI specimen with its tokens and uses beside it; primitive values are no longer shown there.
-- Earlier in v1.3: section 01 regrouped. Each card's swatch draws the real use (text, icon, control, tag) and lists the primitive each mode points to; the rules table now runs to COLOR-18.
+- Color Guide section 01 is laid out in 12 groups, two columns each: the group note on the left, one row per token on the right with its use and the primitive each mode points to; the rules table runs to COLOR-19. Each card's swatch draws the real use (text, icon, control, tag) and lists the primitive each mode points to; the rules table now runs to COLOR-18.
 
 ### v1.2 (2026-11-13)
 - HMI / v0.1 was renamed Color and its 38 semantic tokens were changed to alias Primitives; the accent changed from #1471D6 to Apple system blue.
