@@ -20,7 +20,7 @@ Current size: 300 standalone components and 24 part masters.
 | Ink | The rendered extent of all visible strokes and fills (absoluteRenderBounds) |
 | Endpoint | The start or end of an open path |
 | Center distance | The shortest distance between two stroke center lines |
-| Clear gap | The shortest distance between the outer edges of two strokes. With a 3 px stroke, clear gap = center distance − 3 |
+| Clear gap | The shortest distance between the outer edges of two strokes. With a 2 px stroke, clear gap = center distance − 2 |
 | Shared vertex | Two segments in the same vector network connected to the same vertex |
 | Size ratio | (hull area + hull perimeter + π) ÷ (π × 14²): the ink grown by 1 px, compared with a 28 px circle |
 | Part | A drawing master on the Parts canvas, named `part/<name>`. Its vectors are copied; it is never instanced |
@@ -52,15 +52,15 @@ Current size: 300 standalone components and 24 part masters.
 - Check: audit `center`
 
 ### BASE-05 Optical size (should)
-- The size ratio should be between 0.75 and 1.05. Since the stroke moved to 3, the library median is about 1.01 (was 0.89); compare icons within the same set first, see FILL-04 and components CMP-31.
+- The size ratio should be between 0.75 and 1.05. The library median is about 0.89; icons in one set are also compared with each other, see components CMP-31.
 - Falling outside the range is not an automatic fail: compare the icon side by side with its neighbors in the same category, and resize only if it clearly looks too big or too small. Resize the whole family together.
 - Family members align by FAM-01 instead of being sized one by one.
 - Exemption: single-stroke and directional icons skip the size ratio and instead match the line length and spacing of their own kind. List: general/plus, minus, close, more, chevron_up, chevron_down, chevron_left, chevron_right, arrow_back, arrow_forward.
 - Check: audit `size`
 
 ### BASE-06 Stroke (must)
-- Stroke weight is 3 (changed from 2 on 2026-11-14 to match the reference, which uses 2.5 to 3 in 28 to 44 frames, about 3.3 to 4.3 at 48). Every vertex has strokeCap and strokeJoin set to ROUND.
-- After any scaling, reset the stroke weight to 3. Scale icons inside components with resize, never rescale.
+- Stroke weight is 2. Every vertex has strokeCap and strokeJoin set to ROUND.
+- After any scaling, reset the stroke weight to 2. Scale icons inside components with resize, never rescale.
 - Exceptions: EXC-01.
 - Check: audit `stroke`, `cap`
 
@@ -200,7 +200,7 @@ When the cap height lands exactly on a boundary, use the lighter weight.
 - Any shape used in 2 or more icons becomes a part on the Parts canvas (777:11162), named `part/<name>`.
 
 ### PART-02 How to use a part (must)
-- Copy its vectors and scale uniformly only. After scaling, reset the stroke weight to 3 (BASE-06).
+- Copy its vectors and scale uniformly only. After scaling, reset the stroke weight to 2 (BASE-06).
 - Never change a part's structure inside an icon.
 
 ### PART-03 When a part has a problem (must)
@@ -327,7 +327,7 @@ When the cap height lands exactly on a boundary, use the lighter weight.
 | extent | BASE-03 | Ink outside 4 to 44, width over 38, or height over 36 (EXC-05 aside) |
 | center | BASE-04 | Center offset over 0.6 (FAM-01 family members and EXC-04 aside) |
 | size | BASE-05 | Warning, not a fail: size ratio under 0.75 or over 1.05 (exempt list aside); send to visual review |
-| stroke | BASE-06 | Stroke weight other than 3 (EXC-01 and EXC-06 aside) |
+| stroke | BASE-06 | Stroke weight other than 2 (EXC-01 and EXC-06 aside) |
 | cap | BASE-06 | Any vertex cap or join is not ROUND |
 | zero_seg | BASE-07 | Any segment shorter than 0.05 |
 | color | BASE-08 | Any stroke or fill not bound to a variable |
@@ -361,24 +361,15 @@ v1.0 (2026-11-13)
 - Added CORNER-06, the radius cap.
 - Badge clearance is measured as base strokes at least 9.3 from the badge center.
 
-## 12 Filled family FILL
+## 12 Order of use USE
 
-### FILL-01 When to use filled (must)
-- Menus, side navs, tiles and phone buttons use filled icons first; use outline only where no filled version exists, and add the missing one to the to-do list below.
-- Filled and outline may mix within one menu, but one meaning uses one style.
+### USE-01 Library first (must)
+- Screens use only icons already on the Icons page. Menus prefer the sidebar/* family designed for side navs.
+- When nothing fits, use `general/placeholder` (a dashed square) and add the need to the icon to-do list; the icon is then drawn to this guideline. Never draw icons ad hoc while composing screens.
+- Parts (part/*) never go directly into a screen.
 
-### FILL-02 How to draw (must)
-- Name: the outline name plus `_fill`, such as `general/lock_fill`, placed in the last row of the same category.
-- Same structure as outline: `keyline` + `glyph`; glyph holds one merged shape `ink` whose fill binds `ink`.
-- Make cut-outs with boolean subtract, never by painting background color; for rounded corners, outline a 3.5 round-cap stroke and union it, so corners come out round.
-- Ink at most 40, tall shapes at most 36 high, center offset at most 0.5.
+### USE-02 To do
+- Shortcuts, generic seat (placeholders for now); a filled family as a whole is undecided.
 
-### FILL-03 Current filled list
-- Done: shortcuts, lock, sparkles, bulb, charging, phone, phone_end, volume, brightness, settings, plus the existing part/seat, sidebar/smart_driving, vehicle/seat_position and others.
-- To do: link, mic_off, home, search.
-
-### FILL-04 Perceived-size target for filled icons (must)
-- Filled ink is denser and looks larger than outline at the same ratio, so the target is 0.85 (±0.03); outline is about 0.95.
-- Any new or changed icon gets its ratio computed before delivery and compared with the icons it appears with (the same menu or button row); the difference is at most 0.06.
-- Parts (part/*) are meant to be composed into icons and run small, so they never go into a menu directly; when needed, make a _fill version scaled to the target (such as vehicle/seat_fill).
-- The 2026-11-14 problem: new filled icons only kept ink within 40 without checking perceived size, so the settings menu ran from 0.72 to 1.86 and looked uneven.
+### USE-03 Lesson from 2026-11-14
+- Ten icons were drawn ad hoc to get a filled look, and the stroke was raised from 2 to 3 to even out perceived size. The result was big, heavy icons that did not match the library. The stroke is back to 2 and the ad hoc icons are deleted.
