@@ -92,7 +92,7 @@
 - 每次改动都重算 COLOR-05 的对比度表。
 
 ### COLOR-11 以重点界面为准（必须）
-- 已确认的重点界面（05 Screens 页的 Key A、Key B，日夜各一张）是颜色基准。token 和它们不一致时改 token 的值，不改界面。
+- 已确认的重点界面（06 Screens 页的 Key A、Key B，日夜各一张）是颜色基准。token 和它们不一致时改 token 的值，不改界面。
 - 3D 场景和图片上的字用 `text/on-media`，日夜都是白色；场景本身的日夜由场景组件的变体切换，不由颜色 token 负责。
 - 验证方法：复制夜间重点界面，切到 Light 模式，和日间设计稿并排比对，除场景图片外应一致。
 
@@ -141,16 +141,7 @@
 - 检查：audit `layer-opacity`（绑了颜色 token 的图层 opacity = 1）
 
 ### COLOR-19 阴影用效果样式（必须）
-- 阴影不是单独的颜色。位置和模糊写在效果样式里，颜色绑 `shadow/` token，日夜跟着切换。图层上不手写阴影。
-- 只有浮在地图和 3D 场景上的东西有阴影，面板和卡片没有。
-
-| 效果样式 | 内容 | 颜色 token | 用在 |
-|---|---|---|---|
-| shadow/floating | y 4，模糊 16，背景模糊 24 | shadow/floating（夜 黑 32%，日 #1C1C2E 12%） | ETA 条、地图按钮，21 处 |
-| shadow/voice | y 4，模糊 16，背景模糊 40 | shadow/floating | 语音卡片 6 个变体 |
-| shadow/puck | y 6，模糊 24 | shadow/puck（日夜 黑 50%） | 定位点，17 处 |
-- 数值取自关键界面里实际用到的阴影；v1.2 的 shadow/elevated（黑 20%）没有对应任何界面，改名为 shadow/floating 并改值。
-- 检查：audit `effect-style`（有投影的图层都套了 shadow/ 样式）
+- 阴影规则已移到 [size/size-tokens.md](../size/size-tokens.md) 的 SIZE-08，这里只保留颜色：shadow/floating（夜 黑 32%，日 #1C1C2E 12%）、shadow/puck（黑 12%）。
 
 ---
 
@@ -192,7 +183,8 @@
 | black/a32 | #000000 32% | 夜 shadow/floating |
 | navy/a12 | #1C1C2E 12% | 日 shadow/floating |
 | black/a30 | #000000 30% | 日 overlay/scrim |
-| black/a50 | #000000 50% | 夜 overlay/scrim、shadow/puck |
+| black/a50 | #000000 50% | 夜 overlay/scrim |
+| black/a12 | #000000 12% | shadow/puck |
 | slate/a10 | #0F1729 10% | 日 border/panel |
 | transparent | #000000 0% | 夜 border/selected |
 
@@ -341,7 +333,7 @@ v1.2 留下、现在没有语义 token 引用的实色灰：gray/75、gray/200�
 | overlay/scene | white/a15 | white/a15 | 3D 场景上的半透明底 |
 | overlay/scrim | black/a30 | black/a50 | 弹窗后面压暗整屏 |
 | shadow/floating | navy/a12 | black/a32 | 浮在地图和场景上的控件、语音卡片的阴影颜色 |
-| shadow/puck | black/a50 | black/a50 | 定位点的阴影颜色 |
+| shadow/puck | black/a12 | black/a12 | 定位点的阴影颜色 |
 
 ### 导航 nav/
 | token | 日 | 夜 | 用途 |

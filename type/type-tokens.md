@@ -90,7 +90,7 @@
 
 ## 3 字号的来源
 
-字号以已确认的关键界面为准（和颜色 COLOR-11 同一原则）。2026-11-14 统计 04 Components 页的 02 Components 和 05 Screens 页的 01 Key Screens：
+字号以已确认的关键界面为准（和颜色 COLOR-11 同一原则）。2026-11-14 统计 05 Components 页的 02 Components 和 06 Screens 页的 01 Key Screens：
 
 | 界面里的规格 | 出现次数 | 例子 | 对应样式 |
 |---|---|---|---|

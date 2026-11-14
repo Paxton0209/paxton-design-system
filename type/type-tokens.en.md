@@ -90,7 +90,7 @@ Prefix the style with `en/` or `zh/`: Latin and numbers only use `en/`; any line
 
 ## 3 Where the sizes come from
 
-Sizes follow the approved key screens (the same principle as color COLOR-11). Counted on 2026-11-14 across 02 Components on the 04 Components page and 01 Key Screens on the 05 Screens page:
+Sizes follow the approved key screens (the same principle as color COLOR-11). Counted on 2026-11-14 across 02 Components on the 05 Components page and 01 Key Screens on the 06 Screens page:
 
 | Spec on screen | Count | Example | Style |
 |---|---|---|---|

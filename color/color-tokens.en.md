@@ -92,7 +92,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - Recompute the COLOR-05 contrast tables after every change.
 
 ### COLOR-11 Key screens rule (must)
-- The approved key screens (Key A and Key B on the 05 Screens page, day and night) are the color reference. When a token disagrees with them, change the token, not the screen.
+- The approved key screens (Key A and Key B on the 06 Screens page, day and night) are the color reference. When a token disagrees with them, change the token, not the screen.
 - Text on the 3D scene and on images uses `text/on-media`, white in both modes. The scene itself switches through scene component variants, not color tokens.
 - Verify by duplicating the night key screen, switching it to Light and comparing it with the day design side by side. Everything except the scene image should match.
 
@@ -141,16 +141,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - Check: audit `layer-opacity` (layers bound to a color token have opacity 1).
 
 ### COLOR-19 Shadows are effect styles (must)
-- A shadow is not a color alone. Offset and blur live in an effect style; its color binds a `shadow/` token and switches with the mode. Never hand-set a shadow on a layer.
-- Only things floating over the map and 3D scene cast a shadow; panels and cards do not.
-
-| Effect style | Content | Color token | Used by |
-|---|---|---|---|
-| shadow/floating | y 4, blur 16, background blur 24 | shadow/floating (night black 32%, day #1C1C2E 12%) | ETA bar, map buttons, 21 layers |
-| shadow/voice | y 4, blur 16, background blur 40 | shadow/floating | Voice card, 6 variants |
-| shadow/puck | y 6, blur 24 | shadow/puck (black 50% in both) | Puck, 17 layers |
-- Values come from the shadows actually used on the key screens. The v1.2 shadow/elevated (black 20%) matched no screen; it was renamed shadow/floating and revalued.
-- Check: audit `effect-style` (every layer with a drop shadow uses a shadow/ style).
+- The shadow rules moved to SIZE-08 in [size/size-tokens.en.md](../size/size-tokens.en.md); only the colors stay here: shadow/floating (night black 32%, day #1C1C2E 12%), shadow/puck (black 12%).
 
 ---
 
@@ -192,7 +183,8 @@ Chinese version: [color-tokens.md](color-tokens.md).
 | black/a32 | #000000 32% | night shadow/floating |
 | navy/a12 | #1C1C2E 12% | day shadow/floating |
 | black/a30 | #000000 30% | day overlay/scrim |
-| black/a50 | #000000 50% | night overlay/scrim, shadow/puck |
+| black/a50 | #000000 50% | night overlay/scrim |
+| black/a12 | #000000 12% | shadow/puck |
 | slate/a10 | #0F1729 10% | day border/panel |
 | transparent | #000000 0% | night border/selected |
 
@@ -341,7 +333,7 @@ Map primitives live under `map-day/…` and `map-night/…`; scene and voice pri
 | overlay/scene | white/a15 | white/a15 | Translucent back on the 3D scene |
 | overlay/scrim | black/a30 | black/a50 | Dims the screen behind dialogs |
 | shadow/floating | navy/a12 | black/a32 | Shadow color for controls over map and scene, and the voice card |
-| shadow/puck | black/a50 | black/a50 | Shadow color for the puck |
+| shadow/puck | black/a12 | black/a12 | Shadow color for the puck |
 
 ### Navigation nav/
 | token | day | night | use |

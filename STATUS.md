@@ -1,6 +1,6 @@
 # 当前状态（2026-11-13 更新）
 
-当前规则为 SPEC 1.8，决定记录覆盖 DECISIONS D-01 至 D-116，车机图标规范为 1.2，车机颜色 token 为 1.3，车机字体 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前规则为 SPEC 1.9，决定记录覆盖 DECISIONS D-01 至 D-118，车机图标规范为 1.2，车机颜色 token 为 1.3，车机字体 token 为 1.0，车机尺寸 token 为 1.0，车机组件为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
 ## 当前 Figma
 
@@ -17,6 +17,14 @@
 
 Icons 内按用途与容器尺寸分组：Settings / 64px、Climate & seats / 48px、Navigation & actions / 60px、Media / 48px、Vehicle & general / 48px、Status / 42px、Dock apps / 54px、Profile photo / 48px。图形在原容器中居中，保留原始轮廓与大小，不通过放大图形填满容器。
 
+## 车机组件库（2026-11-14）
+
+- 05 Components 页的 Library 分区：button、chip、segmented、switch、slider、icon-button、list-row、list-header、side-nav-item、banner、toast、tile、dialog、level-card、nav-maneuver、nav-eta、map-controls、status-bar、dock、stepper、panel-map、panel-sr、panel-blank、screen。全部 auto layout，绑 Color、Size、Type 变量。规则见 `components/components.md`。
+- 旧的导入组件改名为 Reference (imported, 2026-11-14 前)，做比对用。方向 A、B、C 小样在 Direction samples 分区。
+- 06 Screens 页的 Composed 分区：用 screen 实例重拼的 Key A，和用组件拼的设置页。
+- 03 Size 页：Size Guide 画框。变量集合 Size，33 个变量。
+- 待做：关键界面的文字还没套新字体样式；语音卡片、地图底图、SR 场景沿用导入组件；中文版组件文字没有单独做变体。
+
 ## Figma 页面（2026-11-14 整理）
 
 | 页面 | 内容 |
@@ -24,10 +32,11 @@ Icons 内按用途与容器尺寸分组：Settings / 64px、Climate & seats / 48
 | 00 Cover | 封面和页面索引 |
 | 01 Color | Color Guide 932:1829 |
 | 02 Type | Type Guide 1003:1665 |
-| 03 Icons（622:11993） | 五个图标画布、部件 777:11162、Icon Guide 895:11141 |
-| 04 Components（233:4690） | 02 Components；00 Foundations 只剩字体和尺寸板，尺寸 token 做完后删除 |
-| 05 Screens | 01 Key Screens 和 5 张 Key A 副本 |
-| 06 Map & Scene | 03 Map Base、SR Scene Families |
+| 03 Size | Size Guide 1008:3 |
+| 04 Icons（622:11993） | 五个图标画布、部件 777:11162、Icon Guide 895:11141 |
+| 05 Components（233:4690） | 02 Components；00 Foundations 只剩字体和尺寸板，尺寸 token 做完后删除 |
+| 06 Screens | 01 Key Screens 和 5 张 Key A 副本 |
+| 07 Map & Scene | 03 Map Base、SR Scene Families |
 | Work（52:939） | 作者的 Layout、Settings 和 1920 参考屏 |
 | Content（504:1698） | LinkedIn 和知识库配图，以及它们引用的旧图标分区 05 Icons、Icons（Work 也引用 Icons），勿删 |
 
@@ -35,7 +44,7 @@ Icons 内按用途与容器尺寸分组：Settings / 64px、Climate & seats / 48
 
 ## 车机线性图标库（2026-11-13）
 
-lib test 的 03 Icons 页（622:11993）：300 个独立图标组件，分在通用 769:11149、驾驶导航 769:11154、信息娱乐 769:11158、车辆设置 769:11160、空调 769:11163 五个画布；部件母版 777:11162。规范图示 Icon Guide 895:11141，均可用 Guide i18n 变量集合在中文和英文之间切换。
+lib test 的 04 Icons 页（622:11993）：300 个独立图标组件，分在通用 769:11149、驾驶导航 769:11154、信息娱乐 769:11158、车辆设置 769:11160、空调 769:11163 五个画布；部件母版 777:11162。规范图示 Icon Guide 895:11141，均可用 Guide i18n 变量集合在中文和英文之间切换。
 
 按规范 v1.2 全库检查：结构、嵌套、颜色、居中、墨迹上限、线宽、圆头、零长度段、接缝、差一点、未合并接缝全部为 0；体感比 63 个仅为提醒，待人工比对。修复前的备份画框已在 2026-11-14 整理页面时删除，需要时从 Figma 版本历史找回。待作者目视确认：EXC-08 的 6 个图标，绿点标记的 usb、seat_massage、find_car，以及 mic_off 斜线附近的切口。
 
