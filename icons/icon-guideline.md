@@ -71,6 +71,7 @@
 ### BASE-08 颜色（必须）
 - 所有描边和填充绑定变量 `ink`（Icon 集合），不写死色值。ink 有 10 个模式（primary、secondary、tertiary、disabled、on-accent、accent、danger、warning、success、heat），分别指向 Color 里的 icon/1、icon/2、icon/3、icon/disabled、icon/on-accent、accent/default、state/danger、state/warning、state/success、vehicle/heat。
 - 改颜色只在图标实例上切 Icon 模式，不改图层颜色，这样换图标时颜色不丢（见 components CMP-13）。
+- ink 只管主墨迹。双色导航图标里的次要分支固定绑 icon/3；EXC-02 的彩色状态图标保持各自的状态色。批量改绑颜色前先列出非 icon/1 的图层，跳过它们（2026-11-14 曾因批量改绑丢失 93 处）。
 - 例外：EXC-02。
 - 检查：audit `color`
 

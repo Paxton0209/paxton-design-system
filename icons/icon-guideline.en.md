@@ -71,6 +71,7 @@ Current size: 300 standalone components and 24 part masters.
 ### BASE-08 Color (must)
 - Every stroke and fill is bound to the variable `ink` (Icon collection). No hard-coded colors. ink has 10 modes (primary, secondary, tertiary, disabled, on-accent, accent, danger, warning, success, heat) aliasing icon/1, icon/2, icon/3, icon/disabled, icon/on-accent, accent/default, state/danger, state/warning, state/success and vehicle/heat in Color.
 - Change color only by switching the Icon mode on the icon instance, never by recoloring layers, so the color survives an icon swap (see components CMP-13).
+- ink covers only the main ink. Secondary branches in two-tone nav icons stay bound to icon/3; colored status icons (EXC-02) keep their state colors. Before any bulk rebind, list layers not bound to icon/1 and skip them (on 2026-11-14 a bulk rebind lost 93 of them).
 - Exceptions: EXC-02.
 - Check: audit `color`
 
