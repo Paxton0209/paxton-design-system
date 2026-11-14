@@ -343,6 +343,7 @@ When the cap height lands exactly on a boundary, use the lighter weight.
 - Screens use only icons already on the Icons page. Menus prefer the sidebar/* family designed for side navs.
 - When nothing fits, use `general/placeholder` (a dashed square) and add the need to the icon to-do list; the icon is then drawn to this guideline. Never draw icons ad hoc while composing screens.
 - Parts (part/*) never go directly into a screen.
+- When one icon in a set looks too big or small, fix its source component (scale uniformly, reset the stroke to 2, recenter, align with its family). Never swap in a different icon on the screen and never resize just the instance. Afterwards, measure the whole family again. 2026-11-14: sidebar/energy_line had 34-high ink against 28 for the rest of its family; fixed at the source to 24 × 28.
 
 ### USE-02 To do
 - Shortcuts, generic seat (placeholders for now); a filled family as a whole is undecided.
