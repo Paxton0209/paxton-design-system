@@ -376,3 +376,9 @@ v1.0（2026-11-13）
 ### FILL-03 当前面性清单
 - 已有：shortcuts、lock、sparkles、bulb、charging、phone、phone_end、volume、brightness、settings，以及原有的 part/seat、sidebar/smart_driving、vehicle/seat_position 等。
 - 待补：link（连接）、mic_off（静音）、home、search。
+
+### FILL-04 面性的体感目标（必须）
+- 面性图标墨迹更密，同样的体感比看起来比线性大，所以目标定为 0.85（±0.03），线性约 0.95。
+- 新画或改动的图标，交付前必须算体感比，并和要一起出现的图标（同一个菜单、同一排按钮）比较，差值不超过 0.06。
+- 部件（part/*）是用来组合进图标的，体感偏小，不能直接放进菜单；需要时另做一个按目标缩放的 _fill 版本（如 vehicle/seat_fill）。
+- 2026-11-14 的问题：新画的面性图标只控制了墨迹 ≤40，没有算体感，设置菜单里从 0.72 到 1.86 不等，看起来有大有小。

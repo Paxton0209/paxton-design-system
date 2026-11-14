@@ -154,6 +154,7 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 - **CMP-28 Scrolling** (must): when content does not fit, use scrollbar (4 wide, fill/scrollbar, inset 8 from the right); when a side menu does not fit, fade it (CMP-15).
 - **CMP-29 Nothing extra** (must): top-level pages have no back button; in-app search fields have no voice button (voice has its own global entry); where tone or spacing already separates, add no divider. Check: no back button pointing up a level on a top-level page.
 - **CMP-30 Stretch fixed-width components** (must): components with a default width, such as segmented controls and search fields, fill a wider container instead of leaving space on the right; parts that should follow their content (such as poi-row Trailing) hug, never a fixed width, so nothing gets clipped. Check: no child passes its parent's right edge and no meaningless gap wider than 40.
+- **CMP-31 One perceived size per set** (must): icons in the same menu, button row or card group differ by at most 0.06 in size ratio (the icon guideline formula); filled 0.85, outline about 0.95. Check: compute the ratio for every icon in the set; max minus min is at most 0.06.
 
 ## 4 Verification (2026-11-14)
 

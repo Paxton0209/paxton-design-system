@@ -52,7 +52,7 @@ Current size: 300 standalone components and 24 part masters.
 - Check: audit `center`
 
 ### BASE-05 Optical size (should)
-- The size ratio should be between 0.75 and 1.05. The library median is about 0.89.
+- The size ratio should be between 0.75 and 1.05. Since the stroke moved to 3, the library median is about 1.01 (was 0.89); compare icons within the same set first, see FILL-04 and components CMP-31.
 - Falling outside the range is not an automatic fail: compare the icon side by side with its neighbors in the same category, and resize only if it clearly looks too big or too small. Resize the whole family together.
 - Family members align by FAM-01 instead of being sized one by one.
 - Exemption: single-stroke and directional icons skip the size ratio and instead match the line length and spacing of their own kind. List: general/plus, minus, close, more, chevron_up, chevron_down, chevron_left, chevron_right, arrow_back, arrow_forward.
@@ -376,3 +376,9 @@ v1.0 (2026-11-13)
 ### FILL-03 Current filled list
 - Done: shortcuts, lock, sparkles, bulb, charging, phone, phone_end, volume, brightness, settings, plus the existing part/seat, sidebar/smart_driving, vehicle/seat_position and others.
 - To do: link, mic_off, home, search.
+
+### FILL-04 Perceived-size target for filled icons (must)
+- Filled ink is denser and looks larger than outline at the same ratio, so the target is 0.85 (±0.03); outline is about 0.95.
+- Any new or changed icon gets its ratio computed before delivery and compared with the icons it appears with (the same menu or button row); the difference is at most 0.06.
+- Parts (part/*) are meant to be composed into icons and run small, so they never go into a menu directly; when needed, make a _fill version scaled to the target (such as vehicle/seat_fill).
+- The 2026-11-14 problem: new filled icons only kept ink within 40 without checking perceived size, so the settings menu ran from 0.72 to 1.86 and looked uneven.
