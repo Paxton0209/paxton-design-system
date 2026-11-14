@@ -337,6 +337,19 @@ When the cap height lands exactly on a boundary, use the lighter weight.
 
 ---
 
+## 14 Order of use USE
+
+### USE-01 Library first (must)
+- Screens use only icons already on the Icons page. Menus prefer the sidebar/* family designed for side navs.
+- When nothing fits, use `general/placeholder` (a dashed square) and add the need to the icon to-do list; the icon is then drawn to this guideline. Never draw icons ad hoc while composing screens.
+- Parts (part/*) never go directly into a screen.
+
+### USE-02 To do
+- Shortcuts, generic seat (placeholders for now); a filled family as a whole is undecided.
+
+### USE-03 Lesson from 2026-11-14
+- Ten icons were drawn ad hoc to get a filled look, and the stroke was raised from 2 to 3 to even out perceived size. The result was big, heavy icons that did not match the library. The stroke is back to 2 and the ad hoc icons are deleted.
+
 ## Changelog
 
 v1.2 (2026-11-13)
@@ -360,16 +373,3 @@ v1.0 (2026-11-13)
 - Leftover pieces shorter than 2 beside a crossing break are removed.
 - Added CORNER-06, the radius cap.
 - Badge clearance is measured as base strokes at least 9.3 from the badge center.
-
-## 12 Order of use USE
-
-### USE-01 Library first (must)
-- Screens use only icons already on the Icons page. Menus prefer the sidebar/* family designed for side navs.
-- When nothing fits, use `general/placeholder` (a dashed square) and add the need to the icon to-do list; the icon is then drawn to this guideline. Never draw icons ad hoc while composing screens.
-- Parts (part/*) never go directly into a screen.
-
-### USE-02 To do
-- Shortcuts, generic seat (placeholders for now); a filled family as a whole is undecided.
-
-### USE-03 Lesson from 2026-11-14
-- Ten icons were drawn ad hoc to get a filled look, and the stroke was raised from 2 to 3 to even out perceived size. The result was big, heavy icons that did not match the library. The stroke is back to 2 and the ad hoc icons are deleted.
