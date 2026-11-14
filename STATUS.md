@@ -1,8 +1,10 @@
 # 当前状态（2026-11-13 更新）
 
-当前规则为 SPEC 1.9，决定记录覆盖 DECISIONS D-01 至 D-118，车机图标规范为 1.2，车机颜色 token 为 1.3，车机字体 token 为 1.0，车机尺寸 token 为 1.0，车机组件为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前规则为 SPEC 1.9，决定记录覆盖 DECISIONS D-01 至 D-135，车机图标规范为 1.2，车机颜色 token 为 1.3，车机字体 token 为 1.0，车机尺寸 token 为 1.0，车机组件为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
 ## 当前 Figma
+
+Library-test（J3Rk8ALa8YFNSJZzOPc2FS）为这轮组件与 Examples 的修订文件。55 条反馈、量测、源组件与扫描范围见 LESSONS L-013 至 L-067。Guideline-test 无未关闭评论。
 
 文件：lib test，T6kCgDUKJIt2e2TfDSZzp8。只保留两页，作者手调布局和已经删除的内容按实时画布保留。
 
