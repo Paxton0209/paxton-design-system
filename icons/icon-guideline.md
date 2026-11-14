@@ -52,7 +52,7 @@
 - 检查：audit `center`
 
 ### BASE-05 体感大小（应）
-- 体感比应在 0.75–1.05 之间，全库中位数约 0.89。
+- 体感比应在 0.75–1.05 之间。线宽改为 3 之后全库中位数约 1.01（原为 0.89），以同一组图标互相比较为准，见 FILL-04 和 components CMP-31。
 - 超出范围不直接判不合格：和同分类的相邻图标并排目视比对，确实显大或显小才调整；调整时整个家族一起动。
 - 家族内部按 FAM-01 对齐，不单独调体感。
 - 豁免：单笔画和方向类图标不检查体感比，改为和同类图标的线长、线距对齐。清单：general/plus、minus、close、more、chevron_up、chevron_down、chevron_left、chevron_right、arrow_back、arrow_forward。
