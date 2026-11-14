@@ -69,7 +69,8 @@
 - 检查：audit `zero_seg`
 
 ### BASE-08 颜色（必须）
-- 所有描边和填充绑定变量 `icon/1`（VariableID:117:2823），不写死色值。
+- 所有描边和填充绑定变量 `ink`（Icon 集合），不写死色值。ink 有 10 个模式（primary、secondary、tertiary、disabled、on-accent、accent、danger、warning、success、heat），分别指向 Color 里的 icon/1、icon/2、icon/3、icon/disabled、icon/on-accent、accent/default、state/danger、state/warning、state/success、vehicle/heat。
+- 改颜色只在图标实例上切 Icon 模式，不改图层颜色，这样换图标时颜色不丢（见 components CMP-13）。
 - 例外：EXC-02。
 - 检查：audit `color`
 
