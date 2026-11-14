@@ -34,7 +34,8 @@ Current size: 300 standalone components and 24 part masters.
 - Each component is 48 × 48, with fill and clip settings copied from template 784:11208.
 - It contains a locked rectangle named `keyline` (a copy of 784:11209) and a group named `glyph`. All vectors live in `glyph`.
 - Names follow `<category>/<name>` in lowercase with underscores, for example `vehicle/door_open`.
-- Check: audit `structure`
+- Every layer inside `glyph` has SCALE constraints, horizontal and vertical. Otherwise those layers do not scale when an instance is resized to 40 or 32, and the icon drifts off center (on 2026-11-14, 55 icons had 104 layers that were not SCALE; trunk_open drifted 3 off center at 40).
+- Check: audit `structure`; also resize each icon to 40 and 32 and confirm the ink center is within 0.6.
 
 ### BASE-02 No nested instances (must)
 - No INSTANCE node may appear inside a component. To use a part, copy its vectors; never place an instance.
@@ -325,6 +326,7 @@ When the cap height lands exactly on a boundary, use the lighter weight.
 | structure | BASE-01 | Not 48 × 48, or missing keyline or glyph |
 | nested | BASE-02 | Contains an INSTANCE node |
 | extent | BASE-03 | Ink outside 4 to 44, width over 38, or height over 36 (EXC-05 aside) |
+| scale | BASE-01 | A layer inside glyph is not SCALE, or the center drifts more than 0.6 at 40 or 32 |
 | center | BASE-04 | Center offset over 0.6 (FAM-01 family members and EXC-04 aside) |
 | size | BASE-05 | Warning, not a fail: size ratio under 0.75 or over 1.05 (exempt list aside); send to visual review |
 | stroke | BASE-06 | Stroke weight other than 2 (EXC-01 and EXC-06 aside) |
