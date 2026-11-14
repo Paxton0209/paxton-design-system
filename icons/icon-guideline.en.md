@@ -1,7 +1,7 @@
 # Car Display Icon Guidelines v1.2
 
-Scope: outline icons for the design system's HMI layer (center display). Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), page selected icon (622:11993). Filled category icons in the settings sidebar still follow SPEC 9.1 and D-86 and are out of scope here.
-Chinese version: [icon-guideline.md](icon-guideline.md). The Icon Guide frame in Figma illustrates these rules and the Icon Rules frame mirrors the text; both match this file by rule ID.
+Scope: outline icons for the design system's HMI layer (center display). Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), page 03 Icons (622:11993). Filled category icons in the settings sidebar still follow SPEC 9.1 and D-86 and are out of scope here.
+Chinese version: [icon-guideline.md](icon-guideline.md). The Icon Guide frame in Figma illustrates these rules and matches this file by rule ID.
 Current size: 300 standalone components and 24 part masters.
 
 ---

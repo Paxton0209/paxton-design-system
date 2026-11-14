@@ -1,7 +1,7 @@
 # 车机图标规范 v1.2
 
-适用范围：设计系统的 HMI 线性图标（中控屏），Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），页面 selected icon（622:11993）。设置侧栏的面性分类图标仍按 SPEC 9.1 与 D-86，不在本文件范围。
-英文版：[icon-guideline.en.md](icon-guideline.en.md)。Figma 图示版为 Icon Guide 画框，纯文字镜像为 Icon Rules 画框，两者按规则 ID 与本文件对应。
+适用范围：设计系统的 HMI 线性图标（中控屏），Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），页面 03 Icons（622:11993）。设置侧栏的面性分类图标仍按 SPEC 9.1 与 D-86，不在本文件范围。
+英文版：[icon-guideline.en.md](icon-guideline.en.md)。Figma 图示版为 Icon Guide 画框，按规则 ID 与本文件对应。
 当前规模：300 个独立组件，24 个部件母版。
 
 ---

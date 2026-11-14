@@ -1,6 +1,6 @@
 # 车机字体 token v1.0
 
-适用范围：车机中控屏。Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），变量集合 Type，文字样式 en/… 和 zh/…。图示版是 selected icon 页的 Type Guide 画框（1003:1665）。网页字体仍按 SPEC 第 5 节。
+适用范围：车机中控屏。Figma 文件 lib test（T6kCgDUKJIt2e2TfDSZzp8），变量集合 Type，文字样式 en/… 和 zh/…。图示版是 02 Type 页的 Type Guide 画框（1003:1665）。网页字体仍按 SPEC 第 5 节。
 英文版：[type-tokens.en.md](type-tokens.en.md)。
 
 ---
@@ -90,7 +90,7 @@
 
 ## 3 字号的来源
 
-字号以已确认的关键界面为准（和颜色 COLOR-11 同一原则）。2026-11-14 统计 Components 页的 02 Components 和 01 Key Screens：
+字号以已确认的关键界面为准（和颜色 COLOR-11 同一原则）。2026-11-14 统计 04 Components 页的 02 Components 和 05 Screens 页的 01 Key Screens：
 
 | 界面里的规格 | 出现次数 | 例子 | 对应样式 |
 |---|---|---|---|

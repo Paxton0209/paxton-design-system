@@ -17,11 +17,27 @@
 
 Icons 内按用途与容器尺寸分组：Settings / 64px、Climate & seats / 48px、Navigation & actions / 60px、Media / 48px、Vehicle & general / 48px、Status / 42px、Dock apps / 54px、Profile photo / 48px。图形在原容器中居中，保留原始轮廓与大小，不通过放大图形填满容器。
 
+## Figma 页面（2026-11-14 整理）
+
+| 页面 | 内容 |
+|---|---|
+| 00 Cover | 封面和页面索引 |
+| 01 Color | Color Guide 932:1829 |
+| 02 Type | Type Guide 1003:1665 |
+| 03 Icons（622:11993） | 五个图标画布、部件 777:11162、Icon Guide 895:11141 |
+| 04 Components（233:4690） | 02 Components；00 Foundations 只剩字体和尺寸板，尺寸 token 做完后删除 |
+| 05 Screens | 01 Key Screens 和 5 张 Key A 副本 |
+| 06 Map & Scene | 03 Map Base、SR Scene Families |
+| Work（52:939） | 作者的 Layout、Settings 和 1920 参考屏 |
+| Content（504:1698） | LinkedIn 和知识库配图，以及它们引用的旧图标分区 05 Icons、Icons（Work 也引用 Icons），勿删 |
+
+删除：Work 页和 Components 页重复的 00 Foundations、01 Key Screens、02 Components、03 Map Base 旧副本；图标过程稿页的旧版本、被否决的批次、已合并的旧规范和备份，共 28 项；图标页的两张截图和空画框。删除前检查过，没有实例引用这些内容。纯文字镜像 Icon Rules 画框在整理前已经不在文件里，规范文字以 icons/icon-guideline.md 为准。
+
 ## 车机线性图标库（2026-11-13）
 
-lib test 的 selected icon 页（622:11993）：300 个独立图标组件，分在通用 769:11149、驾驶导航 769:11154、信息娱乐 769:11158、车辆设置 769:11160、空调 769:11163 五个画布；部件母版 777:11162。规范图示 Icon Guide 895:11141、纯文字镜像 Icon Rules 894:11141，均可用 Guide i18n 变量集合在中文和英文之间切换。
+lib test 的 03 Icons 页（622:11993）：300 个独立图标组件，分在通用 769:11149、驾驶导航 769:11154、信息娱乐 769:11158、车辆设置 769:11160、空调 769:11163 五个画布；部件母版 777:11162。规范图示 Icon Guide 895:11141，均可用 Guide i18n 变量集合在中文和英文之间切换。
 
-按规范 v1.2 全库检查：结构、嵌套、颜色、居中、墨迹上限、线宽、圆头、零长度段、接缝、差一点、未合并接缝全部为 0；体感比 63 个仅为提醒，待人工比对。修复前的版本保存在 v1.1 修复前备份 画框。待作者目视确认：EXC-08 的 6 个图标，绿点标记的 usb、seat_massage、find_car，以及 mic_off 斜线附近的切口。
+按规范 v1.2 全库检查：结构、嵌套、颜色、居中、墨迹上限、线宽、圆头、零长度段、接缝、差一点、未合并接缝全部为 0；体感比 63 个仅为提醒，待人工比对。修复前的备份画框已在 2026-11-14 整理页面时删除，需要时从 Figma 版本历史找回。待作者目视确认：EXC-08 的 6 个图标，绿点标记的 usb、seat_massage、find_car，以及 mic_off 斜线附近的切口。
 
 ## 车机颜色变量（2026-11-13）
 

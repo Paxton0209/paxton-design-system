@@ -7,7 +7,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 
 ## 0 How to read this file
 
-- Every rule has an ID (such as COLOR-05). The Figma Color Guide frame (932:1829, on the selected icon page) and the audit scripts use the same IDs.
+- Every rule has an ID (such as COLOR-05). The Figma Color Guide frame (932:1829, on the 01 Color page) and the audit scripts use the same IDs.
 - Must: a violation fails. Should: the default; when you depart from it, give the ID and the reason.
 - Modes are called Light and Dark in Figma; this file says day (Light) and night (Dark).
 - This version has day and night only. No high-contrast mode.
@@ -92,7 +92,7 @@ Chinese version: [color-tokens.md](color-tokens.md).
 - Recompute the COLOR-05 contrast tables after every change.
 
 ### COLOR-11 Key screens rule (must)
-- The approved key screens (Key A and Key B on the Components page, day and night) are the color reference. When a token disagrees with them, change the token, not the screen.
+- The approved key screens (Key A and Key B on the 05 Screens page, day and night) are the color reference. When a token disagrees with them, change the token, not the screen.
 - Text on the 3D scene and on images uses `text/on-media`, white in both modes. The scene itself switches through scene component variants, not color tokens.
 - Verify by duplicating the night key screen, switching it to Light and comparing it with the day design side by side. Everything except the scene image should match.
 

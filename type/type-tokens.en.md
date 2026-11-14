@@ -1,6 +1,6 @@
 # In-car type tokens v1.0
 
-Scope: the in-car center display. Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), variable collection Type, text styles en/… and zh/…. The illustrated version is the Type Guide frame (1003:1665) on the selected icon page. Web type still follows SPEC section 5.
+Scope: the in-car center display. Figma file lib test (T6kCgDUKJIt2e2TfDSZzp8), variable collection Type, text styles en/… and zh/…. The illustrated version is the Type Guide frame (1003:1665) on the 02 Type page. Web type still follows SPEC section 5.
 Chinese version: [type-tokens.md](type-tokens.md).
 
 ---
@@ -90,7 +90,7 @@ Prefix the style with `en/` or `zh/`: Latin and numbers only use `en/`; any line
 
 ## 3 Where the sizes come from
 
-Sizes follow the approved key screens (the same principle as color COLOR-11). Counted on 2026-11-14 across 02 Components and 01 Key Screens on the Components page:
+Sizes follow the approved key screens (the same principle as color COLOR-11). Counted on 2026-11-14 across 02 Components on the 04 Components page and 01 Key Screens on the 05 Screens page:
 
 | Spec on screen | Count | Example | Style |
 |---|---|---|---|

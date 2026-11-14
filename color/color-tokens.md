@@ -7,7 +7,7 @@
 
 ## 0 怎么读这份文件
 
-- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（932:1829，在 selected icon 页）和检查脚本用同一 ID。
+- 每条规则有 ID（如 COLOR-05），Figma 的 Color Guide 画框（932:1829，在 01 Color 页）和检查脚本用同一 ID。
 - 必须：违反即不合格。应：默认做法，偏离时写明 ID 和理由。
 - 模式名在 Figma 里是 Light 和 Dark，文档写作日（Light）、夜（Dark）。
 - 这一版只有日、夜两个模式，不做高对比模式。
@@ -92,7 +92,7 @@
 - 每次改动都重算 COLOR-05 的对比度表。
 
 ### COLOR-11 以重点界面为准（必须）
-- 已确认的重点界面（Components 页的 Key A、Key B，日夜各一张）是颜色基准。token 和它们不一致时改 token 的值，不改界面。
+- 已确认的重点界面（05 Screens 页的 Key A、Key B，日夜各一张）是颜色基准。token 和它们不一致时改 token 的值，不改界面。
 - 3D 场景和图片上的字用 `text/on-media`，日夜都是白色；场景本身的日夜由场景组件的变体切换，不由颜色 token 负责。
 - 验证方法：复制夜间重点界面，切到 Light 模式，和日间设计稿并排比对，除场景图片外应一致。
 
