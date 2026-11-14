@@ -268,6 +268,7 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 | D-113 | 颜色以已确认的重点界面 Key A、Key B 为准：夜 text/1 改为 #FFFFFF，text/2 改为日 #6E6E73、夜 #98989F，日 line/face 改为 #0F1729 10%；新增 bg/screen、control/fill、bg/app-tile、overlay/scene、text/on-media、shadow/elevated、nav/secondary；成功和警告色不换苹果系统色；00 Foundations 中已并入的颜色板删除 | 作者选“设计稿为准”，四类新角色全选，状态色“保留现在的 token”，旧说明板“合并后删除” | 已定 |
 | D-114 | DriveScene 的 SR 场景环境色和 AI 语音光效并入 token，单独成组：scene/（17 个，日夜不同）和 ai/（4 种状态各 5 个色标，思考状态日夜不同），只给场景和语音组件用；00 Foundations 的 AI、SR 颜色板合并后删除 | 作者回复“可以” | 已定 |
 | D-112 | text/3 只用于 24 及以上的字和图标，20 号说明文字一律用 text/2；模式在 Figma 叫 Light / Dark，文档写作日（Light）、夜（Dark） | 作者同意 | 已定 |
+| D-115 | 车机颜色 token 按你在画什么重新分组（text、icon、surface、fill、border、interaction、accent、state、vehicle、overlay、nav、map、scene、ai），24 个旧名改名并保留变量 ID；字、图标、线和控件填充的次级色改为白色（夜）或墨色 #1D1D1F（日）加透明度，阶梯 100、60/65、40/50、25/30，底保持实色；新增禁用、信息色和状态浅底、车控冷热色（日 #C93400、夜 #FF9F0A）、按下和焦点；nav/eta-label 并入 text/2；规则增至 COLOR-18；SPEC 13.1 的按下、禁用、遮罩改用新 token，禁用不再降图层不透明度 | 作者：分类没有让人一看就明白的用途；二级色用白色加透明度是上家车企的做法，颜色种类少、3D 场景下效果好。分组选“按你在画什么”，日间选“墨色加透明度”，透明度范围选“字、图标、线、控件填充”，补充项四类全选 | 已定，修订 D-111 的命名和 D-113 的次级色值 |
 
 ## 发版记录
 
