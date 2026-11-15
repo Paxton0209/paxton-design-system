@@ -53,6 +53,10 @@ Prefix the style with `en/` or `zh/`: Latin and numbers only use `en/`; any line
 - Noto Sans SC has no 600, so high emphasis maps to Bold.
 - Adjacent levels differ by at least one weight or one color step.
 
+### FONT-04a Library test defaults to Medium (owner approved, 2026-11-15)
+
+In the current Library test (J3Rk8ALa8YFNSJZzOPc2FS), replace all Regular text with Medium, including component sources, documentation and hidden instances. Keep the IDs and names of `weight/latin/regular` and `weight/cjk/regular` for compatibility, but alias their values to the corresponding `medium` variables. Existing `/regular` text styles now resolve to Medium and describe this compatibility relationship. Preserve Semi Bold/Bold emphasis, font families, sizes, line heights and colors. Update shared sources and check inherited instances. Audit every text range, including hidden content, for zero remaining Regular runs; inspect wrapping, clipping and container bounds. This rule overrides the former Regular defaults for this Library test only. The older lib test file and web typography were not migrated.
+
 ### FONT-05 Color before size (must)
 - Build hierarchy with `text/1`, `text/2`, `text/3` first (the COLOR-13 alpha ladder), then weight. Never shrink the size to show hierarchy.
 

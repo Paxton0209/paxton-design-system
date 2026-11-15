@@ -63,7 +63,7 @@ Current size: 300 standalone components and 24 part masters.
 - Stroke weight is 2. Every vertex has strokeCap and strokeJoin set to ROUND.
 - After any scaling, reset the stroke weight to 2. Scale icons inside components with resize, never rescale.
 - Exceptions: EXC-01.
-- Check: audit `stroke`, `cap`
+- Check: audit `stroke`, `cap`. Measure the effective stroke weight and scale factor on nested instances as well as source vectors. A 48 × 48 slot can still carry an old instance scale factor.
 
 ### BASE-07 Zero-length segments (must)
 - No segment may be shorter than 0.05, and coincident vertices must be merged. Zero-length segments break round caps at line ends.
@@ -145,6 +145,7 @@ All angles refer to the **interior angle** at the corner.
 ### SEAM-06 Merging filled shapes (must)
 - Filled shapes never overlap; merge them into one shape with booleans.
 - Split even-odd shapes into subpaths first (outer contour minus holes), then run the boolean.
+- For a confirmed overlap that needs a single ink contour, expand the 2 px round strokes and union the contours. Keep the source icon ID and ink token, and check the resulting ink bounds and centered 32/40 instances.
 
 ### SEAM-07 Moving parts (must)
 - For an open door or lid, cut that segment from the main body and rotate it open around the hinge, a corner both pieces share.

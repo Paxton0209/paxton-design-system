@@ -53,6 +53,10 @@
 - Noto Sans SC 没有 600，高强调对应 Bold。
 - 相邻两个层级至少差一档字重或一级颜色。
 
+### FONT-04a Library test 默认 Medium（作者确认，2026-11-15）
+
+当前 Library test（J3Rk8ALa8YFNSJZzOPc2FS）中所有 Regular 改为 Medium，含组件源、说明文字和隐藏实例。原 `weight/latin/regular`、`weight/cjk/regular` 保留 ID 与名称以兼容已有引用，值改为对应 `medium` 变量的别名；原 `/regular` 文字样式随源变量显示 Medium，样式说明注明兼容关系。保留 Semi Bold／Bold 的高强调层级，字号、行高、颜色和字体家族不变。更新源变量与主组件后检查引用实例，不逐页重复覆盖。验收遍历包括隐藏内容的全部文字范围，Regular 数量须为 0，并检查换行、截断和容器边界。本条覆盖该文件中旧 Regular 默认值在当前 Library test 的使用；旧版 lib test 与网页字体未在本次迁移。
+
 ### FONT-05 层级先靠颜色（必须）
 - 先用 `text/1`、`text/2`、`text/3` 分层（颜色 COLOR-13 的透明度阶梯），再用字重，不靠缩小字号分层。
 
