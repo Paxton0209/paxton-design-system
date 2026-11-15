@@ -37,7 +37,8 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 
 ### CMP-BAR Status bar and Dock `status-bar`, `dock`, `stepper`
 - The status bar is 1600 × 80 and the Dock is 1600 × 92. Place a temperature stepper at either end of the Dock.
-- The test status bar uses a 44 × 44 circular example avatar. Use a neutral background and natural skin tones. Center the face in the circle and use the source image fill in both themes.
+- The test status bar references the Avatar `type=photo, size=XS` instance (44 × 44). Photo variants also include S/M/L (68/96/134). All sizes share the `avatar-photo` source component and support Show status. Photo and crop updates propagate to both themes.
+- Use an owner-provided or authorized portrait with a neutral background and natural skin tones. Keep headroom and shoulders in the circular crop, with head height around 55%–60% of the circle diameter. Check both 44 px and larger sizes to avoid an oversized face.
 - The five Dock tiles use the original color artwork from `app-tile`. Each tile is 54 × 54, with 36 px between tiles. A separate interaction layer provides press feedback.
 
 
