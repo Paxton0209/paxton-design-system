@@ -63,14 +63,18 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 
 ### CMP-ROW List row `list-row`, `list-header`
 - List row has an optional starting icon, title and subtitle, followed by one trailing slot. Trailing options are none, chevron, value, switch, slider or a small button. Expose default, selected and disabled as its three states.
+- Use Show icon and Show subtitle for one-line, two-line and icon-free layouts. Set On and Off on the trailing switch. The List page can show these settings side by side with source instances. Keep 6 trailing options × 3 states in the source set.
 - List-header uses 20 Medium in text/2. Its group starts 16 below in settings.
 
 
 ### CMP-NAVITEM Side nav item `side-nav-item`
 - Use a 240 × 64 row, centered 40 icon, and 8 from icon to label. Use CMP-25 for semantic colors and spacing.
+- The Menu page specimen pairs Assist with the library steering wheel `sidebar/smart_driving` across selection and press states.
 
 ### CMP-TILE Function card `tile`
 - Tile height 112, inset 16 on all sides. Center the status line with the 40 icon; title and status are 20 Medium. One neutral surface/raised is shared across Auto, On, Off, Cool and Heat. Heat is signaled locally using the existing red mode and state/danger text in the test. Use CMP-27 for grid and feedback.
+- Give each variant its own default status. Use Auto, On and Off for those states and a level for temperature controls. Use secondary emphasis on both the Off icon and status, and leave the status blank for one-shot actions. In the 1920 × 1200 test, the icon slot is 20 from the top and left, and the title ends 20 above the bottom.
+- Size each multi-option overlay to its content and match its theme to the prototype entry. The current child-lock overlay is 586 × 180 with Off, Left, Right and Both. A 2 px inside outline distinguishes the selected option.
 
 
 ### CMP-LEVEL Level card `level-card`
@@ -91,10 +95,11 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 ### CMP-NAV Navigation `nav-maneuver`, `nav-eta`, `map-controls`, `icon-button`
 - Taken from the approved key screens and kept as they are: nav card 360 wide, radius 28, nav/maneuver back; ETA bar as a pill on surface/floating; map controls as 56 icon-button cells, vertical at the top right.
 - nav-maneuver variants turn=straight, right, left; properties Distance, Road, Next distance, Arrival, Next maneuver, Show next.
+- Check the painted bounds of the straight, right and left arrows. In the 1920 × 1200 test, center the artwork inside the 68 px `maneuver-icon` slot with at least 2 px clear on each edge.
 
 ### CMP-TAB Tabs
 
-- Underline width follows the selected label width. Place it 8 below the label and use a height of 4. Only the selected item shows an underline.
+- Center the underline under the selected label and inset it 6 from each end. In the test layout place it 10 below the label at a height of 4. Only the selected item shows an underline.
 
 ### CMP-POI Search result row poi-row
 - Use one leading type in each result stream. Index uses a 40 × 40 fill/2 circle, centered label, and one ordinal per row. Neutral location and detail icons use secondary; related metadata and detail use an 8 gap. The trailing action area fills the available row height and centers Go and Pin vertically within the full row. Go uses a 48 × 48 icon and Pin uses a 40 × 40 icon. Both hit targets are 56 × 56.
@@ -107,7 +112,7 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 
 ### CMP-PICK Picker
 
-- Keep the unit adjacent to its value. In the time wheel, the selected row uses one colon; column widths are 56 / 24 / 56 / 76. In the value wheel use 96 for the value and 80 for the unit. Use Medium and keep aligned 64 px rows.
+- Keep the measured gap from the value to its unit at or below 24 px. Use one colon on the selected time row. In the 1920 × 1200 test, the time columns are 68 / 28 / 68 / 76 and the value columns are 96 / 64. Use Medium on 76 px rows. Fit the highlight to the panel width and align its edges to the selected row.
 
 ## 3 Usage rules
 
@@ -137,7 +142,7 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 - **CMP-24 Toast never covers content** (must): when the app area has tabs or a title at the top, the toast sits at the bottom edge (24 from the bottom), not the top.
 - **CMP-25 Side nav per the reference** (must). Use surface/sidebar with a 224-wide menu inside the 240-wide sidebar, with 8 side insets and 40 top inset. Items are 64 high with 8 between items and between icon and label. Selected uses fill/2, text/1 and primary; unselected uses text/2 and secondary. Verify the sidebar and selected row are distinguishable in both themes.
 - **CMP-26 Content rhythm** (must). Content has 48 horizontal and 40 top padding. Keep 16 from a text/2 section heading to its group, 48 from the group to the divider and 32 after the divider. Section content shares a left edge.
-- **CMP-27 Cards and rows are different** (must). Use a neutral surface/raised card for each frequent, researched action. Put the exact active state in the upper-right text, such as Auto, On, Off or Both. Multi-option controls open a choice, and one-shot actions omit persistent state. Use three cards per row, gaps 16 across and 20 down. Compute integer widths against the measured content width and assign the remainder to the middle column; 664 yields 210/212/210. Keep the grid and list text aligned with their heading.
+- **CMP-27 Cards and rows are different** (must). Use a neutral surface/raised card for each frequent, researched action. Put the exact active state in the upper-right text, such as Auto, On, Off or Both. Multi-option controls open a choice, and one-shot actions omit persistent state. Use three cards per row with base gaps of 16 across and 20 down. Compute integer widths against the measured content width and assign the remainder to the middle column. A width of 664 yields 210/212/210. At 1920 × 1200 the available width is 788, with 20 px gaps and columns of 249/250/249. Align the grid and list text with their heading and verify the rightmost column is fully visible.
 - **CMP-28 Scrolling** (must): when content does not fit, use scrollbar (4 wide, fill/scrollbar, inset 8 from the right); when a side menu does not fit, fade it (CMP-15).
 - **CMP-29 Nothing extra** (must). Top-level pages have no back button. All source search-bar variants omit the app-level voice button; voice uses the global entry. Use spacing and surface contrast for grouping where sufficient.
 - **CMP-30 Stretch fixed-width components** (must): components with a default width, such as segmented controls and search fields, fill a wider container instead of leaving space on the right; parts that should follow their content (such as poi-row Trailing) hug, never a fixed width, so nothing gets clipped. Check: no child passes its parent's right edge and no meaningless gap wider than 40.
@@ -156,5 +161,5 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 
 - **LIB-01 No empty right side** (must): a board's width follows its content. When content has a fixed width (icons on an 80 grid are 1408 wide), shrink the board to content plus 120 on each side; never stretch content or leave space on the right. Check: board width = widest child + 240.
 - **LIB-02 No stacked backgrounds** (must): group frames inside a board have no fill; components sit directly on the board, whose only background is surface/canvas. Check: no filled group frames inside boards (components and example screens excepted).
-- **LIB-03 Only components in the Library** (must): guideline documents live in the repo (icons/, components/, color/ and so on), never in the Library file. The Library holds components, building blocks and one line of description per page; examples live only on the Examples page. Delete components a new one replaces; never keep two ways. Check: no board named Guide or Guideline; no search-suggestion on the Search page.
-- **LIB-04 Fit previews to component bounds** (must). When components grow, size and space variant sets, comparisons, and asset sections from their actual child bounds. Verify zero overlapping area within and between preview rows, ensure the set encloses all variants, and check that the lower edge of each theme row is visible. When map or road art uses a viewport crop inside the component, check that the image covers all four viewport edges.
+- **LIB-03 Only components in the Library** (must). Keep guideline documents in the repo (icons/, components/, color and related folders). Use source instances to show necessary property combinations on Library pages and reserve whole-screen examples for the Examples page. Delete components their replacements supersede. Check for zero Guide or Guideline boards and zero search-suggestion components on Search.
+- **LIB-04 Fit previews to component bounds** (must). When components grow, size and space variant sets, comparisons, and asset sections from their actual child bounds. Verify zero overlapping area within and between preview rows, ensure the set encloses all variants and each clipping ancestor encloses the set, and check that the lower edge of each theme row is visible. When map or road art uses a viewport crop inside the component, check that the image covers all four viewport edges.
