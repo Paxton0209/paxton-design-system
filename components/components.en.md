@@ -36,7 +36,7 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 
 ### CMP-BAR Status bar and Dock `status-bar`, `dock`, `stepper`
 - The status bar is 1600 × 80 and the Dock is 1600 × 92. Place a temperature stepper at either end of the Dock.
-- Five Dock app tiles use a 54 × 54 neutral tile, a centered 40 × 40 monochrome library icon, 7 px inset, and 36 px between tiles. App tile press feedback is an interaction layer.
+- The five Dock tiles use the original color artwork from `app-tile`. Each tile is 54 × 54, with 36 px between tiles. A separate interaction layer provides press feedback.
 
 
 ### CMP-BTN Button `button`
@@ -114,7 +114,7 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 - **CMP-01 Components first** (must): wherever a component fits, use an instance; never draw a new one. If a component is missing, add it to the Library first.
 - **CMP-02 Don't restyle** (must): on instances change only properties and text, never color, radius or spacing; make a variant for another look.
 - **CMP-03 One primary per screen** (must): at most one primary button per screen.
-- **CMP-04 Real map and scene** (must). Use the existing panel-map, panel-sr and navigation assets. Panel SR offers a Road events scene that exposes Cut-in, Lane change and Merge traffic using existing static DriveScene renders.
+- **CMP-04 Real map and scene** (must). Use the existing panel-map, panel/sr and navigation assets. In `Left panel → panel/sr → Road event`, select Off, Cut-in, Lane change, or Merge traffic. Off is the default and shows the base scene selected in `Scene`. Each event shows one static DriveScene render matching the active SR appearance. The event layer stretches with the panel and sits below the speed readout. Verify each choice from a placed `Left panel` instance.
 - **CMP-05 Overlay order** (must): at most one dialog at a time; a toast never covers a main action button.
 - **CMP-06 Check proportions against NIO** (should): check new component sizes and composition against the NIO screens on the Work page (about 0.83 when converting to 1600 wide). If they disagree, fix the component rather than enlarging it on the page.
 - **CMP-07 Small buttons on pages** (must): buttons in page content use S; M is for dialogs and main actions at the bottom of a panel.

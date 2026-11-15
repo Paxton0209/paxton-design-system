@@ -36,7 +36,7 @@
 
 ### CMP-BAR 状态栏和 Dock `status-bar`、`dock`、`stepper`
 - 状态栏 1600×80，Dock 1600×92，两端为温度步进。
-- Dock 中间 5 个应用位统一 54×54、40×40 单色库图标，内距 7，位间距 36。按下反馈由交互层提供。
+- Dock 中间 5 个应用位使用 `app-tile` 的原版彩色图标，尺寸 54×54，位间距 36。按下反馈由独立交互层提供。
 
 
 ### CMP-BTN 按钮 `button`
@@ -114,7 +114,7 @@
 - **CMP-01 先用组件**（必须）：界面里能用组件的地方一律用实例，不画新的。缺组件时先补进 Library，再用。
 - **CMP-02 不改样子**（必须）：实例只改属性和文字，不在实例上改颜色、圆角、间距；要别的样子做变体。
 - **CMP-03 一屏一个主按钮**（必须）：primary 按钮每屏最多一个。
-- **CMP-04 地图和 SR 使用源组件**（必须）。使用已有 panel-map、panel/sr 和导航资产。Scene 增加 Road events，可切 Cut-in、Lane change、Merge traffic 三种已有的 DriveScene 静态画面。
+- **CMP-04 地图和 SR 使用源组件**（必须）。使用已有 panel-map、panel/sr 和导航资产。通过 `Left panel → panel/sr → Road event` 选择 Off、Cut-in、Lane change 或 Merge traffic。默认 Off，显示 `Scene` 里选定的基础场景。事件档位复用 DriveScene 的深浅静态导出，一次显示一张与当前 SR 模式一致的图，事件层随面板拉伸并位于车速文字下方。从实际 `Left panel` 实例逐档验证。
 - **CMP-05 浮层层级**（必须）：同一时间最多一个弹窗；toast 不挡主操作按钮。
 - **CMP-06 比例看蔚来**（应）：新组件的尺寸和构图先对照 Work 页的蔚来界面（换算到 1600 宽约乘 0.83），不对时先改组件，不在页面上放大。
 - **CMP-07 页面里用小按钮**（必须）：页面内容区的按钮用 S，M 只给弹窗和面板底部的主要操作。
