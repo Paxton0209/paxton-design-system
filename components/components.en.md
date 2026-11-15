@@ -33,9 +33,11 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 | panel-sr | 3D scene and speed |
 | panel-blank | surface/panel, vertical auto layout, padding 40 (32 when split into nav and content), gap 16 |
 - Wide 1000, narrow 520, height 728, radius 28.
+- In the 1920 × 1200 examples, `panel-sr` is 740 × 1200. Use Scene to select Driving, Parking, or Parked. Driving exposes Road type and Road event. Parking exposes Parking type.
 
 ### CMP-BAR Status bar and Dock `status-bar`, `dock`, `stepper`
 - The status bar is 1600 × 80 and the Dock is 1600 × 92. Place a temperature stepper at either end of the Dock.
+- The test status bar uses a 44 × 44 circular example avatar. Use a neutral background and natural skin tones. Center the face in the circle and use the source image fill in both themes.
 - The five Dock tiles use the original color artwork from `app-tile`. Each tile is 54 × 54, with 36 px between tiles. A separate interaction layer provides press feedback.
 
 
@@ -149,11 +151,12 @@ Bottom to top: screen back surface/screen, panels surface/panel, rows and blocks
 - **CMP-31 One visual size per set** (must): compare equivalent size, the square root of ink width × height. The library median is about 25 to 28 (median longest side 28). Within one menu, button row or card group, each icon's equivalent size is within 3 of the set median. Wide shapes (mirror, window) exceed on their longest side but not in area, so equivalent size avoids false alarms. When one fails, fix the source component (icon guideline USE-01); never swap the icon or resize only the instance. Check: compute equivalent size per set, then look at the whole column once.
 
 - **CMP-32 One piece of feedback fixes every screen** (must): after a piece of feedback, find the cause, then run the same check across every example screen (menus, cards, lists, buttons, map buttons), not only the screen that was pointed at. Check: delivery includes that round's check results for every screen.
-- **CMP-33 Recheck components after resizing the canvas** (must). Calculate body height from the actual status bar and bottom bar heights. Then check containers that grow with their contents, including card grids and tabs. The 1920×1200 test body runs from y=96 to y=1090 and is 994 px high. In full-bleed examples, the app frame starts at y=0 and reaches at least the top of the Dock at y=1090. The visible bottom edge of a separate background, such as a map, must also reach the Dock with a 0 px gap. Use the current Type sizes and line heights. Check source text that can miss these bindings, such as SR speed and the map scale. Render both themes and confirm that background art covers the intended viewport and that text and components fit. Verify intentional map and SR crops and list fades against their own rules.
+- **CMP-33 Recheck components after resizing the canvas** (must). Calculate body height from the actual status bar and bottom bar heights. Then check containers that grow with their contents, including card grids and tabs. The 1920×1200 test body runs from y=96 to y=1090 and is 994 px high. In full-bleed examples, the app frame starts at y=0 and reaches at least the top of the Dock at y=1090. The visible bottom edge of a separate background, such as a map, must also reach the Dock with a 0 px gap. Align the navigation, phone, and phone toast app frames exactly to y=1090. The phone app frame is 1090 px high with 96 px top padding and 0 px bottom padding. Use the current Type sizes and line heights. Check source text that can miss these bindings, such as SR speed and the map scale. Render both themes and confirm that background art covers the intended viewport and that text and components fit. Verify intentional map and SR crops and list fades against their own rules.
+- **CMP-34 Use integer dimensions for fixed frames and slots** (must). Check fixed dimensions, padding, and spacing. Assign the remainder from equal columns to the center column and match each avatar disc to the outer size. Validate vector paths, measured text, and optical alignment under their own rules.
 
 ## 4 Verification (2026-11-14)
 
-- Key A rebuilt with one screen instance: status bar, SR panel, map panel (nav card, ETA bar, map controls) and Dock match the original; the avatar is a placeholder circle.
+- Key A rebuilt with one screen instance: status bar, SR panel, map panel (nav card, ETA bar, map controls) and Dock match the original.
 - A settings page composed from components, following NIO's settings layout: SR panel on the left; the right panel split into side nav and content with function cards, list rows (switch, value, slider) and two S buttons. All instances. In the Composed section of the 06 Screens page.
 - The A, B and C comparison samples stay in the Direction samples section of 05 Components as the record of D-118.
 

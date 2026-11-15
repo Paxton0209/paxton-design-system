@@ -63,7 +63,7 @@ Current size: 300 standalone components and 24 part masters.
 - Stroke weight is 2. Every vertex has strokeCap and strokeJoin set to ROUND.
 - After any scaling, reset the stroke weight to 2. Scale icons inside components with resize, never rescale.
 - Exceptions: EXC-01.
-- Check: audit `stroke`, `cap`
+- Check: audit `stroke`, `cap`. Measure the effective stroke weight and scale factor on nested instances as well as source vectors. A 48 × 48 slot can still carry an old instance scale factor.
 
 ### BASE-07 Zero-length segments (must)
 - No segment may be shorter than 0.05, and coincident vertices must be merged. Zero-length segments break round caps at line ends.
