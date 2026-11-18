@@ -283,6 +283,7 @@ D-97 至 D-100 更新当前 Figma 的字体、颜色和资产保留策略；旧 
 | D-122 | `status-bar` 的两处状态图标采用共享候选集与右侧实例交换属性。Wi-Fi、蜂窝、天气、蓝牙可使用同一属性切换。 | 作者需要在右侧直接把天气位置替换为无线连接。参考 [Android Automotive 状态栏](https://source.android.com/docs/automotive/hmi/status_bar?hl=en) 和 [Google 车机系统栏](https://developers.google.com/cars/design/automotive-os/product-experience/system-ui/small-landscape)。 | 状态图标槽 60 × 60。 |
 | D-123 | 更新弹窗宽 912 px 时水平内边距 60，垂直 32。 | 作者在日间更新弹窗选中水平内边距并确认 60。 | 日夜示例一致，688 px 紧凑校验继续用水平 32。 |
 | D-124 | Library 与 Guideline 的本地组件和组件集 Description 留空。 | 作者要求去除右侧说明。 | 复用规则写入 SPEC 和 Figma Guideline 对应画布。 |
+| D-125 | 充电详情右上角电话和收藏各用 64 × 64 px 命中区，间隔 8 px，图形视觉中心沿原操作行对齐。 | 作者指出两个图标分得太开。旧 80 × 80 px 命中区加 16 px 间隔，使图形之间实际留白 70 px。 | 母版和深浅示例的可见留白均为 46 px，返回按钮仍使用 80 × 80 px。 |
 
 ## 发版记录
 
