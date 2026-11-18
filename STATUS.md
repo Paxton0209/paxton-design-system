@@ -1,8 +1,12 @@
-# 当前状态（2026-11-13 更新）
+# 当前状态（2026-11-18 更新）
 
-当前规则为 SPEC 1.6，决定记录覆盖 DECISIONS D-01 至 D-112，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前规则为 SPEC 1.7，决定记录覆盖 DECISIONS D-01 至 D-115，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
-## 当前 Figma
+## UI/UX Library 与 Guideline
+
+新一轮装配以 UI/UX Library 的 Examples 为入口，组件在同文件中的 List、Popup 和 Map & Scene 等对应画布维护。Guideline 的 Components 和 Screens 承载使用规则。当前优先覆盖 List 家族、深色导航搜索列表、两个深色弹窗示例，适用规则见 SPEC 13.3。其他导航状态、浅色弹窗和新业务场景仍需独立验收。
+
+## 早期 Figma 校准参考
 
 文件：lib test，T6kCgDUKJIt2e2TfDSZzp8。只保留两页，作者手调布局和已经删除的内容按实时画布保留。
 
