@@ -129,3 +129,5 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 | 谁能改、怎么发版、怎么升级 | `GOVERNANCE.md` |
 | 检查脚本用法 | `checks/README.md` |
 | 新产品接入 | 把 `AGENTS.template.md` 复制到产品根目录并填空，再按第 4 节挂子模块 |
+
+Figma 本地组件和组件集的 Description 留空。用法与生成约束更新到 SPEC 和 Guideline 对应画布。
