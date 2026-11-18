@@ -1,10 +1,12 @@
 # 当前状态（2026-11-18 更新）
 
-当前规则为 SPEC 1.7，决定记录覆盖 DECISIONS D-01 至 D-115，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前草稿规则为 SPEC 1.7，决定记录覆盖 DECISIONS D-01 至 D-117，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，Figma 桌面改动等待同步。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
 ## UI/UX Library 与 Guideline
 
-新一轮装配以 UI/UX Library 的 Examples 为入口，组件在同文件中的 List、Popup 和 Map & Scene 等对应画布维护。Guideline 的 Components 和 Screens 承载使用规则。当前优先覆盖 List 家族、深色导航搜索列表、两个深色弹窗示例，适用规则见 SPEC 13.3。其他导航状态、浅色弹窗和新业务场景仍需独立验收。
+装配以 UI/UX Library 的 Examples 为入口，List、Popup、Map & Scene 等母组件在对应画布维护，使用规则见 SPEC 13.3 和 Figma Guideline。第二批更新 18 张导航画板，验收更新弹窗的日夜模式和深色泊车，从 Examples 移除已替换的旧画面和参考图。页面保留 21 张独立画板，顶部 8 张重点稿在画板上方直接用绿色 `New` 标记。
+
+下一批校准 `Color` 和 `Typography` 的 AI 调用入口。现有语义颜色和文字样式可以复用，主题与样式以真实 Library 变量为核对对象。`en/number/xl/medium` 的字号属性为 120，绑定的 `size/number/xl` 为 104，部分 regular 样式的属性和绑定名称也有差异。现阶段应从相应实例实测字体与字重，避开从旧 1600 校准稿直接搬值。
 
 ## 早期 Figma 校准参考
 
