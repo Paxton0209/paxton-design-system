@@ -53,10 +53,12 @@ node design-system/checks/audit.mjs --url http://127.0.0.1:8000/studio/ui-draft/
 ## 2.1 Figma 与设计稿怎么执行
 
 - [ ] 先读 SPEC 对应任务的章节与 COMPONENTS；车机屏幕遵循 SPEC 的车机分类及产品约束，不把网页字号和布局直接套到车机。
-- [ ] 读取目标 Figma 实时画布：[当前参考文件](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test)，节点定位见 STATUS。访问依赖作者的 Figma 共享权限，与 Claude 账号无关。保留现有组件引用与作者已删除内容，历史截图和数量不证明当前状态。
+- [ ] 读取目标 Figma 实时画布：装配从 UI/UX Library 的 Examples 开始，套用 SPEC 13.3。早期结构考证见 [lib test](https://www.figma.com/design/T6kCgDUKJIt2e2TfDSZzp8/lib-test) 和 STATUS。访问依赖作者的 Figma 共享权限，与 Claude 账号无关。保留现有组件引用与作者已删除内容，历史截图和数量不证明当前状态。
 - [ ] 已有明确作者确认依据的手调布局按该确认保留。仅观察到画布内容不能视为作者确认；与 SPEC 冲突或确认依据不明时，保留现状并报告，不自行修改画布或规范。
 - [ ] 网页从 `tokens/tokens.json` 读取语义、值和深色值，映射到 Figma 变量或样式。车机专用值与字号以 SPEC 13.1 的表格为依据，对照 Figma 的 `Color` 变量（规则见 `color/color-tokens.md`）和 `HMI/…` 文字样式；这些专用值暂未收进网页 tokens.json，不自行生成新值或当作网页变量使用。优先复用现有主组件与实例，缺少对应变量或样式时报告具体缺口，不声称已完成绑定。
 - [ ] 交付文件链接、实际修改节点、采用版本，以及适用的浅深主题、尺寸和状态截图；未做的状态写明未验证。网页审计脚本不能直接验收 Figma，必须按规范核对画布中的数值、布局、文字、图标和状态。
+
+作者反馈明确影响后续出图时，在 [SPEC](SPEC.md#133-车机组件装配) 更新正文，写明适用场景、参照边界和可复测的验收条件，在 [DECISIONS](DECISIONS.md) 记录依据，并将同一规则同步到相应 Figma Guideline 和 Examples。单张画板的微调留在该画板与交付记录。接手生成前先查规则，生成后用实例量一次。例如车标的横向位置取整个右侧应用区的中线，纵向取左侧 SR 车身的视觉中心。按这两个基准验收每个导航状态。
 
 ## 2.2 配图怎么执行
 
@@ -127,3 +129,5 @@ CI 的截图、报告和日志在 Actions 运行页的 Artifacts 里，保留 30
 | 谁能改、怎么发版、怎么升级 | `GOVERNANCE.md` |
 | 检查脚本用法 | `checks/README.md` |
 | 新产品接入 | 把 `AGENTS.template.md` 复制到产品根目录并填空，再按第 4 节挂子模块 |
+
+Figma 本地组件和组件集的 Description 留空。用法与生成约束更新到 SPEC 和 Guideline 对应画布。

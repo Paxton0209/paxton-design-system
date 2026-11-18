@@ -1,8 +1,20 @@
-# 当前状态（2026-11-13 更新）
+# 当前状态（2026-11-18 更新）
 
-当前规则为 SPEC 1.6，决定记录覆盖 DECISIONS D-01 至 D-112，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，未发布 Figma 组件库；设计系统仓库的发布情况见下文。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
+当前草稿规则为 SPEC 1.10，决定记录覆盖 DECISIONS D-01 至 D-133，车机图标规范为 1.2，车机颜色 token 为 1.0，代码组件文档仍为 COMPONENTS 1.1。以下 Figma 情况为当日记录，Figma 桌面改动等待同步。历史 A–E 任务和导入报告保留为过程记录，执行入口以本文件和 SPEC 为准。
 
-## 当前 Figma
+## UI/UX Library 与 Guideline
+
+装配以 UI/UX Library 的 Examples 为入口，List、Popup、Map & Scene 等母组件在对应画布维护，使用规则见 SPEC 13.3 和 Figma Guideline。第二批更新 18 张导航画板，验收更新弹窗的日夜模式和深色泊车，从 Examples 移除已替换的旧画面和参考图。页面保留 21 张独立画板，顶部 8 张重点稿在画板上方直接用绿色 `New` 标记。
+
+导航的车标与路线在右侧全宽上共用中线，并与左侧车模同高。当前 18 张画板的地图相对坐标为 x=590、y=788。Light 车标用灰阶渐变和灰色轮廓。路线、光晕和已走段绑定 `map-bg` 的 `Show guidance route`，仅在两个带 TBT 的 Guidance 示例里开启，其他 16 张已核对为隐藏。日间弹窗使用仅作用于右侧的白色半透明遮罩。
+
+本批逐张调校 [Navigation / Search results / Light](https://www.figma.com/design/qiPTH6OH2yigVKfIavhQbI/UI-UX-Library?node-id=274-10152)，按 Sketch 搜索结果组织三个独立结果卡。输入框和卡片宽 560 px，输入框到首卡 32 px，卡之间 8 px。充电详情返回、电话、收藏各使用一个 64 × 64 px 命中区，电话与收藏间隔 8 px。已恢复 `icon-button` 和地图充电图标的引用。状态栏两处图标均可从实例右侧交换。Library 与 Guideline 的本地组件描述已清理。深色导航面板材质在结构确认后处理。
+
+Popup 母组件 S、M、L 统一为左右 60 px，上下 32 px。已核对深色更新弹窗的文字层级、尾部箭头和关闭热区，以及一至三行标题的首行对齐。最大样例复核了 960 × 800 上限、正文的首屏渐隐和比例滑块。Figma 已在桌面端保存，滚动中与末尾的动态规则记录在 SPEC 13.3。 [New 更新弹窗](https://www.figma.com/design/qiPTH6OH2yigVKfIavhQbI/UI-UX-Library?node-id=2067-9110)、[最大滚动](https://www.figma.com/design/qiPTH6OH2yigVKfIavhQbI/UI-UX-Library?node-id=2071-15950)、[一至三行](https://www.figma.com/design/qiPTH6OH2yigVKfIavhQbI/UI-UX-Library?node-id=2071-17030)。
+
+下一批校准 `Color` 和 `Typography` 的 AI 调用入口。现有语义颜色和文字样式可以复用，主题与样式以真实 Library 变量为核对对象。`en/number/xl/medium` 的字号属性为 120，绑定的 `size/number/xl` 为 104，部分 regular 样式的属性和绑定名称也有差异。现阶段应从相应实例实测字体与字重，避开从旧 1600 校准稿直接搬值。
+
+## 早期 Figma 校准参考
 
 文件：lib test，T6kCgDUKJIt2e2TfDSZzp8。只保留两页，作者手调布局和已经删除的内容按实时画布保留。
 
